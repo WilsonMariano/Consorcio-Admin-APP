@@ -14,7 +14,10 @@
 
 
 /* Botón editar de las grillas */
+/* Botón del paginado */
 
-tr td i.mdi {
+tr td i.mdi, .page-link {
     cursor: pointer;
 }
+
+

@@ -1,3 +1,20 @@
+/* Links del tema */
+
 #themecolors a {
     cursor: pointer
+}
+
+
+/* Mensaje de erorr de los formularios */
+
+.form-invalid {
+    color: red;
+    font-size: smaller;
+}
+
+
+/* Botón editar de las grillas */
+
+tr td i.mdi {
+    cursor: pointer;
 }

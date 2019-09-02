@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Nuevo</h4>
+                <hr>
+                <div class="r-panel-body">
+
+                    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="form-group col-md-3 col-sm-12">
+                                <label for="exampleInputEmail1">N° Adh</label>
+                                <input type="number" onlyNumbers class="form-control" placeholder="355" formControlName="nroAdherente">
+                                <span class="form-invalid" *ngIf="forma.controls['nroAdherente'].errors?.required && forma.get('nroAdherente').touched">*El campo es requerido</span>
+                            </div>
+                            <div class="form-group col-md-9 col-sm-12">
+                                <label for="exampleInputPassword1">N° Documento</label>
+                                <input type="number" onlyNumbers class="form-control" placeholder="112345678" formControlName="nroDocumento">
+                                <span class="form-invalid" *ngIf="forma.controls['nroDocumento'].errors?.required && forma.controls['nroDocumento'].touched">*El campo es requerido</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="exampleInputPassword1">Apellido</label>
+                                <input type="text" class="form-control" placeholder="Gómez" formControlName="apellido">
+                                <span class="form-invalid" *ngIf="forma.controls['apellido'].errors?.required && forma.controls['apellido'].touched">*El campo es requerido</span>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="exampleInputPassword1">Nombre</label>
+                                <input type="text" class="form-control" placeholder="Alberto" formControlName="nombre">
+                                <span class="form-invalid" *ngIf="forma.controls['nombre'].errors?.required && forma.controls['nombre'].touched">*El campo es requerido</span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Teléfono</label>
+                            <input type="number" onlyNumbers class="form-control" placeholder="011 12345678" formControlName="telefono">
+                            <span class="form-invalid" *ngIf="forma.controls['telefono'].errors?.required && forma.controls['telefono'].touched">*El campo es requerido</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="email" class="form-control" placeholder="example@gmail.com" formControlName="email">
+                            <span class="form-invalid" *ngIf="forma.controls['email'].errors?.required && forma.controls['email'].touched">*El campo es requerido</span>
+                            <span class="form-invalid" *ngIf="forma.controls['email'].errors?.invalidFormat && forma.controls['email'].value != ''">*El formato es incorrecto</span>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-themecolor">Aceptar</button>
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

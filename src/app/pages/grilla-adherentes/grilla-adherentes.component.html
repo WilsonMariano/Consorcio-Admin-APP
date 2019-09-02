@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="r-panel-body">
+                    <a class="btn btn-themecolor" routerLink="/datos-adherente/nuevo">Nuevo adherente</a>
+
+                    <p class="text-muted mt-3"><small>Mostrando <b>{{page}}-{{rowsWithPage}}</b> de <b>{{arrAdherentes.length}}</b> elementos</small></p>
+
+                    <table class="table table-borderless table-striped table-sm mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nro Adherente</th>
+                                <th scope="col">Nro Documento</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Email</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="form-control form-control-sm" type="text"></td>
+                                <td><input class="form-control form-control-sm" type="text"></td>
+                                <td><input class="form-control form-control-sm" type="text"></td>
+                                <td><input class="form-control form-control-sm" type="text"></td>
+                                <td><input class="form-control form-control-sm" type="text"></td>
+                                <td><input class="form-control form-control-sm" type="text"></td>
+                                <th></th>
+                            </tr>
+                            <tr *ngFor="let a of arrAdherentes">
+                                <td>{{a.id}}</td>
+                                <td>{{a.nroDocumento}}</td>
+                                <td>{{a.apellido}}</td>
+                                <td>{{a.nombre}}</td>
+                                <td>{{a.telefono}}></td>
+                                <td>{{a.email}}</td>
+                                <td routerLink="/datos-adherente/{{a.id}}"><i class="mdi mdi-lead-pencil"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>

@@ -1,17 +1,26 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
+import { NgxSpinnerModule } from "ngx-spinner";
+
+// Servicios
+import { CommonService } from '../services/service.index';
+
+// Directivas
+import { OnlyNumbersDirective } from '../directives/only-numbers.directive';
 
 // Componentes
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
-import { AdherentesComponent } from './adherentes/adherentes.component';
+import { GrillaAdherentesComponent } from './grilla-adherentes/grilla-adherentes.component';
+import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
 
 
 
@@ -21,15 +30,21 @@ import { AdherentesComponent } from './adherentes/adherentes.component';
         PagesComponent,
         DashboardComponent,
         AccountSettingsComponent,
-        AdherentesComponent
+        GrillaAdherentesComponent,
+        DatosAdherenteComponent,
+        OnlyNumbersDirective
     ],
     exports: [
         DashboardComponent
     ],
     imports: [
         FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        NgxSpinnerModule,
         PAGES_ROUTES,
         SharedModule
-    ]
+    ],
+    providers: [CommonService]
 })
 export class PagesModule { }

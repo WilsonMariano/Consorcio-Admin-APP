@@ -8,6 +8,7 @@ import { PAGES_ROUTES } from './pages.routes';
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerModule } from "ngx-spinner";
+// import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 // Servicios
 import { CommonService } from '../services/service.index';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommonService } from '../../services/service.index';
-import { NgxSpinnerService } from "ngx-spinner";
+import { CommonService, FxGlobalsService } from '../../services/service.index';
+
+
 
 @Component({
   selector: 'app-grilla-adherentes',
@@ -20,7 +20,7 @@ export class GrillaAdherentesComponent implements OnInit {
   public numPage = 1;
   public arrPaginate = [];
 
-  constructor(private _commonService: CommonService, private spinner: NgxSpinnerService) { }
+  constructor(private _commonService: CommonService, private _fxGlobales: FxGlobalsService) { }
 
   ngOnInit() {
 
@@ -29,14 +29,14 @@ export class GrillaAdherentesComponent implements OnInit {
 
   public getAdherentes() {
     
-    this.spinner.show();
+    this._fxGlobales.showSpinner();
     this._commonService.getWithPaged('adherentes', this.rowsWithPage, this.numPage-1).subscribe(
       data => {
         
         this.arrAdherentes = data.data;
         this.genControlsPaginate( data.total_pages );
         
-        this.spinner.hide();
+        setTimeout( () => this._fxGlobales.hideSpinner(), 500 );
       }
     );
   }

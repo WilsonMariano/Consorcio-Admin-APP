@@ -14,10 +14,18 @@
 
 
 /* Botón editar de las grillas */
+
+
 /* Botón del paginado */
 
-tr td i.mdi, .page-link {
+tr td i.mdi,
+.page-link {
     cursor: pointer;
 }
 
 
+/* Hover de los botones */
+
+.btn:hover {
+    color: #fff;
+}

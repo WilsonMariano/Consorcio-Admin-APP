@@ -2,7 +2,8 @@
     <div class="col-md-6 col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Nuevo</h4>
+                <h4 class="card-title text-muted" *ngIf="neWoperation">Alta de entidad</h4>
+                <h4 class="card-title text-muted" *ngIf="!neWoperation">Edición de entidad</h4>
                 <hr>
                 <div class="r-panel-body">
 
@@ -10,8 +11,8 @@
                         <div class="row">
                             <div class="form-group col-md-3 col-sm-12">
                                 <label for="exampleInputEmail1">N° Adh</label>
-                                <input type="number" onlyNumbers class="form-control" placeholder="355" formControlName="nroAdherente">
-                                <span class="form-invalid" *ngIf="forma.controls['nroAdherente'].errors?.required && forma.get('nroAdherente').touched">*El campo es requerido</span>
+                                <input type="number" onlyNumbers class="form-control" placeholder="355" formControlName="id">
+                                <span class="form-invalid" *ngIf="forma.controls['id'].errors?.required && forma.get('id').touched">*El campo es requerido</span>
                             </div>
                             <div class="form-group col-md-9 col-sm-12">
                                 <label for="exampleInputPassword1">N° Documento</label>
@@ -47,7 +48,7 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-themecolor">Aceptar</button>
+                        <button type="submit" class="btn btn-themecolor" [disabled]="forma.invalid">Aceptar</button>
                     </form>
 
 

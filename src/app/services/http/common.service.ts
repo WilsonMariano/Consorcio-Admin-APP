@@ -40,16 +40,33 @@ export class CommonService {
 
 
 
+  public filter(entity: String, column: String, text: String, rows: Number, page: Number): Observable<any> {
+
+    let params = new HttpParams()
+      .set('entity', entity.toString())
+      .set('column', column.toString())
+      .set('text', text.toString())
+      .set('rows', rows.toString())
+      .set('page', page.toString());
+
+    return this._http.get(`${environment.apiUri}/generic/filter`, { params });
+  }
+
+
+
   public UpdateOne(entity: String, objeto: Object): Observable<any> {
 
     let params = new HttpParams()
       .set('t', entity.toString());
 
-    return this._http.put(
+    return this._http.post(
       `${environment.apiUri}/generic/put`,
       objeto,
-      {'headers': this.headers});
+      {'headers': this.headers, params});
   }
+
+
+
   
 
 }

@@ -7,8 +7,9 @@ import { PAGES_ROUTES } from './pages.routes';
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
+import { ComponentsModule } from '../components/components.module';
 import { NgxSpinnerModule } from "ngx-spinner";
-// import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 // Servicios
 import { CommonService } from '../services/service.index';
@@ -42,9 +43,10 @@ import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.compo
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        NgxSpinnerModule,
         PAGES_ROUTES,
-        SharedModule
+        SharedModule,
+        ComponentsModule,
+        NgxSpinnerModule
     ],
     providers: [CommonService]
 })

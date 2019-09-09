@@ -5,7 +5,7 @@
                 <div class="r-panel-body">
                     <a class="btn btn-themecolor" routerLink="/datos-adherente/nuevo">Nuevo adherente</a>
 
-                    <p class="text-muted mt-3"><small>Mostrando <b>1-{{rowsWithPage}}</b> de <b>{{arrAdherentes.length}}</b> elementos</small></p>
+                    <p class="text-muted mt-3"><small>Mostrando <b>1-{{rowsWithPage}}</b> de <b>{{totalResults}}</b> elementos</small></p>
 
                     <table class="table table-borderless table-striped table-sm mt-3">
                         <thead>
@@ -21,12 +21,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input class="form-control form-control-sm" type="text"></td>
-                                <td><input class="form-control form-control-sm" type="text"></td>
-                                <td><input class="form-control form-control-sm" type="text"></td>
-                                <td><input class="form-control form-control-sm" type="text"></td>
-                                <td><input class="form-control form-control-sm" type="text"></td>
-                                <td><input class="form-control form-control-sm" type="text"></td>
+                                <td><input class="form-control form-control-sm" type="text" id="id" (keypress)="filter($event)" name="wordFilter"></td>
+                                <td><input class="form-control form-control-sm" type="text" id="nroDocumento" (keypress)="filter($event)" name="wordFilter"></td>
+                                <td><input class="form-control form-control-sm" type="text" id="apellido" (keypress)="filter($event)" name="wordFilter"></td>
+                                <td><input class="form-control form-control-sm" type="text" id="nombre" (keypress)="filter($event)" name="wordFilter"></td>
+                                <td><input class="form-control form-control-sm" type="text" id="telefono" (keypress)="filter($event)" name="wordFilter"></td>
+                                <td><input class="form-control form-control-sm" type="text" id="email" (keypress)="filter($event)" name="wordFilter"></td>
                                 <th></th>
                             </tr>
                             <tr *ngFor="let a of arrAdherentes">

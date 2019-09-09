@@ -4,9 +4,8 @@ import { ActivatedRoute, Router  } from '@angular/router';
 
 import { Adherente } from 'src/app/class/class.index';
 
-import { ValidatorsService, FxGlobalsService } from '../../services/service.index';
-import { AdherenteService } from '../../services/service.index';
-import { CommonService } from '../../services/service.index';
+import { ValidatorsService, FxGlobalsService, AdherenteService, CommonService } from '../../services/service.index';
+
 
 
 @Component({
@@ -31,8 +30,6 @@ export class DatosAdherenteComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this._fxGlobals.showSpinner();
 
     this.forma = new FormGroup({
       'id': new FormControl('', Validators.required),
@@ -65,7 +62,7 @@ export class DatosAdherenteComponent implements OnInit {
   
   public onSubmit() {
 
-    // this.spinner.show();
+    this._fxGlobals.showSpinner();
 
     let adherente = new Adherente();
     
@@ -82,15 +79,16 @@ export class DatosAdherenteComponent implements OnInit {
       // Inserto el adherente
       this._adherenteService.insertEntity( adherente ).subscribe(
         data => {
-          this._fxGlobals.showAlert('Operación Exitosa!', 'El adherente se ha insertado con éxito','success');
+          this._fxGlobals.showAlert('Operación Exitosa!', 'El adherente se ha insertado con éxito', 'success');
           this.forma.reset();
+          this._fxGlobals.hideSpinner();
         },
         err => {
           this._fxGlobals.showAlert('Error', err.error, 'error');
           // TODO - Manejar logs
           console.error(err);
+          this._fxGlobals.hideSpinner();
         }
-        // () => setTimeout(() => this.spinner.hide(), 500)
       );
     }
     else {
@@ -101,11 +99,12 @@ export class DatosAdherenteComponent implements OnInit {
 
           this._fxGlobals.showAlert('Operación Exitosa!', 'El adherente se ha actualizado con éxito','success');
           this.router.navigate(['grilla-adherentes']);
-        },
+          this._fxGlobals.hideSpinner();
+        },  
         err => {
           this._fxGlobals.showAlert('Error', err.error, 'error');
+          this._fxGlobals.hideSpinner();
         }
-        // () => setTimeout(() => this.spinner.hide(), 500)
       );
     }
   }
@@ -114,7 +113,7 @@ export class DatosAdherenteComponent implements OnInit {
   // Obtengo un adherente por ID
   public getAdherente(id: String) { 
 
-    // this.spinner.show();
+    this._fxGlobals.showSpinner();
     
     this._common.getOne('adherentes', id).subscribe(
       data => {
@@ -126,10 +125,17 @@ export class DatosAdherenteComponent implements OnInit {
         this.forma.get('nombre').setValue(data.nombre);
         this.forma.get('telefono').setValue(data.telefono);
         this.forma.get('email').setValue(data.email);
+
+        this._fxGlobals.hideSpinner();
       },
-      err => console.error(err)
-      // ()  => setTimeout(() => this.spinner.hide() ,5000)
+      err => {
+        console.error(err);
+        this._fxGlobals.showAlert('Error', 'El adherente no existe', 'error');
+        this.router.navigate(['grilla-adherentes']);
+        this._fxGlobals.hideSpinner();
+      }
     );  
   }
+
 
 }

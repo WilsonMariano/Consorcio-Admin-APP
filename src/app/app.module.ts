@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { PagesModule } from './pages/pages.module';
 import { ServiceModule } from './services/service.module';
+import { ComponentsModule } from './components/components.module';
 
 
 // Rutas
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     HttpClientModule,
     APP_ROUTES,
-    PagesModule
+    PagesModule,
+    ComponentsModule
   ],
   providers: [
     ServiceModule

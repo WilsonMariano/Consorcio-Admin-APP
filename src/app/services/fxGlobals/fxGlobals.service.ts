@@ -17,7 +17,7 @@ export class FxGlobalsService {
 
   public hideSpinner(){
 
-    this._spinner.hide();
+    setTimeout(() => this._spinner.hide(), 500);
   }
 
   public showAlert(title: string, msg: string, status: SweetAlertType) {

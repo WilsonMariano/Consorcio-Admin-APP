@@ -6,7 +6,8 @@ declare var $ : any;
 
 @Component({
   selector: 'app-grilla-adherentes',
-  templateUrl: './grilla-adherentes.component.html'
+  templateUrl: './grilla-adherentes.component.html',
+  styleUrls: ['./grilla-adherentes.component.css']
 })
 export class GrillaAdherentesComponent implements OnInit {
 
@@ -80,7 +81,6 @@ export class GrillaAdherentesComponent implements OnInit {
     switch( page ) {
 
       case 'prev':
-        console.log("entre");
         if( this.numPage -1 >= this.arrPaginate[0] )
           this.numPage -= 1;
         break;

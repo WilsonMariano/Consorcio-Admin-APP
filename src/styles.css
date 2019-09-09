@@ -6,26 +6,13 @@
 
 
 /* Mensaje de erorr de los formularios */
-
 .form-invalid {
     color: red;
     font-size: smaller;
 }
 
 
-/* Botón editar de las grillas */
-
-
-/* Botón del paginado */
-
-tr td i.mdi,
-.page-link {
-    cursor: pointer;
-}
-
-
 /* Hover de los botones */
-
 .btn:hover {
     color: #fff;
 }

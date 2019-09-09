@@ -92,16 +92,18 @@ export class DatosAdherenteComponent implements OnInit {
       );
     }
     else {
-      
+      console.log(adherente);
       // Actualizo el adherente
       this._common.UpdateOne('adherentes', adherente).subscribe(
         data => {
 
-          this._fxGlobals.showAlert('Operación Exitosa!', 'El adherente se ha actualizado con éxito','success');
+          this._fxGlobals.showAlert('Operación Exitosa!', 'El adherente se ha actualizado con éxito', 'success');
           this.router.navigate(['grilla-adherentes']);
           this._fxGlobals.hideSpinner();
         },  
         err => {
+          // TODO - Manejo de errores
+          console.log(err);
           this._fxGlobals.showAlert('Error', err.error, 'error');
           this._fxGlobals.hideSpinner();
         }

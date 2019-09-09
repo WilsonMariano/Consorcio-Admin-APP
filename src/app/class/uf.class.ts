@@ -1,5 +1,6 @@
 export class UnidadFuncional {
     
+	private id : Number ;
 	private idManzana : Number ;
 	private idAdherente : Number;
 	private nroEdificio : Number;
@@ -10,8 +11,9 @@ export class UnidadFuncional {
 
     // CONSTRUCTOR
 
-    public UnidadFuncional(idManzana?: Number, idAdherente?: Number, nroEdificio?: Number, departamento?: String, codSitLegal?: String, coeficiente?: Number,codAlquila? : String) {
+    public UnidadFuncional(id?: Number, idManzana?: Number, idAdherente?: Number, nroEdificio?: Number, departamento?: String, codSitLegal?: String, coeficiente?: Number,codAlquila? : String) {
 
+        this.id = id;
         this.idManzana = idManzana;
         this.idAdherente = idAdherente;
         this.nroEdificio = nroEdificio;
@@ -23,6 +25,10 @@ export class UnidadFuncional {
 
     
     // GETTERS
+    public getId() : Number {
+        
+        return this.id;
+    }
 
     public getIdManzana() : Number {
         
@@ -61,6 +67,10 @@ export class UnidadFuncional {
 
 
     // SETTERS
+    public setId( id: Number ) {
+        
+        this.id = id;
+    }
 
     public setIdManzana( idManzana: Number ) {
         

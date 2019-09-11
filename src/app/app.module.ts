@@ -1,11 +1,15 @@
-// Modulos
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';  
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 
+// Modulos
 import { PagesModule } from './pages/pages.module';
 import { ServiceModule } from './services/service.module';
 import { ComponentsModule } from './components/components.module';
+
+// Clases
+import { HttpErrorInterceptor } from './class/class.index';
 
 
 // Rutas
@@ -30,7 +34,12 @@ import { LoginComponent } from './login/login.component';
     ComponentsModule
   ],
   providers: [
-    ServiceModule
+    ServiceModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

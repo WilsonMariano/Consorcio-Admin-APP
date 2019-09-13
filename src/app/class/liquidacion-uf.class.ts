@@ -12,7 +12,7 @@ export class LiquidacionUF {
 
     // CONSTRUCTOR
 
-    public Adherente(id?: Number,idLiquidacionGlobal?: Number, idCtaCte?: Number, coeficiente?: Number, interes?: Number, monto?: Number, fechaRecalculo?: String, saldo?: Number) {
+    public LiquidacionUF(id?: Number,idLiquidacionGlobal?: Number, idCtaCte?: Number, coeficiente?: Number, interes?: Number, monto?: Number, fechaRecalculo?: String, saldo?: Number) {
 
         this.id = id;
         this.idLiquidacionGlobal = idLiquidacionGlobal;

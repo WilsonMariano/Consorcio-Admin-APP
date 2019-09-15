@@ -1,18 +1,20 @@
 export class LiquidacionUF {
     
+    private id : Number ;
     private idLiquidacionGlobal: Number;
     private idCtaCte: Number;
-    private coeficiente: String;
-    private interes: String;
-    private monto: String;
+    private coeficiente: Number;
+    private interes: Number;
+    private monto: Number;
     private fechaRecalculo: String;
-    private saldo: String;
+    private saldo: Number;
 
 
     // CONSTRUCTOR
 
-    public Adherente(idLiquidacionGlobal?: Number, idCtaCte?: Number, coeficiente?: String, interes?: String, monto?: String, fechaRecalculo?: String, saldo?: String) {
+    public LiquidacionUF(id?: Number,idLiquidacionGlobal?: Number, idCtaCte?: Number, coeficiente?: Number, interes?: Number, monto?: Number, fechaRecalculo?: String, saldo?: Number) {
 
+        this.id = id;
         this.idLiquidacionGlobal = idLiquidacionGlobal;
         this.idCtaCte = idCtaCte;
         this.coeficiente = coeficiente;
@@ -24,6 +26,10 @@ export class LiquidacionUF {
 
     
     // GETTERS
+    public getId() : Number {
+        
+        return this.id;
+    }
 
     public getIdLiquidacionGlobal() : Number {
         
@@ -35,17 +41,17 @@ export class LiquidacionUF {
         return this.idCtaCte;
     }
 
-    public getCoeficiente() : String {
+    public getCoeficiente() : Number {
         
         return this.coeficiente;
     }
 
-    public getInteres () : String {
+    public getInteres () : Number {
         
         return this.interes;
     }
     
-    public getMonto () : String {
+    public getMonto () : Number {
         
         return this.monto;
     }
@@ -55,12 +61,17 @@ export class LiquidacionUF {
         return this.fechaRecalculo;
     }
 
-    public getSaldo () : String {
+    public getSaldo () : Number {
         
         return this.saldo;
     }
 
     // SETTERS
+
+    public setId( id: Number ) {
+        
+        this.id = id;
+    }
 
     public setIdLiquidacionGlobal( idLiquidacionGlobal: Number ) {
         
@@ -72,17 +83,17 @@ export class LiquidacionUF {
         this.idCtaCte = idCtaCte;
     }
 
-    public setCoeficiente( coeficiente: String ) {
+    public setCoeficiente( coeficiente: Number ) {
         
         this.coeficiente = coeficiente;
     }
 
-    public setInteres ( interes: String ) {
+    public setInteres ( interes: Number ) {
         
         this.interes = interes;
     }
     
-    public setMonto ( monto: String ) {
+    public setMonto ( monto: Number ) {
         
         this.monto = monto;
     }
@@ -92,7 +103,7 @@ export class LiquidacionUF {
         this.fechaRecalculo = fechaRecalculo;
     }
 
-    public setSaldo ( saldo: String ) {
+    public setSaldo ( saldo: Number ) {
         
         this.saldo = saldo;
     }

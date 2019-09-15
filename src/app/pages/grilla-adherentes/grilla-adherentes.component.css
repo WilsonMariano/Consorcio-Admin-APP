@@ -1,0 +1,10 @@
+/* Botónes del paginado */
+tr td i.mdi,
+.page-link {
+    cursor: pointer;
+}
+
+button.page-link, button.page-link:hover{
+    color: #67757c;
+}
+

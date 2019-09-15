@@ -23,6 +23,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { GrillaAdherentesComponent } from './grilla-adherentes/grilla-adherentes.component';
 import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
+import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
 
 
 
@@ -34,7 +35,8 @@ import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.compo
         AccountSettingsComponent,
         GrillaAdherentesComponent,
         DatosAdherenteComponent,
-        OnlyNumbersDirective
+        OnlyNumbersDirective,
+        GrillaUFComponent
     ],
     exports: [
         DashboardComponent

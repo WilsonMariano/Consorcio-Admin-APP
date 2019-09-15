@@ -18,7 +18,7 @@ export class SidebarService {
       icono: 'mdi mdi-account-multiple',
       submenu: [
         { titulo: 'Grilla adherentes', url: '/grilla-adherentes' },
-        { titulo: 'Grilla UF', url: '/unidades-funcionales' },
+        { titulo: 'Grilla UF', url: '/grilla-uf' },
         { titulo: 'Pagos', url: '/pagos' }
       ]
     },

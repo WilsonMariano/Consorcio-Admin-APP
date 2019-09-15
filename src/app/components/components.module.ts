@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from "ngx-spinner";
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { SpinnerComponent } from './spinner/spinner.component';
 import { GrillaComponent } from './grilla/grilla.component';
@@ -11,7 +13,8 @@ import { GrillaComponent } from './grilla/grilla.component';
 @NgModule({
     imports: [
         CommonModule,
-        NgxSpinnerModule
+        RouterModule,
+        NgxSpinnerModule,
     ],
     declarations: [
         SpinnerComponent,

@@ -4,7 +4,8 @@ declare var $ : any;
 
 @Component({
   selector: 'app-grilla',
-  templateUrl: './grilla.component.html'
+  templateUrl: './grilla.component.html',
+  styleUrls: ['./grilla.component.css']
 })
 export class GrillaComponent implements OnInit {
   @Input() arrControls = [];
@@ -35,7 +36,7 @@ export class GrillaComponent implements OnInit {
     this._fxGlobales.showSpinner();
     this._common.getWithPaged(this.entity, this.rowsWithPage, this.numPage-1).subscribe(
       data => {
-
+      console.log(data);
         this.arrObjects = data.data;
         this.totalResults = data.total_rows;
         this.genControlsPaginate( data.total_pages );
@@ -70,7 +71,6 @@ export class GrillaComponent implements OnInit {
     switch( page ) {
 
       case 'prev':
-        console.log("entre");
         if( this.numPage -1 >= this.arrPaginate[0] )
           this.numPage -= 1;
         break;
@@ -91,12 +91,13 @@ export class GrillaComponent implements OnInit {
   }
 
 
-
+  
   // Se ejecuta cada vez que se escribe en un input
   public filter( event: KeyboardEvent ) {
-
+    
     let id = event.srcElement['id'];
     let text = $('#'+id).val();
+    console.log(id);
 
     // Si se ingresa algo en un input, desabilito todos los demas
     if(text != "") {

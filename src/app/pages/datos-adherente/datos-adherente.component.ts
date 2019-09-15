@@ -4,14 +4,13 @@ import { ActivatedRoute, Router  } from '@angular/router';
 
 import { Adherente } from 'src/app/class/class.index';
 
-import { ValidatorsService, FxGlobalsService, AdherenteService, CommonService } from '../../services/service.index';
+import { ValidatorsService, FxGlobalsService, CommonService } from '../../services/service.index';
 
 
 
 @Component({
   selector: 'app-datos-adherente',
-  templateUrl: './datos-adherente.component.html',
-  styles: []
+  templateUrl: './datos-adherente.component.html'
 })
 export class DatosAdherenteComponent implements OnInit {
 
@@ -24,7 +23,6 @@ export class DatosAdherenteComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute, 
     private _validators: ValidatorsService, 
-    private _adherenteService: AdherenteService, 
     private _common: CommonService, 
     private _fxGlobals: FxGlobalsService,
     private router: Router) { }
@@ -78,7 +76,7 @@ export class DatosAdherenteComponent implements OnInit {
     if( this.neWoperation ) {
 
       // Inserto el adherente
-      this._adherenteService.insertEntity( adherente ).subscribe(
+      this._common.insertEntity( adherente, 'adherentes' ).subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El adherente se ha insertado con éxito', 'success' );

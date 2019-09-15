@@ -24,6 +24,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { GrillaAdherentesComponent } from './grilla-adherentes/grilla-adherentes.component';
 import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
 import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
+import { DatosUFComponent } from './datos-uf/datos-uf.component';
+import { GrillaExpensasComponent } from './grilla-expensas/grilla-expensas.component';
 
 
 
@@ -36,7 +38,9 @@ import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
         GrillaAdherentesComponent,
         DatosAdherenteComponent,
         OnlyNumbersDirective,
-        GrillaUFComponent
+        GrillaUFComponent,
+        DatosUFComponent,
+        GrillaExpensasComponent
     ],
     exports: [
         DashboardComponent

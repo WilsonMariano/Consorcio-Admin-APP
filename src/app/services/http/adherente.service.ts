@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { Adherente } from '../../class/adherente.class';
+// import { Observable } from 'rxjs';
+// import { environment } from '../../../environments/environment';
+// import { Adherente } from '../../class/adherente.class';
 import { FxGlobalsService } from '../fxGlobals/fxGlobals.service';
 
 
@@ -19,18 +19,6 @@ export class AdherenteService {
 
     this.headers = new HttpHeaders();
     this.headers.append('Content-Type', 'application/json');
-  }
-
-
-
-   public insertEntity( adherente: Adherente ): Observable<any> {   
-
-    return this._http.post(`${environment.apiUri}/adherentes/insert`, 
-      adherente, 
-      {
-        'headers': this.headers
-      }
-    );
   }
 
 

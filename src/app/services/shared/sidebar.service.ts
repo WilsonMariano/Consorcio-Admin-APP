@@ -26,7 +26,7 @@ export class SidebarService {
       titulo: 'Expensas',
       icono: 'mdi mdi-newspaper',
       submenu: [
-        { titulo: 'Grilla expensas', url: '/expensas' },
+        { titulo: 'Grilla expensas', url: '/grilla-expensas' },
         { titulo: 'Generar nueva expensa', url: '/nueva-expensa' }
       ]
     },

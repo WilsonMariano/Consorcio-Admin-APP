@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-grilla-adherentes',
-  templateUrl: './grilla-adherentes.component.html',
-  styleUrls: ['./grilla-adherentes.component.css']
+  templateUrl: './grilla-adherentes.component.html'
 })
 export class GrillaAdherentesComponent implements OnInit {
   

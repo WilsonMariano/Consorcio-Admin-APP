@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-muted" *ngIf="neWoperation">Alta de entidad</h4>
+                <h4 class="card-title text-muted" *ngIf="!neWoperation">Edición de entidad</h4>
+                <hr>
+                <div class="r-panel-body">
+
+                    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label>N° UF</label>
+                                <input type="number" onlyNumbers class="form-control" placeholder="355" formControlName="id">
+                                <span class="form-invalid" *ngIf="forma.controls['id'].errors?.required && forma.get('id').touched">*El campo es requerido</span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label>N° Manzana</label>
+                                <select class="form-control" formControlName="idManzana">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="140">140</option>
+                                    <option value="141">141</option>
+                                    <option value="142">142</option>
+                                    <option value="143">143</option>
+                                </select>
+                                <span class="form-invalid" *ngIf="forma.controls['idManzana'].errors?.required && forma.controls['idManzana'].touched">*El campo es requerido</span>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label>N° Edificio</label>
+                                <input type="number" onlyNumbers class="form-control" placeholder="15" formControlName="nroEdificio">
+                                <span class="form-invalid" *ngIf="forma.controls['nroEdificio'].errors?.required && forma.controls['nroEdificio'].touched">*El campo es requerido</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>Departamento</label>
+                                <select class="form-control" formControlName="departamento">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                                <span class="form-invalid" *ngIf="forma.controls['departamento'].errors?.required && forma.controls['departamento'].touched">*El campo es requerido</span>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>N° Adherente</label>
+                                <input type="number" onlyNumbers class="form-control" placeholder="520" formControlName="idAdherente">
+                                <span class="form-invalid" *ngIf="forma.controls['idAdherente'].errors?.required && forma.controls['idAdherente'].touched">*El campo es requerido</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>Situación legal</label>
+                                <select class="form-control" formControlName="codSitLegal">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Deudor">Deudor</option>
+                                    <option value="Legales">Legales</option>
+                                </select>
+                                <span class="form-invalid" *ngIf="forma.controls['codSitLegal'].errors?.required && forma.controls['codSitLegal'].touched">*El campo es requerido</span>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label>Coeficiente</label>
+                                <input type="number" onlyNumbers class="form-control" placeholder="0.00265" formControlName="coeficiente">
+                                <span class="form-invalid" *ngIf="forma.controls['coeficiente'].errors?.required && forma.controls['coeficiente'].touched">*El campo es requerido</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Situación de alquiler</label>
+                            <select class="form-control" formControlName="codAlquila">
+                                <option value="">Seleccionar...</option>
+                                <option value="Alquila sin contrato">Alquila sin contrato</option>
+                                <option value="Alquila con contrato">Alquila con contrato</option>
+                                <option value="Propietario">Propietario</option>
+                            </select>
+                            <span class="form-invalid" *ngIf="forma.controls['codAlquila'].errors?.required && forma.controls['codAlquila'].touched">*El campo es requerido</span>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-themecolor" [disabled]="forma.invalid">Aceptar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-spinner></app-spinner>

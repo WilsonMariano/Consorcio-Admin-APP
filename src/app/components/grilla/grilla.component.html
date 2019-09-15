@@ -11,12 +11,12 @@
     </thead>
     <tbody>
         <tr>
-            <td *ngFor="let c of arrControls"><input class="form-control form-control-sm" type="text" [id]="c" (keyup)="filter($event)"></td>
-            <td></td>
+            <td *ngFor="let c of arrAttr"><input class="form-control form-control-sm" type="text" [id]="c" (keyup)="filter($event)"></td>
+            <td *ngIf="editLink != ''"></td>
         </tr>
         <tr *ngFor="let obj of arrObjects">
             <td *ngFor="let item of arrAttr">{{obj[item]}}</td>
-            <td routerLink="/{{editLink}}/{{obj.id}}"><i class="mdi mdi-lead-pencil"></i></td>
+            <td *ngIf="editLink != ''" routerLink="/{{editLink}}/{{obj.id}}"><i class="mdi mdi-lead-pencil"></i></td>
         </tr>
     </tbody>
 </table>

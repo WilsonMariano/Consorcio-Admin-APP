@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { FxGlobalsService } from '../fxGlobals/fxGlobals.service';
+import { finalize } from 'rxjs/operators';
 
 
 @Injectable({
@@ -23,6 +24,8 @@ export class CommonService {
 
   public getWithPaged( entity: String, rows: Number, page: Number ): Observable<any> {
 
+    this._fxGlobals.showSpinner();
+
     let params = new HttpParams()
       .set( 'rows', rows.toString() )
       .set( 'page', page.toString() )
@@ -30,24 +33,34 @@ export class CommonService {
 
     return this._http.get( `${environment.apiUri}/generic/paged`, 
       { params }
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
     );
-  }
+  }  
 
 
 
   public getOne( entity: String, id: String ): Observable<any> {
+
+    this._fxGlobals.showSpinner();
 
     let params = new HttpParams()
       .set('t', entity.toString());
 
     return this._http.get(`${environment.apiUri}/generic/one/${id}`, 
       { params }
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
     );
   }
 
 
 
   public filter( entity: String, column: String, text: String, rows: Number, page: Number ): Observable<any> {
+
+    this._fxGlobals.showSpinner();
 
     let params = new HttpParams()
       .set( 'entity', entity.toString() )
@@ -58,22 +71,46 @@ export class CommonService {
 
     return this._http.get(`${environment.apiUri}/generic/filter`, 
       { params }
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
     );
   }
 
 
 
-  public UpdateOne( entity: String, objeto: Object ): Observable<any> {
+  public UpdateOne( entity: String, object: Object ): Observable<any> {
+
+    this._fxGlobals.showSpinner();
 
     let params = new HttpParams()
       .set( 't', entity.toString() );
 
     return this._http.put( `${environment.apiUri}/generic/put`, 
-      objeto, 
+      object, 
       {
         'headers': this.headers, 
         params
       }
+    ).pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
+    );
+  }
+
+
+
+  public insertEntity( object: Object, entity: String ): Observable<any> { 
+    
+    this._fxGlobals.showSpinner();
+
+    return this._http.post(`${environment.apiUri}/${entity}/insert`, 
+      object, 
+      {
+        'headers': this.headers
+      }
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
     );
   }
 

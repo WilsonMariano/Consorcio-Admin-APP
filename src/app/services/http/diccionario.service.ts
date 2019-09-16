@@ -23,14 +23,14 @@ export class DiccionarioService {
 
   
 
-  public getAllByCode( codigo: String ): Observable<any> {
+  public getAll( codigo: String ): Observable<any> {
 
     this._fxGlobals.showSpinner();
 
     let params = new HttpParams()
       .set('codigo', codigo.toString());
 
-    return this._http.get(`${environment.apiUri}/diccionario/all-by-code`, 
+    return this._http.get(`${environment.apiUri}/diccionario/all`, 
       { params }
     )
     .pipe(

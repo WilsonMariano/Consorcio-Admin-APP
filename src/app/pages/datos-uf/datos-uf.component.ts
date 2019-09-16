@@ -152,16 +152,16 @@ export class DatosUFComponent implements OnInit {
   // Traigo los datos del diccionario para llenar los arreglos de los select
   private getDiccionario() {
  
-    this._diccionario.getAllByCode('COD_SIT_LEGAL').subscribe(
+    this._diccionario.getAll('COD_SIT_LEGAL').subscribe(
       data => this.arrSitLegal = data);
 
-    this._diccionario.getAllByCode('COD_ALQ').subscribe(
+    this._diccionario.getAll('COD_ALQ').subscribe(
       data => this.arrSitAlquiler = data);
 
-    this._diccionario.getAllByCode('COD_DEPARTAMENTO').subscribe(
+    this._diccionario.getAll('COD_DEPARTAMENTO').subscribe(
       data => this.arrDepartamentos = data);
 
-    this._diccionario.getAllByCode('COD_MANZANA').subscribe(
+    this._diccionario.getAll('COD_MANZANA').subscribe(
       data => this.arrManzanas = data);
   }
 

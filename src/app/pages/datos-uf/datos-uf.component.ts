@@ -120,7 +120,6 @@ export class DatosUFComponent implements OnInit {
         this.forma.get( 'coeficiente' ).setValue( data.coeficiente );
         this.forma.get( 'codAlquila' ).setValue( data.codAlquila );
 
-        this._fxGlobals.hideSpinner();
       },
       err => this.router.navigate( ['grilla-adherentes'])
     );  

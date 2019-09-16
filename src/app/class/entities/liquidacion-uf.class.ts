@@ -6,13 +6,13 @@ export class LiquidacionUF {
     private coeficiente: Number;
     private interes: Number;
     private monto: Number;
-    private fechaRecalculo: String;
+    private fechaRecalculo: Date;
     private saldo: Number;
 
 
     // CONSTRUCTOR
 
-    public LiquidacionUF(id?: Number,idLiquidacionGlobal?: Number, idCtaCte?: Number, coeficiente?: Number, interes?: Number, monto?: Number, fechaRecalculo?: String, saldo?: Number) {
+    public LiquidacionUF(id?: Number,idLiquidacionGlobal?: Number, idCtaCte?: Number, coeficiente?: Number, interes?: Number, monto?: Number, fechaRecalculo?: Date, saldo?: Number) {
 
         this.id = id;
         this.idLiquidacionGlobal = idLiquidacionGlobal;
@@ -56,7 +56,7 @@ export class LiquidacionUF {
         return this.monto;
     }
 
-    public getFechaRecalculo () : String {
+    public getFechaRecalculo () : Date {
         
         return this.fechaRecalculo;
     }
@@ -98,7 +98,7 @@ export class LiquidacionUF {
         this.monto = monto;
     }
 
-    public setFechaRecalculo ( fechaRecalculo: String ) {
+    public setFechaRecalculo ( fechaRecalculo: Date ) {
         
         this.fechaRecalculo = fechaRecalculo;
     }

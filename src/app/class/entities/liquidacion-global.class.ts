@@ -3,15 +3,15 @@ export class LiquidacionGlobal {
     private id : Number ;
     private mes: Number;
     private anio: Number;
-    private primerVencimiento: String;
-    private segundoVencimiento: String;
-    private fechaEmision: String;
+    private primerVencimiento: Date;
+    private segundoVencimiento: Date;
+    private fechaEmision: Date;
     private tasaInteres: Number;
 
     
     // CONSTRUCTOR
 
-    public LiquidacionGlobal(id?: Number,mes?: Number, anio?: Number, primerVencimiento?: String, segundoVencimiento?: String, fechaEmision?: String, tasaInteres?: Number) {
+    public LiquidacionGlobal(id?: Number,mes?: Number, anio?: Number, primerVencimiento?: Date, segundoVencimiento?: Date, fechaEmision?: Date, tasaInteres?: Number) {
 
         this.id = id;
         this.mes = mes;
@@ -39,17 +39,17 @@ export class LiquidacionGlobal {
         return this.anio;
     }
 
-    public getPrimerVencimiento() : String {
+    public getPrimerVencimiento() : Date {
         
         return this.primerVencimiento;
     }
 
-    public getSegundoVencimiento () : String {
+    public getSegundoVencimiento () : Date {
         
         return this.segundoVencimiento;
     }
     
-    public getFechaEmision () : String {
+    public getFechaEmision () : Date {
         
         return this.fechaEmision;
     }
@@ -76,17 +76,17 @@ export class LiquidacionGlobal {
         this.anio = anio;
     }
 
-    public setPrimerVencimiento( primerVencimiento: String ) {
+    public setPrimerVencimiento( primerVencimiento: Date ) {
         
         this.primerVencimiento = primerVencimiento;
     }
 
-    public setSegundoVencimiento ( segundoVencimiento: String ) {
+    public setSegundoVencimiento ( segundoVencimiento: Date ) {
         
         this.segundoVencimiento = segundoVencimiento;
     }
     
-    public setFechaEmision ( fechaEmision: String ) {
+    public setFechaEmision ( fechaEmision: Date ) {
         
         this.fechaEmision = fechaEmision;
     }

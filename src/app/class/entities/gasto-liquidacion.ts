@@ -49,7 +49,7 @@ export class GastoLiquidacion {
 
     // SETTERS
 
-    public setd( id: Number ) {
+    public setId( id: Number ) {
         
         this.id = id;
     }

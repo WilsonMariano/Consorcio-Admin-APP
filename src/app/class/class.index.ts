@@ -1,11 +1,12 @@
 export { HttpErrorInterceptor } from './interceptor.class';
 
-export { Usuario } from './usuario.class';
-export { Adherente } from './adherente.class';
-export { UnidadFuncional } from './uf.class';
-export { Manzana } from './manzana.class';
-export { CuentaCorriente } from './cuenta-corriente.class';
-export { LiquidacionGlobal } from './liquidacion-global.class';
-export { GastoLiquidacion } from './gasto-liquidacion';
-export { LiquidacionUF } from './liquidacion-uf.class';
-    
+export { Usuario } from './entities/usuario.class';
+export { Adherente } from './entities/adherente.class';
+export { UnidadFuncional } from './entities/uf.class';
+export { Manzana } from './entities/manzana.class';
+export { CuentaCorriente } from './entities/cuenta-corriente.class';
+export { LiquidacionGlobal } from './entities/liquidacion-global.class';
+export { GastoLiquidacion } from './entities/gasto-liquidacion';
+export { LiquidacionUF } from './entities/liquidacion-uf.class';
+export { GastoLiquidacionUF } from './entities/gasto-liquidacion-uf';    
+export { Recibo } from './entities/recibo';    

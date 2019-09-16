@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class GrillaConceptosGastosComponent implements OnInit {
 
   public arrControls = ['Código', 'Concepto'];
-  public arrAttr = ['codigo', 'conceptoGasto'];
+  public arrAttr = [
+    { 'attr': 'codigo',       'type': 'String' },
+    { 'attr': 'conceptoGasto','type': 'String' }
+  ];
 
   constructor() { }
 

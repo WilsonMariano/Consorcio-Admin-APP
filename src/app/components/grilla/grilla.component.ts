@@ -33,15 +33,12 @@ export class GrillaComponent implements OnInit {
 
   public getObjects() {
     
-    this._fxGlobales.showSpinner();
     this._common.getWithPaged(this.entity, this.rowsWithPage, this.numPage-1).subscribe(
       data => {
-      console.log(data);
+
         this.arrObjects = data.data;
         this.totalResults = data.total_rows;
         this.genControlsPaginate( data.total_pages );
-       
-        this._fxGlobales.hideSpinner();
       }
     );
   }
@@ -97,7 +94,6 @@ export class GrillaComponent implements OnInit {
     
     let id = event.srcElement['id'];
     let text = $('#'+id).val();
-    console.log(id);
 
     // Si se ingresa algo en un input, desabilito todos los demas
     if(text != "") {
@@ -106,10 +102,10 @@ export class GrillaComponent implements OnInit {
       this.arrFilterParams[0] = id;
       this.arrFilterParams[1] = text;
 
-      this.arrControls.forEach(control => {
+      this.arrAttr.forEach(control => {
   
-        if(control != id)
-          $('#'+control).prop('disabled', true);
+        if(control.attr != id)
+          $('#'+control.attr).prop('disabled', true);
       });
     }
     // Si se borra todo el contenido del input, habilito todos los demás
@@ -117,10 +113,10 @@ export class GrillaComponent implements OnInit {
 
       this.arrFilterParams = [];
 
-      this.arrControls.forEach(control => {
+      this.arrAttr.forEach(control => {
     
-        if(control != id)
-          $('#'+control).removeAttr('disabled');
+        if(control.attr != id)
+          $('#'+control.attr).removeAttr('disabled');
       });
     }
 
@@ -134,16 +130,12 @@ export class GrillaComponent implements OnInit {
   // Trae los objetos filtrados de la bd
   private getObjectsFilter(id: String, text: String, page) {
 
-    this._fxGlobales.showSpinner();
-
     this._common.filter( this.entity, id, text, this.rowsWithPage, page ).subscribe(  
       data => {
   
         this.arrObjects = data.data;
         this.totalResults = data.total_rows;
         this.genControlsPaginate( data.total_pages );
-
-        this._fxGlobales.hideSpinner();
       }
     );
 

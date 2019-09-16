@@ -11,11 +11,14 @@
     </thead>
     <tbody>
         <tr>
-            <td *ngFor="let c of arrAttr"><input class="form-control form-control-sm" type="text" [id]="c" (keyup)="filter($event)"></td>
+            <td *ngFor="let c of arrAttr"><input class="form-control form-control-sm" type="text" [id]="c.attr" (keyup)="filter($event)"></td>
             <td *ngIf="editLink != ''"></td>
         </tr>
         <tr *ngFor="let obj of arrObjects">
-            <td *ngFor="let item of arrAttr">{{obj[item]}}</td>
+            <ng-container *ngFor="let item of arrAttr">
+                <td *ngIf="item.type == 'Date'" >{{obj[item.attr] | date:'dd-MM-yyyy'}}</td>
+                <td *ngIf="item.type != 'Date'" >{{obj[item.attr]}}</td>
+            </ng-container>
             <td *ngIf="editLink != ''" routerLink="/{{editLink}}/{{obj.id}}"><i class="mdi mdi-lead-pencil"></i></td>
         </tr>
     </tbody>

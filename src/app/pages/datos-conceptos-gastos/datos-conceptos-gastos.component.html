@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-muted" *ngIf="neWoperation">Alta de entidad</h4>
+                <h4 class="card-title text-muted" *ngIf="!neWoperation">Edición de entidad</h4>
+                <hr>
+                <div class="r-panel-body">
+
+                    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+
+                        <div class="row">
+                            <div class="form-group col-md-5 col-sm-12">
+                                <label>Código</label>
+                                <input type="text" class="form-control" id="codigo" placeholder="SUE" formControlName="codigo" maxlength="3">
+                                <span class="form-invalid" *ngIf="forma.controls['codigo'].errors?.required && forma.get('codigo').touched">*El campo es requerido</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label>Concepto</label>
+                                <input type="text" class="form-control" placeholder="Sueldos y jornales" formControlName="concepto">
+                                <span class="form-invalid" *ngIf="forma.controls['concepto'].errors?.required && forma.controls['concepto'].touched">*El campo es requerido</span>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-themecolor" [disabled]="forma.invalid">Aceptar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-spinner></app-spinner>

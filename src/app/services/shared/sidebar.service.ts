@@ -35,7 +35,8 @@ export class SidebarService {
       icono: 'mdi mdi-cash',
       submenu: [
         { titulo: 'Cargar xml', url: '/cargar-gasto-xml' },
-        { titulo: 'Cargar nuevo gasto', url: '/nuevo-gasto' }
+        { titulo: 'Cargar nuevo gasto', url: '/nuevo-gasto' },
+        { titulo: 'Grilla de conceptos', url: '/grilla-conceptos-gastos' }
       ]
     },
     {

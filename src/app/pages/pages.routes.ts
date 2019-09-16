@@ -8,6 +8,8 @@ import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
 import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
 import { DatosUFComponent } from './datos-uf/datos-uf.component';
 import { GrillaExpensasComponent } from './grilla-expensas/grilla-expensas.component';
+import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla-conceptos-gastos.component';
+import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 
 
 
@@ -16,14 +18,16 @@ const pagesRoutes: Routes = [
         path: '',
         component: PagesComponent,
         children: [
-            { path: 'dashboard',            component: DashboardComponent,            data: { titulo: 'Dashboard' }        },
-            { path: 'grilla-adherentes',    component: GrillaAdherentesComponent,     data: { titulo: 'Grilla de adherentes' } },
-            { path: 'grilla-uf',            component: GrillaUFComponent,             data: { titulo: 'Grilla de UF' } },
-            { path: 'grilla-expensas',      component: GrillaExpensasComponent,       data: { titulo: 'Grilla de expensas' } },
-            { path: 'datos-adherente/:id',  component: DatosAdherenteComponent,       data: { titulo: 'Datos del adherente' } },
-            { path: 'datos-uf/:id',         component: DatosUFComponent,              data: { titulo: 'Datos de la UF' } },
-            { path: 'account-settings',     component: AccountSettingsComponent,      data: { titulo: 'Ajustes del tema' } },
-            { path: '',                     redirectTo: '/dashboard',                 pathMatch: 'full' }
+            { path: 'dashboard',                component: DashboardComponent,                data: { titulo: 'Dashboard' }        },
+            { path: 'grilla-adherentes',        component: GrillaAdherentesComponent,         data: { titulo: 'Grilla de adherentes' } },
+            { path: 'grilla-uf',                component: GrillaUFComponent,                 data: { titulo: 'Grilla de UF' } },
+            { path: 'grilla-expensas',          component: GrillaExpensasComponent,           data: { titulo: 'Grilla de expensas' } },
+            { path: 'grilla-conceptos-gastos',  component: GrillaConceptosGastosComponent,    data: { titulo: 'Grilla de conceptos' } },
+            { path: 'datos-adherente/:id',      component: DatosAdherenteComponent,           data: { titulo: 'Datos del adherente' } },
+            { path: 'datos-uf/:id',             component: DatosUFComponent,                  data: { titulo: 'Datos de la UF' } },
+            { path: 'datos-conceptos-gastos/:id',     component: DatosConceptosGastosComponent,          data: { titulo: 'Conceptos de Gastos' } },
+            { path: 'account-settings',         component: AccountSettingsComponent,          data: { titulo: 'Ajustes del tema' } },
+            { path: '',                         redirectTo: '/dashboard',                     pathMatch: 'full' }
         ]
     }
 ];

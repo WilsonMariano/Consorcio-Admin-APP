@@ -6,6 +6,8 @@ import { ActivatedRoute, Router  } from '@angular/router';
 import { CommonService, FxGlobalsService } from '../../services/service.index';
 import { ConceptoGastos } from 'src/app/class/concepto-gastos';
 
+
+
 @Component({
   selector: 'app-datos-conceptos-gastos',
   templateUrl: './datos-conceptos-gastos.component.html',
@@ -13,11 +15,18 @@ import { ConceptoGastos } from 'src/app/class/concepto-gastos';
 })
 export class DatosConceptosGastosComponent implements OnInit {
 
-  // true si es para dar de alta una nueva UF
-  // false si es para editar una UF
+
+
+  /************************************************************************************************
+  @newOperation: indica si la operación es alta o edición (true-false)
+  @idEdit: id de la entidad a editar (si newOperation es false)
+  @forma: reactive form con los campos de la vista
+  ***********************************************************************************************/
   public neWoperation: Boolean = true;
   private idEdit = 0;
   public forma: FormGroup;
+
+
 
   constructor(
     private activateRoute: ActivatedRoute, 
@@ -26,12 +35,15 @@ export class DatosConceptosGastosComponent implements OnInit {
     private _fxGlobals: FxGlobalsService
   ) { }
 
+
+
   ngOnInit() {
 
     this.forma = new FormGroup({
       'codigo': new FormControl( '', Validators.required ),
       'concepto': new FormControl( '', Validators.required )
     });
+
 
 
     // Recibo los parámetros de la ruta
@@ -60,7 +72,7 @@ export class DatosConceptosGastosComponent implements OnInit {
     conceptoGastos.setCodigo(this.forma.get('codigo').value.toUpperCase());
     conceptoGastos.setConceptoGastos(this.forma.get('concepto').value.toUpperCase());
     
-
+    // Hago la inserción
     if( this.neWoperation ){
 
       this._common.insertEntity( conceptoGastos, 'concepto-gasto').subscribe(
@@ -101,5 +113,7 @@ export class DatosConceptosGastosComponent implements OnInit {
       err => this.router.navigate( ['grilla-adherentes'])
     );  
   }
+
+
 
 }

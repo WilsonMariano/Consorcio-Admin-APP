@@ -4,7 +4,7 @@ import { ActivatedRoute, Router  } from '@angular/router';
 
 import { UnidadFuncional } from 'src/app/class/class.index';
 
-import { ValidatorsService, FxGlobalsService, CommonService } from '../../services/service.index';
+import { FxGlobalsService, CommonService, DiccionarioService } from '../../services/service.index';
 
 
 
@@ -14,17 +14,33 @@ import { ValidatorsService, FxGlobalsService, CommonService } from '../../servic
 })
 export class DatosUFComponent implements OnInit {
 
-  // true si es para dar de alta una nueva UF
-  // false si es para editar una UF
+
+
+  /************************************************************************************************
+  @newOperation: indica si la operación es alta o edición (true-false)
+  @forma: reactive form con los campos de la vista
+  @arrSitLegal: arreglo con datos de la db para llenar el select
+  @arrSitAlquiler: arreglo con datos de la db para llenar el select
+  @arrDepartamentos: arreglo con los datos de la db para llenar el select
+  @arrManzanas: arreglo con los datos de la db para llenar el select
+  ***********************************************************************************************/
   public neWoperation: Boolean = true;
   public forma: FormGroup;
+  private arrSitLegal = [];
+  private arrSitAlquiler = [];
+  private arrDepartamentos = [];
+  private arrManzanas = [];
+
+
 
   constructor(
     private activateRoute: ActivatedRoute, 
-    private _validators: ValidatorsService, 
     private _common: CommonService, 
+    private _diccionario: DiccionarioService,
     private _fxGlobals: FxGlobalsService,
     private router: Router) { }
+
+
 
   ngOnInit() {
 
@@ -55,12 +71,17 @@ export class DatosUFComponent implements OnInit {
           this.forma.get( 'id' ).disable();
         }
       });
+
+      
+      // Lleno los arreglos con el diccionario
+      this.getDiccionario();
   }
   
 
 
   public onSubmit() {  
 
+    // Creo el objeto y seteo sus atributos
     let uf = new UnidadFuncional();
     
     uf.setId( this.forma.get( 'id' ).value );
@@ -75,6 +96,7 @@ export class DatosUFComponent implements OnInit {
 
     if( this.neWoperation ) {
 
+      // Inserto la UF
       this._common.insertEntity( uf, 'uf' ).subscribe(
         data => {
 
@@ -91,7 +113,7 @@ export class DatosUFComponent implements OnInit {
     }
     else {
 
-      // Actualizo el adherente
+      // Actualizo la UF
       this._common.UpdateOne( 'uf', uf ).subscribe(
         data => {
 
@@ -125,6 +147,23 @@ export class DatosUFComponent implements OnInit {
     );  
   }
 
+
+
+  // Traigo los datos del diccionario para llenar los arreglos de los select
+  private getDiccionario() {
+ 
+    this._diccionario.getAllByCode('COD_SIT_LEGAL').subscribe(
+      data => this.arrSitLegal = data);
+
+    this._diccionario.getAllByCode('COD_ALQ').subscribe(
+      data => this.arrSitAlquiler = data);
+
+    this._diccionario.getAllByCode('COD_DEPARTAMENTO').subscribe(
+      data => this.arrDepartamentos = data);
+
+    this._diccionario.getAllByCode('COD_MANZANA').subscribe(
+      data => this.arrManzanas = data);
+  }
 
 
 }

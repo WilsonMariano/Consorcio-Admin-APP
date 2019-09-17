@@ -2,7 +2,7 @@ export class CuentaCorriente {
     
     private id: Number;
     private idUF: Number;
-    private fecha: String;
+    private fecha: Date;
     private descripcion: String;
     private monto: Number;
     private saldo: Number;
@@ -10,7 +10,7 @@ export class CuentaCorriente {
 
     // CONSTRUCTOR
 
-    public CuentaCorriente(id?: Number, idUF?: Number, fecha?: String, descripcion?: String, monto?: Number, saldo?: Number) {
+    public CuentaCorriente(id?: Number, idUF?: Number, fecha?: Date, descripcion?: String, monto?: Number, saldo?: Number) {
 
         this.id = id;
         this.idUF = idUF;
@@ -33,7 +33,7 @@ export class CuentaCorriente {
         return this.idUF;
     }
     
-    public getFecha() : String {
+    public getFecha() : Date {
         
         return this.fecha;
     }
@@ -66,7 +66,7 @@ export class CuentaCorriente {
         this.idUF = idUF;
     }
 
-    public setFecha( fecha: String ) {
+    public setFecha( fecha: Date ) {
         
         this.fecha = fecha;
     }

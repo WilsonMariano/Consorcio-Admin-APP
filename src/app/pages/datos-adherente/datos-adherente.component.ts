@@ -14,10 +14,15 @@ import { ValidatorsService, FxGlobalsService, CommonService } from '../../servic
 })
 export class DatosAdherenteComponent implements OnInit {
 
-  // true si es para dar de alta un nuevo adherente
-  // false si es para editar un adherente
+
+
+  /************************************************************************************************
+  @newOperation: indica si la operación es alta o edición (true-false)
+  @forma: reactive form con los campos de la vista
+  ***********************************************************************************************/
   public neWoperation: Boolean = true;
   public forma: FormGroup;
+
   
 
   constructor(
@@ -26,6 +31,7 @@ export class DatosAdherenteComponent implements OnInit {
     private _common: CommonService, 
     private _fxGlobals: FxGlobalsService,
     private router: Router) { }
+
 
 
   ngOnInit() {
@@ -82,13 +88,6 @@ export class DatosAdherenteComponent implements OnInit {
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El adherente se ha insertado con éxito', 'success' );
           this.forma.reset();
           this._fxGlobals.hideSpinner();
-        },
-        err => {
-
-
-
-    
-          this._fxGlobals.hideSpinner();
         }
       );
     }
@@ -101,17 +100,11 @@ export class DatosAdherenteComponent implements OnInit {
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El adherente se ha actualizado con éxito', 'success' );
           this.router.navigate( ['grilla-adherentes'] );
           this._fxGlobals.hideSpinner();
-        },  
-        err => {
-
-          // TODO - Manejo de errores
-          console.log(err);
-          this._fxGlobals.showAlert( 'Error', err.error, 'error' );
-          this._fxGlobals.hideSpinner();
         }
       );
     }
   }
+
 
 
   // Obtengo un adherente por ID
@@ -132,13 +125,7 @@ export class DatosAdherenteComponent implements OnInit {
 
         this._fxGlobals.hideSpinner();
       },
-      err => {
-
-        console.error( err );
-        this._fxGlobals.showAlert( 'Error', 'El adherente no existe', 'error' );
-        this.router.navigate( ['grilla-adherentes'] );
-        this._fxGlobals.hideSpinner();
-      }
+      err => this.router.navigate( ['grilla-adherentes'] )
     );  
   }
 

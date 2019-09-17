@@ -26,6 +26,8 @@ import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.compo
 import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
 import { DatosUFComponent } from './datos-uf/datos-uf.component';
 import { GrillaExpensasComponent } from './grilla-expensas/grilla-expensas.component';
+import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla-conceptos-gastos.component';
+import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 
 
 
@@ -40,7 +42,9 @@ import { GrillaExpensasComponent } from './grilla-expensas/grilla-expensas.compo
         OnlyNumbersDirective,
         GrillaUFComponent,
         DatosUFComponent,
-        GrillaExpensasComponent
+        GrillaExpensasComponent,
+        GrillaConceptosGastosComponent,
+        DatosConceptosGastosComponent
     ],
     exports: [
         DashboardComponent

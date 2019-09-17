@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SettingsService, SidebarService, CommonService, AdherenteService, FxGlobalsService } from './service.index';
+import { 
+  SettingsService, 
+  SidebarService, 
+  CommonService, 
+  DiccionarioService,
+  ConceptosGastosService, 
+  FxGlobalsService } from './service.index';
 
 
 @NgModule({
@@ -12,7 +18,8 @@ import { SettingsService, SidebarService, CommonService, AdherenteService, FxGlo
     SettingsService, 
     SidebarService,
     CommonService,
-    AdherenteService,
+    DiccionarioService,
+    ConceptosGastosService,
     FxGlobalsService
   ]
 })

@@ -1,4 +1,4 @@
-export class ConceptoGastos {
+export class ConceptoGasto {
     
     private id: Number;
     private codigo: String;
@@ -8,7 +8,7 @@ export class ConceptoGastos {
 
     // CONSTRUCTOR
 
-    public ConceptoGastos(id?: Number, codigo?: String, conceptoGasto?: String) {
+    public ConceptoGasto(id?: Number, codigo?: String, conceptoGasto?: String) {
 
         this.id = id;
         this.codigo = codigo;
@@ -28,7 +28,7 @@ export class ConceptoGastos {
         return this.codigo;
     }
 
-    public getConceptoGastos () : String {
+    public getConceptoGasto () : String {
         
         return this.conceptoGasto;
     }
@@ -47,7 +47,7 @@ export class ConceptoGastos {
         this.codigo = codigo;
     }
 
-    public setConceptoGastos ( conceptoGasto: String ) {
+    public setConceptoGasto ( conceptoGasto: String ) {
         
         this.conceptoGasto = conceptoGasto;
     }

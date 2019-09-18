@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router  } from '@angular/router';
 
 import { CommonService, FxGlobalsService } from '../../services/service.index';
-import { ConceptoGastos } from 'src/app/class/concepto-gastos';
+import { ConceptoGasto } from 'src/app/class/class.index';
 
 
 
@@ -67,15 +67,15 @@ export class DatosConceptosGastosComponent implements OnInit {
 
   public onSubmit() { 
 
-    let conceptoGastos = new ConceptoGastos();
+    let conceptoGasto = new ConceptoGasto();
 
-    conceptoGastos.setCodigo(this.forma.get('codigo').value.toUpperCase());
-    conceptoGastos.setConceptoGastos(this.forma.get('concepto').value.toUpperCase());
+    conceptoGasto.setCodigo(this.forma.get('codigo').value.toUpperCase());
+    conceptoGasto.setConceptoGasto(this.forma.get('concepto').value.toUpperCase());
     
     // Hago la inserción
     if( this.neWoperation ){
 
-      this._common.insertEntity( conceptoGastos, 'concepto-gasto').subscribe(
+      this._common.insertEntity( conceptoGasto, 'concepto-gasto').subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El concepto se ha insertado con éxito', 'success' );
@@ -86,8 +86,8 @@ export class DatosConceptosGastosComponent implements OnInit {
     else {
 
       // Actualizo el concepto
-      conceptoGastos.setId(Number.parseInt(this.idEdit.toString()));
-      this._common.UpdateOne( 'conceptosgastos', conceptoGastos ).subscribe(
+      conceptoGasto.setId(Number.parseInt(this.idEdit.toString()));
+      this._common.UpdateOne( 'conceptosgastos', conceptoGasto ).subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El concepto se ha actualizado con éxito', 'success' );

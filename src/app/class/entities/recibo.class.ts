@@ -37,7 +37,7 @@ export class Recibo {
         return this.nroRecibo;
     }
 
-    public getcodMedioPago() : String {
+    public getCodMedioPago() : String {
         
         return this.codMedioPago;
     }

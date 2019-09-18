@@ -19,7 +19,15 @@ export class SidebarService {
       submenu: [
         { titulo: 'Grilla adherentes', url: '/grilla-adherentes' },
         { titulo: 'Grilla UF', url: '/grilla-uf' },
-        { titulo: 'Pagos', url: '/pagos' }
+        { titulo: 'Cuentas corrientes', url: '/ctas-ctes' }
+      ]
+    },
+    {
+      titulo: 'Pagos',
+      icono: 'mdi mdi-cash',
+      submenu: [
+        { titulo: 'Comprobantes', url: '/comprobantes' },
+        { titulo: 'Nuevo pago', url: '/pagos' }
       ]
     },
     {
@@ -32,7 +40,7 @@ export class SidebarService {
     },
     {
       titulo: 'Gastos',
-      icono: 'mdi mdi-cash',
+      icono: 'mdi mdi-receipt',
       submenu: [
         { titulo: 'Cargar xml', url: '/cargar-gasto-xml' },
         { titulo: 'Cargar nuevo gasto', url: '/nuevo-gasto' },

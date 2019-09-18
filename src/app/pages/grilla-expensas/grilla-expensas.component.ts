@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaExpensasComponent implements OnInit {
 
-  public arrControls = ['Año', 'Mes', '1er vencimiento', '2do vencimiento', 'Fecha de emisión', 'Tasa interés (%)'];
+  private arrControls = ['Año', 'Mes', '1er vencimiento', '2do vencimiento', 'Fecha de emisión', 'Tasa interés (%)'];
 
 
-  public arrAttr = [
+  private arrAttr = [
     { 'attr': 'anio',               'type': 'Number'  },
     { 'attr': 'mes',                'type': 'Number'  },
     { 'attr': 'primerVencimiento',  'type': 'Date'    },
@@ -18,6 +18,13 @@ export class GrillaExpensasComponent implements OnInit {
     { 'attr': 'fechaEmision',       'type': 'Date'    },
     { 'attr': 'tasaInteres',        'type': 'Number'  }
   ];
+
+
+  public options = {
+    'entity': 'liquidacionesGlobales',
+    'arrAttr': this.arrAttr,
+    'arrControls': this.arrControls,
+  }
   
 
   constructor() { }

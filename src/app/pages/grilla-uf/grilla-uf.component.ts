@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class GrillaUFComponent implements OnInit {
   
 
-  public arrControls = ['UF', 'Manzana', 'Adherente', 'Edificio', 'Departamento', 'Sit Legal', 'Coeficiente', 'Cod Alquila'];
+  private arrControls = ['UF', 'Manzana', 'Adherente', 'Edificio', 'Departamento', 'Sit Legal', 'Coeficiente', 'Cod Alquila'];
 
 
-  public arrAttr = [
+  private arrAttr = [
     { 'attr': 'id',           'type': 'Number' },
     { 'attr': 'idManzana',    'type': 'Number' },
     { 'attr': 'idAdherente',  'type': 'Number' },
@@ -21,6 +21,16 @@ export class GrillaUFComponent implements OnInit {
     { 'attr': 'coeficiente',  'type': 'Number' },
     { 'attr': 'codAlquila',   'type': 'String' }
   ];
+
+
+  public options = {
+    'entity': 'vwUF',
+    'arrAttr': this.arrAttr,
+    'arrControls': this.arrControls,
+    'buttons': [
+      { 'url': 'datos-uf', 'icon': 'mdi mdi-lead-pencil' }
+    ]
+  }
 
 
   constructor() { }

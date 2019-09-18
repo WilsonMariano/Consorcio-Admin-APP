@@ -8,10 +8,7 @@ declare var $ : any;
   styleUrls: ['./grilla.component.css']
 })
 export class GrillaComponent implements OnInit {
-  @Input() arrControls = [];
-  @Input() arrAttr = [];
-  @Input() editLink = "";
-  @Input() entity = "";
+  @Input() options = [];
   
   public arrObjects = [];
   public arrPaginate = [];
@@ -33,7 +30,7 @@ export class GrillaComponent implements OnInit {
 
   public getObjects() {
     
-    this._common.getWithPaged(this.entity, this.rowsWithPage, this.numPage-1).subscribe(
+    this._common.getWithPaged(this.options['entity'], this.rowsWithPage, this.numPage-1).subscribe(
       data => {
 
         this.arrObjects = data.data;
@@ -102,7 +99,7 @@ export class GrillaComponent implements OnInit {
       this.arrFilterParams[0] = id;
       this.arrFilterParams[1] = text;
 
-      this.arrAttr.forEach(control => {
+      this.options['arrAttr'].forEach(control => {
   
         if(control.attr != id)
           $('#'+control.attr).prop('disabled', true);
@@ -113,7 +110,7 @@ export class GrillaComponent implements OnInit {
 
       this.arrFilterParams = [];
 
-      this.arrAttr.forEach(control => {
+      this.options['arrAttr'].forEach(control => {
     
         if(control.attr != id)
           $('#'+control.attr).removeAttr('disabled');
@@ -130,7 +127,7 @@ export class GrillaComponent implements OnInit {
   // Trae los objetos filtrados de la bd
   private getObjectsFilter(id: String, text: String, page) {
 
-    this._common.filter( this.entity, id, text, this.rowsWithPage, page ).subscribe(  
+    this._common.filter( this.options['entity'], id, text, this.rowsWithPage, page ).subscribe(  
       data => {
   
         this.arrObjects = data.data;

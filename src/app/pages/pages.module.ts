@@ -28,6 +28,8 @@ import { DatosUFComponent } from './datos-uf/datos-uf.component';
 import { GrillaExpensasComponent } from './grilla-expensas/grilla-expensas.component';
 import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla-conceptos-gastos.component';
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
+import { GrillaCtasCtesComponent } from './grilla-ctas-ctes/grilla-ctas-ctes.component';
+import { CtaCteComponent } from './cta-cte/cta-cte.component';
 
 
 
@@ -44,7 +46,9 @@ import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-co
         DatosUFComponent,
         GrillaExpensasComponent,
         GrillaConceptosGastosComponent,
-        DatosConceptosGastosComponent
+        DatosConceptosGastosComponent,
+        GrillaCtasCtesComponent,
+        CtaCteComponent
     ],
     exports: [
         DashboardComponent

@@ -17,9 +17,9 @@ export class SidebarService {
       titulo: 'Unidades',
       icono: 'mdi mdi-account-multiple',
       submenu: [
-        { titulo: 'Grilla adherentes', url: '/grilla-adherentes' },
-        { titulo: 'Grilla UF', url: '/grilla-uf' },
-        { titulo: 'Cuentas corrientes', url: '/ctas-ctes' }
+        { titulo: 'Adherentes', url: '/grilla-adherentes' },
+        { titulo: 'Unidades Funcionales', url: '/grilla-uf' },
+        { titulo: 'Cuentas corrientes', url: '/grilla-ctas-ctes' }
       ]
     },
     {

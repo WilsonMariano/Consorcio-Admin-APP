@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';  
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Modulos
 import { PagesModule } from './pages/pages.module';
@@ -28,6 +29,8 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     APP_ROUTES,
     PagesModule,

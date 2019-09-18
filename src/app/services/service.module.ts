@@ -5,6 +5,7 @@ import {
   SidebarService, 
   CommonService, 
   DiccionarioService,
+  UsuarioService,
   ConceptosGastosService, 
   FxGlobalsService } from './service.index';
 
@@ -20,6 +21,7 @@ import {
     CommonService,
     DiccionarioService,
     ConceptosGastosService,
+    UsuarioService,
     FxGlobalsService
   ]
 })

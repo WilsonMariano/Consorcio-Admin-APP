@@ -8,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class GrillaCtasCtesComponent implements OnInit {
 
 
-  private arrControls = ['UF', 'Adherente', 'Saldo'];
+  private arrControls = ['UF', 'Apellido y Nombre', 'Nº Adherente', 'Saldo'];
 
 
   private arrAttr = [
-    { 'attr': 'idUf',         'type': 'Number'  },
+    { 'attr': 'id',           'type': 'Number'  },
     { 'attr': 'adherente',    'type': 'String'  },
+    { 'attr': 'nroAdherente', 'type': 'Number'  },
     { 'attr': 'saldo',        'type': 'Number'  },
   ];
 
@@ -23,7 +24,7 @@ export class GrillaCtasCtesComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'buttons': [
-      { 'url': 'cta-cte', 'icon': 'mdi mdi-lead-pencil' }
+      { 'url': 'cta-cte', 'icon': 'mdi mdi-arrow-right' }
     ]
   }
 

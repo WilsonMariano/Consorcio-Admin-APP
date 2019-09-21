@@ -22,14 +22,24 @@ export class CommonService {
 
 
 
-  public getWithPaged( entity: String, rows: Number, page: Number ): Observable<any> {
+  public getWithPaged( entity: String, rows: Number, page: Number, column?: String, text?: String ): Observable<any> {
 
     this._fxGlobals.showSpinner();
+
 
     let params = new HttpParams()
       .set( 'rows', rows.toString() )
       .set( 'page', page.toString() )
-      .set( 'entity', entity.toString() );
+      .set( 'entity', entity.toString() )
+
+    
+    if( column && text ) {
+    
+      params = params
+                .append( 'column', column.toString() )
+                .append( 'text', text.toString() );
+    }
+    
 
     return this._http.get( `${environment.apiUri}/generic/paged`, 
       { params }
@@ -49,27 +59,6 @@ export class CommonService {
       .set('t', entity.toString());
 
     return this._http.get(`${environment.apiUri}/generic/one/${id}`, 
-      { params }
-    )
-    .pipe(
-      finalize(() => this._fxGlobals.hideSpinner())
-    );
-  }
-
-
-
-  public filter( entity: String, column: String, text: String, rows: Number, page: Number ): Observable<any> {
-
-    this._fxGlobals.showSpinner();
-
-    let params = new HttpParams()
-      .set( 'entity', entity.toString() )
-      .set( 'column', column.toString() )
-      .set( 'text', text.toString() )
-      .set( 'rows', rows.toString() )
-      .set( 'page', page.toString() );
-
-    return this._http.get(`${environment.apiUri}/generic/filter`, 
       { params }
     )
     .pipe(

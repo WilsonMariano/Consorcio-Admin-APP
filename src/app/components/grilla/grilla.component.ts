@@ -8,6 +8,20 @@ declare var $ : any;
   styleUrls: ['./grilla.component.css']
 })
 export class GrillaComponent implements OnInit {
+  /*
+  @options:           arreglo de objetos con opciones para la grilla, entre ellos: 
+    'entity':         entidad que va a manejar la tabla (se usa en metodo para traer objetos de la db)
+    'arrAttr':        arreglo de atributos, del objeto, que se mostraran en la tabla
+    'arrControles:    arreglo de labels que tendra la tabla
+    'buttons':        arreglo de botones que debera mostrar la tabla
+  @arrObjects:        arreglo de objetos que se bindeara con la tabla
+  @arrPaginate:       arreglo de enteros con los valores del paginado, lo genera el metodo 'getControlsPaginate'
+  @arrFilterParams:   en caso de escribir en los inputs de filtro, este arreglo se llenara con los valores por los que buscar
+  @rowsWithPage:      atributo que establece la cantidad de filas que mostrara la tabla
+  @numPage:           pagina actual que muestra la tabla (paginado)
+  @totalResults:      cantidad de registros totales existentes de la db
+   */
+
   @Input() options = [];
   
   public arrObjects = [];
@@ -19,20 +33,29 @@ export class GrillaComponent implements OnInit {
 
 
 
-
   constructor(private _common: CommonService, private _fxGlobales: FxGlobalsService) { }
+
+
 
   ngOnInit() {
 
+    // Cargo la tabla con los objetos iniciales
     this.getObjects();
   }
 
 
-  public getObjects() {
-    
-    this._common.getWithPaged(this.options['entity'], this.rowsWithPage, this.numPage-1).subscribe(
-      data => {
 
+  /**********************************************************************************************************************************
+   MEtodo que trae los objetos de la base de datos.
+   Es llamado cuando se abre la vista para traer los objetos iniciales.
+   Tambien se llama cuando se pagina la tabla, tomando como valor el número de página actual.
+   Se usa también cuando se filtra la tabla, recibiendo como valores la columna y texto a filtrar.
+  ***********************************************************************************************************************************/
+  public getObjects(column?: String, text?: String) {
+    
+    this._common.getWithPaged(this.options['entity'], this.rowsWithPage, this.numPage-1, column, text).subscribe(
+      data => {
+        console.log(data);
         this.arrObjects = data.data;
         this.totalResults = data.total_rows;
         this.genControlsPaginate( data.total_pages );
@@ -41,9 +64,12 @@ export class GrillaComponent implements OnInit {
   }
 
 
-  /*********************************************/
-  /*****************PAGINADO********************/
-  /*********************************************/
+
+  /***********************************************************************************************************************************/
+  /**************************************************** COMIENZO METODOS DE PAGINADO**************************************************/
+  /***********************************************************************************************************************************/
+
+
 
   // Genera array con la cantidad de páginas
   // Recibe la cantidad de páginas
@@ -75,14 +101,25 @@ export class GrillaComponent implements OnInit {
       default:
         this.numPage = page;
         break;
-    }  
-
-   if(this.arrFilterParams.length === 0)
-     this.getObjects();
+    }
+    
+    if(this.arrFilterParams.length === 0)
+      this.getObjects();
     else
-      this.getObjectsFilter(this.arrFilterParams[0], this.arrFilterParams[1], this.numPage -1 );
-
+      this.getObjects(this.arrFilterParams[0], this.arrFilterParams[1]);
   }
+
+
+
+  /***********************************************************************************************************************************/
+  /********************************************************* FIN METODOS DE PAGINADO**************************************************/
+  /***********************************************************************************************************************************/
+
+
+
+  /***********************************************************************************************************************************/
+  /********************************************************* METODOS DE FILTRADO *****************************************************/
+  /***********************************************************************************************************************************/
 
 
   
@@ -119,23 +156,15 @@ export class GrillaComponent implements OnInit {
 
     // Asigno que la página sea la primera y ejecuto el método para traer los objetos filtrados
     this.numPage = 1;
-    this.getObjectsFilter(id, text, 0);
+
+    // Traigo los objetos filtrados por id de columna y texto ingresado
+    this.getObjects(id, text);
   }
 
 
 
-  // Trae los objetos filtrados de la bd
-  private getObjectsFilter(id: String, text: String, page) {
-
-    this._common.filter( this.options['entity'], id, text, this.rowsWithPage, page ).subscribe(  
-      data => {
-  
-        this.arrObjects = data.data;
-        this.totalResults = data.total_rows;
-        this.genControlsPaginate( data.total_pages );
-      }
-    );
-
-  }
+  /***********************************************************************************************************************************/
+  /***************************************************** FIN METODOS DE FILTRADO *****************************************************/
+  /***********************************************************************************************************************************/
 
 }

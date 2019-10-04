@@ -18,12 +18,15 @@
         </tr>
         <tr *ngFor="let obj of arrObjects">
             <ng-container *ngFor="let item of options['arrAttr']">
-                <td *ngIf="item.type == 'Date'" >{{obj[item.attr] | date:'dd-MM-yyyy'}}</td>
-                <td *ngIf="item.type != 'Date'" >{{obj[item.attr]}}</td>
+                <td *ngIf="item.type == 'Date'">{{obj[item.attr] | date:'dd-MM-yyyy'}}</td>
+                <td *ngIf="item.type != 'Date'">{{obj[item.attr]}}</td>
             </ng-container>
             <ng-container *ngIf="options['buttons'] != undefined">
-                <td  *ngFor="let c of options['buttons']" routerLink="/{{c.url}}/{{obj.id}}"><i [class]="c.icon"></i></td>
+                <td *ngFor="let c of options['buttons']" routerLink="/{{c.url}}/{{obj.id}}"><i [class]="c.icon"></i></td>
             </ng-container>
+        </tr>
+        <tr *ngIf="arrObjects.length == 0">
+            <td><i class="mdi mdi-alert"></i> No se encontraron resultados...</td>
         </tr>
     </tbody>
 </table>

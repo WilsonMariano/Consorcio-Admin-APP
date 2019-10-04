@@ -2,18 +2,16 @@ export class GastoLiquidacion {
     
     private id: Number;
     private idLiquidacionGlobal: Number;
-    private idConcepto: Number;
     private monto: Number;
     private codConceptoGasto: String;
     
 
     // CONSTRUCTOR
 
-    public GastoLiquidacion(id?: Number, idLiquidacionGlobal?: Number, idConcepto?: Number, monto?: Number, codConceptoGasto?: String) {
+    public GastoLiquidacion(id?: Number, idLiquidacionGlobal?: Number, monto?: Number, codConceptoGasto?: String) {
 
         this.id = id;
         this.idLiquidacionGlobal = idLiquidacionGlobal;
-        this.idConcepto = idConcepto;
         this.monto = monto;
         this.codConceptoGasto = codConceptoGasto;
         
@@ -30,11 +28,6 @@ export class GastoLiquidacion {
     public getIdLiquidacionGlobal () : Number {
         
         return this.idLiquidacionGlobal;
-    }
-
-    public getIdConcepto () : Number {
-        
-        return this.idConcepto;
     }
 
     public getMonto() : Number {
@@ -57,11 +50,6 @@ export class GastoLiquidacion {
     public setIdLiquidacionGlobal ( idLiquidacionGlobal: Number ) {
         
         this.idLiquidacionGlobal = idLiquidacionGlobal;
-    }
-
-    public setIdConcepto ( idConcepto: Number ) {
-        
-        this.idConcepto = idConcepto;
     }
 
     public setMonto( monto: Number ) {

@@ -7,6 +7,7 @@ import { GrillaAdherentesComponent } from './grilla-adherentes/grilla-adherentes
 import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
 import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
 import { DatosUFComponent } from './datos-uf/datos-uf.component';
+import { DatosExpensaComponent } from './datos-expensa/datos-expensa.component';
 import { GrillaExpensasComponent } from './grilla-expensas/grilla-expensas.component';
 import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla-conceptos-gastos.component';
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
@@ -30,6 +31,7 @@ const pagesRoutes: Routes = [
             { path: 'datos-adherente/:id',          component: DatosAdherenteComponent,           data: { titulo: 'Datos del adherente' } },
             { path: 'datos-uf/:id',                 component: DatosUFComponent,                  data: { titulo: 'Datos de la UF' } },
             { path: 'datos-conceptos-gastos/:id',   component: DatosConceptosGastosComponent,     data: { titulo: 'Conceptos de Gastos' } },
+            { path: 'datos-expensa/:id',            component: DatosExpensaComponent,             data: { titulo: 'Datos de la expensa' } },
             { path: 'account-settings',             component: AccountSettingsComponent,          data: { titulo: 'Ajustes del tema' } },
             { path: '',                             redirectTo: '/dashboard',                     pathMatch: 'full' }
         ]

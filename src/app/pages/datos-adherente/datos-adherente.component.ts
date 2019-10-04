@@ -67,8 +67,6 @@ export class DatosAdherenteComponent implements OnInit {
   
   public onSubmit() {
 
-    this._fxGlobals.showSpinner();
-
     let adherente = new Adherente();
     
     adherente.setId( this.forma.get( 'id' ).value );
@@ -87,7 +85,6 @@ export class DatosAdherenteComponent implements OnInit {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El adherente se ha insertado con éxito', 'success' );
           this.forma.reset();
-          this._fxGlobals.hideSpinner();
         }
       );
     }
@@ -99,7 +96,6 @@ export class DatosAdherenteComponent implements OnInit {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El adherente se ha actualizado con éxito', 'success' );
           this.router.navigate( ['grilla-adherentes'] );
-          this._fxGlobals.hideSpinner();
         }
       );
     }
@@ -109,9 +105,7 @@ export class DatosAdherenteComponent implements OnInit {
 
   // Obtengo un adherente por ID
   public getAdherente( id: String ) { 
-
-    this._fxGlobals.showSpinner();
-    
+   
     this._common.getOne( 'adherentes', id ).subscribe(
       data => {
         
@@ -123,7 +117,6 @@ export class DatosAdherenteComponent implements OnInit {
         this.forma.get( 'telefono' ).setValue( data.telefono );
         this.forma.get( 'email' ).setValue( data.email );
 
-        this._fxGlobals.hideSpinner();
       },
       err => this.router.navigate( ['grilla-adherentes'] )
     );  

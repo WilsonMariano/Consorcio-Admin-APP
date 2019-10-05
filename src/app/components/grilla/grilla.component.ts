@@ -40,7 +40,11 @@ export class GrillaComponent implements OnInit {
   ngOnInit() {
 
     // Cargo la tabla con los objetos iniciales
-    this.getObjects();
+    if(this.options['filterParams'])
+      this.getObjects(this.options['filterParams'].column, this.options['filterParams'].text);
+    
+    else
+      this.getObjects();
   }
 
 

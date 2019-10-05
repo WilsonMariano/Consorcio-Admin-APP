@@ -13,6 +13,7 @@ import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 import { GrillaCtasCtesComponent } from './grilla-ctas-ctes/grilla-ctas-ctes.component';
 import { CtaCteComponent } from './cta-cte/cta-cte.component';
+import { GastosExpensaComponent } from './gastos-expensa/gastos-expensa.component';
 
 
 
@@ -32,6 +33,7 @@ const pagesRoutes: Routes = [
             { path: 'datos-uf/:id',                 component: DatosUFComponent,                  data: { titulo: 'Datos de la UF' } },
             { path: 'datos-conceptos-gastos/:id',   component: DatosConceptosGastosComponent,     data: { titulo: 'Conceptos de Gastos' } },
             { path: 'datos-expensa/:id',            component: DatosExpensaComponent,             data: { titulo: 'Datos de la expensa' } },
+            { path: 'gastos-expensa/:id',           component: GastosExpensaComponent,            data: { titulo: 'Carga de gastos' } },
             { path: 'account-settings',             component: AccountSettingsComponent,          data: { titulo: 'Ajustes del tema' } },
             { path: '',                             redirectTo: '/dashboard',                     pathMatch: 'full' }
         ]

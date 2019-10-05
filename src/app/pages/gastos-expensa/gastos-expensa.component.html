@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-muted">Periodo Junio 2019</h4>
+                <hr>
+                <div class="r-panel-body">
+                    <form [formGroup]="forma">
+                        <div class="row">
+                            <div class="col-md-2 form-group">
+                                <label for="codigo">Código</label>
+                                <input type="text" class="form-control uppercase-text" placeholder="SUE" id="codigo"
+                                    (blur)="pressCodigo($event)" maxlength="3">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="concepto">Concepto</label>
+                                <input type="text" class="form-control" placeholder="SUELDOS Y JORNALES" id="concepto"
+                                 formControlName="concepto">
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label for="monto">Monto</label>
+                                <input type="number" class="form-control" onlyNumbers placeholder="15200.00" id="monto">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="descripcion">Descripción</label>
+                                <input type="text" class="form-control" placeholder="Fabián Ochoa" id="descripcion">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Entidad a asignar</label>
+                                <select class="form-control">
+                                    <option>Manzanas</option>
+                                    <option>Edificios</option>
+                                    <option>Unidad funcional</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

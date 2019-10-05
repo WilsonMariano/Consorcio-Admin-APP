@@ -37,3 +37,10 @@
 .mdi.md-48 {
     font-size: 48px;
 }
+
+
+/* Uppercase form */
+.uppercase-text {
+
+    text-transform: uppercase;
+}

@@ -45,11 +45,12 @@ export class DatosExpensaComponent implements OnInit {
 
 
       this.forma = new FormGroup({
+        'id': new FormControl( '' ),
         'mes': new FormControl( '', Validators.required ),
         'anio': new FormControl( '', Validators.required ),
         'primerVencimiento': new FormControl( '', [ Validators.required, this._validators.dateValidator ] ),
         'segundoVencimiento': new FormControl( '', [ Validators.required, this._validators.dateValidator ] ),
-        'estado': new FormControl( {value: 'Abierta', disabled: true}, Validators.required )
+        'estado': new FormControl( { value: 'ABIERTA', disabled: true }, Validators.required )
       });
 
 
@@ -120,17 +121,18 @@ export class DatosExpensaComponent implements OnInit {
         }
       );
     }
-    // else {
+    else {
 
       // Actualizo la liquidación
-    //   this._common.UpdateOne( 'liquidacionesGlobales', liquidacionGlobal ).subscribe(
-    //     data => {
+      liquidacionGlobal.setId(this.forma.get('id').value);
+      this._common.UpdateOne( 'liquidacionesGlobales', liquidacionGlobal ).subscribe(
+        data => {
 
-    //       this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha actualizado con éxito', 'success' );
-    //       this.router.navigate( ['grilla-expensas'] );
-    //     }
-    //   );
-    // }
+          this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha actualizado con éxito', 'success' );
+          this.router.navigate( ['grilla-expensas'] );
+        }
+      );
+    }
   }
 
 
@@ -143,6 +145,12 @@ export class DatosExpensaComponent implements OnInit {
           
           // Seteo el form con el adhrente recibido
           console.log(data);
+          this.forma.get('id').setValue(data.id);
+          this.forma.get('anio').setValue(data.anio);
+          this.forma.get('mes').setValue(data.mes);
+          this.forma.get('primerVencimiento').setValue(data.primerVencimiento);
+          this.forma.get('segundoVencimiento').setValue(data.segundoVencimiento);
+          this.forma.get('estado').setValue(data.estado);
   
         },
         err => this.router.navigate( ['grilla-expensas'] )

@@ -31,6 +31,7 @@ import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-co
 import { GrillaCtasCtesComponent } from './grilla-ctas-ctes/grilla-ctas-ctes.component';
 import { CtaCteComponent } from './cta-cte/cta-cte.component';
 import { DatosExpensaComponent } from './datos-expensa/datos-expensa.component';
+import { GastosExpensaComponent } from './gastos-expensa/gastos-expensa.component';
 
 
 
@@ -50,7 +51,8 @@ import { DatosExpensaComponent } from './datos-expensa/datos-expensa.component';
         DatosConceptosGastosComponent,
         GrillaCtasCtesComponent,
         CtaCteComponent,
-        DatosExpensaComponent
+        DatosExpensaComponent,
+        GastosExpensaComponent
     ],
     exports: [
         DashboardComponent

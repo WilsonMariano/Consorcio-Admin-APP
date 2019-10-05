@@ -2,29 +2,31 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cta-cte',
-  templateUrl: './cta-cte.component.html',
-  styles: []
+  templateUrl: './cta-cte.component.html'
 })
 export class CtaCteComponent implements OnInit {
 
-  private arrControls = ['UF', 'Apellido y Nombre', 'Nº Adherente', 'Saldo'];
+  private arrControls = ['Fecha', 'Descrpicion', 'Monto', 'Saldo'];
 
 
   private arrAttr = [
-    { 'attr': 'id',           'type': 'Number'  },
-    { 'attr': 'adherente',    'type': 'String'  },
-    { 'attr': 'nroAdherente', 'type': 'Number'  },
-    { 'attr': 'saldo',        'type': 'Number'  },
+    { 'attr': 'fecha',          'type': 'Date'  },
+    { 'attr': 'descripcion',    'type': 'String'  },
+    { 'attr': 'monto',          'type': 'Number'  },
+    { 'attr': 'saldo',          'type': 'Number'  },
   ];
+
+  private filterParams = {
+    'column': 'idUf',
+    'text': 2
+  }
 
 
   public options = {
-    'entity': 'vwCtasCtes',
+    'entity': 'CtasCtes',
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
-    'buttons': [
-      { 'url': 'cta-cte', 'icon': 'mdi mdi-arrow-right' }
-    ]
+    'filterParams': this.filterParams
   }
 
   constructor() { }

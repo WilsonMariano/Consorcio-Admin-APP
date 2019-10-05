@@ -23,6 +23,9 @@ export class GrillaExpensasComponent implements OnInit {
     'entity': 'liquidacionesGlobales',
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
+    'buttons': [
+      { 'url': 'datos-expensa', 'icon': 'mdi mdi-lead-pencil' }
+    ]
   }
   
 

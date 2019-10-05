@@ -8,44 +8,50 @@
                 <div class="r-panel-body">
 
                     <form [formGroup]="forma" (ngSubmit)="onSubmit()">
-                            <div class="row">
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label for="anio">Año</label>
-                                    <select class="form-control" formControlName="anio" id="anio">
-                                        <option *ngFor="let a of arrAnios ; let i = index" [value]="a">{{a}}</option>
-                                    </select>
-                                    <span class="form-invalid" *ngIf="forma.controls['anio'].errors?.required && forma.get('anio').touched">*El campo es requerido</span>
-                                </div>
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label for="mes">Mes</label>
-                                    <select class="form-control" formControlName="mes" id="mes">
-                                        <option *ngFor="let m of arrMeses ; let i = index" [value]="i + 1">{{m}}</option>
-                                    </select>
-                                    <span class="form-invalid" *ngIf="forma.controls['mes'].errors?.required && forma.controls['mes'].touched">*El campo es requerido</span>
-                                </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="anio">Año</label>
+                                <select class="form-control" formControlName="anio" id="anio">
+                                    <option *ngFor="let a of arrAnios ; let i = index" [value]="a">{{ a }}</option>
+                                </select>
+                                <span class="form-invalid" *ngIf="forma.controls['anio'].errors?.required && forma.get('anio').touched">*El campo es requerido</span>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="primerVencimiento">Primer vencimiento</label>
-                                    <input class="form-control" type="date" formControlName="primerVencimiento" id="primerVencimiento">
-                                    <span class="form-invalid" *ngIf="forma.controls['primerVencimiento'].errors?.required && forma.controls['primerVencimiento'].touched">*El campo es requerido</span>
-                                </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="mes">Mes</label>
+                                <select class="form-control" formControlName="mes" id="mes">
+                                    <option *ngFor="let m of arrMeses ; let i = index" [value]="i + 1">{{ m }}</option>
+                                </select>
+                                <span class="form-invalid" *ngIf="forma.controls['mes'].errors?.required && forma.controls['mes'].touched">*El campo es requerido</span>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="segundoVencimiento">Segundo vencimiento</label>
-                                    <input class="form-control" type="date" formControlName="segundoVencimiento" id="segundoVencimiento">
-                                    <span class="form-invalid" *ngIf="forma.controls['segundoVencimiento'].errors?.required && forma.controls['segundoVencimiento'].touched">*El campo es requerido</span>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="primerVencimiento">Primer vencimiento</label>
+                                <input class="form-control" type="date" formControlName="primerVencimiento" id="primerVencimiento">
+                                <span class="form-invalid" *ngIf="forma.controls['primerVencimiento'].errors?.required && forma.controls['primerVencimiento'].touched">*El campo es requerido</span>
+                                <span class="form-invalid" *ngIf="forma.controls['primerVencimiento'].errors?.invalidFormat && !forma.controls['primerVencimiento'].pristine">*El formato es incorrecto</span>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="estado">Estado</label>
-                                    <input class="form-control" type="text" formControlName="estado" id="estado">
-                                    <span class="form-invalid" *ngIf="forma.controls['estado'].errors?.required && forma.controls['estado'].touched">*El campo es requerido</span>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="segundoVencimiento">Segundo vencimiento</label>
+                                <input class="form-control" type="date" formControlName="segundoVencimiento" id="segundoVencimiento">
+                                <span class="form-invalid" *ngIf="forma.controls['segundoVencimiento'].errors?.required && forma.controls['segundoVencimiento'].touched">*El campo es requerido</span>
+                                <span class="form-invalid" *ngIf="forma.controls['segundoVencimiento'].errors?.invalidFormat && !forma.controls['segundoVencimiento'].pristine">*El formato es incorrecto</span>
                             </div>
-                    
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-sm-12">
+                                <label for="estado">Estado</label>
+                                <input class="form-control" type="text" formControlName="estado" id="estado">
+                                <span class="form-invalid" *ngIf="forma.controls['estado'].errors?.required && forma.controls['estado'].touched">*El campo es requerido</span>
+                            </div>
+                            <div class="col-md-2 col-sm-12 my-auto">
+                                <i *ngIf="forma.get('estado').value == 'Abierta'" class="mdi mdi-lock-open-outline md-36"></i>
+                                <i *ngIf="forma.get('estado').value != 'Abierta'" class="mdi mdi-lock-outline md-36"></i>
+                            </div>
+                        </div>
+
                         <button type="submit" class="btn btn-themecolor" [disabled]="forma.invalid">Aceptar</button>
                     </form>
 

@@ -7,6 +7,7 @@ import {
   DiccionarioService,
   UsuarioService,
   ConceptosGastosService, 
+  LiquidacionGlobalService,
   FxGlobalsService } from './service.index';
 
 
@@ -22,6 +23,7 @@ import {
     DiccionarioService,
     ConceptosGastosService,
     UsuarioService,
+    LiquidacionGlobalService,
     FxGlobalsService
   ]
 })

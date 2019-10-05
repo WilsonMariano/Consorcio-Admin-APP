@@ -42,7 +42,7 @@ export class DatosAdherenteComponent implements OnInit {
       'apellido': new FormControl( '', Validators.required ),
       'nombre': new FormControl( '', Validators.required ),
       'telefono': new FormControl( '', Validators.required ),
-      'email': new FormControl( '', [Validators.required, this._validators.emailValidator] ),
+      'email': new FormControl( '', [ Validators.required, this._validators.emailValidator ] ),
     });
 
 

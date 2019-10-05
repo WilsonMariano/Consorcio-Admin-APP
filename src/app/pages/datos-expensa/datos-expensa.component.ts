@@ -4,9 +4,10 @@ import { ActivatedRoute, Router  } from '@angular/router';
 
 import { LiquidacionGlobal } from 'src/app/class/class.index';
 
-import { ValidatorsService, FxGlobalsService, CommonService } from '../../services/service.index';
+import { ValidatorsService, FxGlobalsService, LiquidacionGlobalService } from '../../services/service.index';
 
 import * as moment from 'moment';
+import { CommonService } from 'src/app/services/service.index';
 
 
 
@@ -33,7 +34,8 @@ export class DatosExpensaComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute, 
     private _validators: ValidatorsService, 
-    private _common: CommonService, 
+    private _liquidacionesG: LiquidacionGlobalService, 
+    private _common: CommonService,
     private _fxGlobals: FxGlobalsService,
     private router: Router) { }
 
@@ -45,26 +47,9 @@ export class DatosExpensaComponent implements OnInit {
       this.forma = new FormGroup({
         'mes': new FormControl( '', Validators.required ),
         'anio': new FormControl( '', Validators.required ),
-        'primerVencimiento': new FormControl( '', Validators.required ),
-        'segundoVencimiento': new FormControl( '', Validators.required ),
+        'primerVencimiento': new FormControl( '', [ Validators.required, this._validators.dateValidator ] ),
+        'segundoVencimiento': new FormControl( '', [ Validators.required, this._validators.dateValidator ] ),
         'estado': new FormControl( {value: 'Abierta', disabled: true}, Validators.required )
-      });
-
-
-
-    // Recibo los parámetros de la ruta
-    // Si el parametro que recibo es un id llamo al metodo para buscar el adherente
-    // Si el parametro que recibo es nuevo, muestro el formulario vacio
-    this.activateRoute.params.subscribe(
-      data => {
-        if(data['id'] !== 'nuevo') {
-          
-          // this.getLiquidacionGlobal( data['id'] );
-          this.neWoperation = false;
-          
-          // Deshabilito el campo id
-          this.forma.get( 'id' ).disable();
-        }
       });
 
 
@@ -79,27 +64,43 @@ export class DatosExpensaComponent implements OnInit {
       this.arrAnios.push( moment().year() + 1 );
 
 
-      //Seteo el mes y año actual en el select
-      let currentMonth = moment().month() + 1;
-      let currentYear = moment().year();
 
-      this.forma.get( 'mes' ).setValue(currentMonth);
-      this.forma.get( 'anio' ).setValue(currentYear);
+    // Recibo los parámetros de la ruta
+    // Si el parametro que recibo es un id llamo al metodo para buscar la expensa
+    // Si el parametro que recibo es nuevo, muestro el formulario vacio
+    this.activateRoute.params.subscribe(
+      data => {
 
+        if(data['id'] !== 'nuevo') {
 
-      //Seteo vencimientos default
-      let daysInMonth = moment().daysInMonth();
+          this.getLiquidacionG( data['id'] );
+          this.neWoperation = false;
+        }
+          
+        else {
 
-      this.forma.get( 'primerVencimiento' ).setValue( `${currentYear}-${currentMonth}-${daysInMonth - 5}` );
-      this.forma.get( 'segundoVencimiento' ).setValue( `${currentYear}-${currentMonth}-${daysInMonth}` );
+          //Seteo el mes y año actual en el select
+          let currentMonth = moment().month() + 1;
+          let currentYear = moment().year();
+    
+          this.forma.get( 'mes' ).setValue(currentMonth);
+          this.forma.get( 'anio' ).setValue(currentYear);
+    
+    
+          //Seteo vencimientos default
+          let daysInMonth = moment().daysInMonth();
+    
+          this.forma.get( 'primerVencimiento' ).setValue( `${currentYear}-${currentMonth}-${daysInMonth - 5}` );
+          this.forma.get( 'segundoVencimiento' ).setValue( `${currentYear}-${currentMonth}-${daysInMonth}` );
+
+        }        
+      }); 
       
   }
 
 
 
   public onSubmit() {
-
-    console.log( this.forma );
 
     let liquidacionGlobal = new LiquidacionGlobal();
     liquidacionGlobal.setMes( this.forma.get( 'mes' ).value );
@@ -110,8 +111,8 @@ export class DatosExpensaComponent implements OnInit {
 
     if( this.neWoperation ) {
 
-      // Inserto el adherente
-      this._common.insertEntity( liquidacionGlobal, 'liquidacionesGlobales' ).subscribe(
+      // Inserto la liquidación
+      this._liquidacionesG.insert( liquidacionGlobal ).subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha insertado con éxito', 'success' );
@@ -119,18 +120,34 @@ export class DatosExpensaComponent implements OnInit {
         }
       );
     }
-    else {
+    // else {
 
-      // Actualizo el adherente
-      this._common.UpdateOne( 'liquidacionesGlobales', liquidacionGlobal ).subscribe(
-        data => {
+      // Actualizo la liquidación
+    //   this._common.UpdateOne( 'liquidacionesGlobales', liquidacionGlobal ).subscribe(
+    //     data => {
 
-          this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha actualizado con éxito', 'success' );
-          this.router.navigate( ['grilla-expensas'] );
-        }
-      );
-    }
+    //       this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha actualizado con éxito', 'success' );
+    //       this.router.navigate( ['grilla-expensas'] );
+    //     }
+    //   );
+    // }
   }
+
+
+
+    // Obtengo un adherente por ID
+    public getLiquidacionG( id: String ) { 
+   
+      this._common.getOne( 'liquidacionesglobales', id ).subscribe(
+        data => {
+          
+          // Seteo el form con el adhrente recibido
+          console.log(data);
+  
+        },
+        err => this.router.navigate( ['grilla-expensas'] )
+      );  
+    }
   
   
 

@@ -6,6 +6,7 @@
 
 
 /* Mensaje de erorr de los formularios */
+
 .form-invalid {
     color: red;
     font-size: smaller;
@@ -13,6 +14,26 @@
 
 
 /* Hover de los botones */
+
 .btn:hover {
     color: #fff;
+}
+
+
+/* Material Icons Size */
+
+.mdi.md-18 {
+    font-size: 18px;
+}
+
+.mdi.md-24 {
+    font-size: 24px;
+}
+
+.mdi.md-36 {
+    font-size: 36px;
+}
+
+.mdi.md-48 {
+    font-size: 48px;
 }

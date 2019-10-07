@@ -25,12 +25,12 @@ import { GrillaAdherentesComponent } from './grilla-adherentes/grilla-adherentes
 import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
 import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
 import { DatosUFComponent } from './datos-uf/datos-uf.component';
-import { GrillaExpensasComponent } from './grilla-expensas/grilla-expensas.component';
+import { GrillaLiquidacionesGlobalesComponent } from './grilla-liquidaciones-globales/grilla-liquidaciones-globales.component';
 import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla-conceptos-gastos.component';
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 import { GrillaCtasCtesComponent } from './grilla-ctas-ctes/grilla-ctas-ctes.component';
 import { CtaCteComponent } from './cta-cte/cta-cte.component';
-import { DatosExpensaComponent } from './datos-expensa/datos-expensa.component';
+import { DatosLiquidacionesGlobalesComponent } from './datos-liquidaciones-globales/datos-liquidaciones-globales.component';
 import { GastosExpensaComponent } from './gastos-expensa/gastos-expensa.component';
 
 
@@ -46,12 +46,12 @@ import { GastosExpensaComponent } from './gastos-expensa/gastos-expensa.componen
         OnlyNumbersDirective,
         GrillaUFComponent,
         DatosUFComponent,
-        GrillaExpensasComponent,
+        GrillaLiquidacionesGlobalesComponent,
         GrillaConceptosGastosComponent,
         DatosConceptosGastosComponent,
         GrillaCtasCtesComponent,
         CtaCteComponent,
-        DatosExpensaComponent,
+        DatosLiquidacionesGlobalesComponent,
         GastosExpensaComponent
     ],
     exports: [

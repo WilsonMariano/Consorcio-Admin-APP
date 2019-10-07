@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-grilla-expensas',
-  templateUrl: './grilla-expensas.component.html',
+  selector: 'app-grilla-liquidaciones-globales',
+  templateUrl: './grilla-liquidaciones-globales.component.html',
   styles: []
 })
-export class GrillaExpensasComponent implements OnInit {
+export class GrillaLiquidacionesGlobalesComponent implements OnInit {
 
   private arrControls = ['Año', 'Mes', '1er vencimiento', '2do vencimiento', 'Fecha de emisión', 'Estado'];
 
@@ -16,7 +16,7 @@ export class GrillaExpensasComponent implements OnInit {
     { 'attr': 'primerVencimiento',  'type': 'Date'    },
     { 'attr': 'segundoVencimiento', 'type': 'Date'    },
     { 'attr': 'fechaEmision',       'type': 'Date'    },
-    { 'attr': 'codEstado',          'type': 'String'  }
+    { 'attr': 'codEstadoText',          'type': 'String'  }
   ];
 
 
@@ -25,8 +25,8 @@ export class GrillaExpensasComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'buttons': [
-      { 'url': 'datos-expensa', 'icon': 'mdi mdi-lead-pencil'   },
-      { 'url': 'gastos-expensa',        'icon': 'mdi mdi-currency-usd'  }
+      { 'url': 'datos-expensa',   'icon': 'mdi mdi-lead-pencil'   },
+      { 'url': 'gastos-expensa',  'icon': 'mdi mdi-currency-usd'  }
     ]
   }
   

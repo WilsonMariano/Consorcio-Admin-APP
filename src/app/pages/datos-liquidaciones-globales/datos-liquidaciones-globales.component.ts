@@ -12,10 +12,10 @@ import { CommonService } from 'src/app/services/service.index';
 
 
 @Component({
-  selector: 'app-datos-expensa',
-  templateUrl: './datos-expensa.component.html'
+  selector: 'app-liquidaciones-globales',
+  templateUrl: './datos-liquidaciones-globales.component.html'
 })
-export class DatosExpensaComponent implements OnInit {
+export class DatosLiquidacionesGlobalesComponent implements OnInit {
 
 
 
@@ -140,17 +140,27 @@ export class DatosExpensaComponent implements OnInit {
     // Obtengo un adherente por ID
     public getLiquidacionG( id: String ) { 
    
-      this._common.getOne( 'liquidacionesglobales', id ).subscribe(
+      this._common.getOne( 'vwliquidacionesglobales', id ).subscribe(
         data => {
+
+          if(data.codEstado == 'COD_ESTADO_1') {
+
+             // Seteo el form con el adhrente recibido
+            console.log(data);
+            this.forma.get('id').setValue(data.id);
+            this.forma.get('anio').setValue(data.anio);
+            this.forma.get('mes').setValue(data.mes);
+            this.forma.get('primerVencimiento').setValue(data.primerVencimiento);
+            this.forma.get('segundoVencimiento').setValue(data.segundoVencimiento);
+            this.forma.get('estado').setValue(data.codEstadoText);
+          }
+          else {
+  
+            this.router.navigate( ['grilla-expensas'] );
+            this._fxGlobals.showAlert("Atención!", "No se puede editar una liquidación cerrada", "warning"); 
+          }
           
-          // Seteo el form con el adhrente recibido
-          console.log(data);
-          this.forma.get('id').setValue(data.id);
-          this.forma.get('anio').setValue(data.anio);
-          this.forma.get('mes').setValue(data.mes);
-          this.forma.get('primerVencimiento').setValue(data.primerVencimiento);
-          this.forma.get('segundoVencimiento').setValue(data.segundoVencimiento);
-          this.forma.get('estado').setValue(data.estado);
+         
   
         },
         err => this.router.navigate( ['grilla-expensas'] )

@@ -33,11 +33,15 @@
 
 <nav aria-label="Page navigation example" *ngIf="arrObjects.length != 0">
     <ul class="pagination pagination-sm">
-        <li class="page-item"><a class="page-link" (click)="paginate('prev')">Anterior</a></li>
-        <li class="page-item" *ngFor="let i of arrPaginate" [ngClass]="{'active': numPage == i}"><a class="page-link" (click)="paginate(i)">{{i}}</a></li>
-        <li class="page-item"><a class="page-link" (click)="paginate('next')">Siguiente</a></li>
+        <li class="page-item"><button class="page-link" (click)="paginate('prev')"
+                [disabled]="numPage == arrPaginate[0]">Anterior</button></li>
+        <li class="page-item" *ngFor="let i of arrPaginate" [ngClass]="{'active': numPage == i}"><a class="page-link"
+                (click)="paginate(i)">{{i}}</a></li>
+        <li class="page-item"><button class="page-link" (click)="paginate('next')"
+                [disabled]="numPage == arrPaginate[arrPaginate.length-1]">Siguiente</button></li>
     </ul>
 </nav>
+
 
 
 

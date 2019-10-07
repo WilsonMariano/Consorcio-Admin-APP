@@ -1,4 +1,4 @@
-/* Botónes del paginado */
+/* Botones del paginado */
 
 tr td i.mdi,
 .page-link {
@@ -7,5 +7,11 @@ tr td i.mdi,
 
 button.page-link,
 button.page-link:hover {
-    color: #67757c;
+    color: #67757c !important;
+    font-weight: 300;
+}
+
+.table td , .table th {
+  white-space: nowrap;
+  overflow: hidden;
 }

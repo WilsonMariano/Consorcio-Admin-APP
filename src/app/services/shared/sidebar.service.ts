@@ -68,24 +68,3 @@ export class SidebarService {
 
   constructor() { }
 }
-
-// - Principal
-// 	- Grilla adherentes
-// 	- Grilla UF
-// 	- Pagos
-// - Expensas
-// 	- Grilla expensas (reimprimir)
-// 	- Generar nueva
-// - Gastos
-//   - Cargar nuevo gasto
-//   - Carga de xml
-	
-// - Administración
-// 	- Perfil de usuario
-// 	- Configurar intereses
-// - Listados y métricas
-// 	- Deudas
-// 	- Cuentas Corrientes
-// 	- Evolución de ingresos
-// 	- Distribución de ingresos
-

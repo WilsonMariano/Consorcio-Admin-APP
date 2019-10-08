@@ -25,8 +25,8 @@ export class GrillaLiquidacionesGlobalesComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'buttons': [
-      { 'url': 'datos-expensa',   'icon': 'mdi mdi-lead-pencil'   },
-      { 'url': 'gastos-expensa',  'icon': 'mdi mdi-currency-usd'  }
+      { 'url': 'datos-expensa',                 'icon': 'mdi mdi-lead-pencil'   },
+      { 'url': 'grilla-gastos-liquidacion',   'icon': 'mdi mdi-currency-usd'  }
     ]
   }
   

@@ -19,7 +19,7 @@
                                 <label>N° Manzana</label>
                                 <select class="form-control" formControlName="idManzana">
                                     <option value="">Seleccionar...</option>
-                                    <option *ngFor="let m of arrManzanas" [value]="m.codigo">{{m.valor}}</option>
+                                    <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.id}}</option>
                                 </select>
                                 <span class="form-invalid" *ngIf="forma.controls['idManzana'].errors?.required && forma.controls['idManzana'].touched">*El campo es requerido</span>
                             </div>

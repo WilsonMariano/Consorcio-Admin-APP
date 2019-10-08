@@ -24,7 +24,7 @@ export class DiccionarioService {
     let params = new HttpParams()
       .set('codigo', codigo.toString());
 
-    return this._http.get(`${environment.apiUri}/diccionario/all`, 
+    return this._http.get(`${environment.apiUri}/diccionario/getAll`, 
       { params }
     )
     .pipe(

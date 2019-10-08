@@ -8,12 +8,13 @@ import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
 import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
 import { DatosUFComponent } from './datos-uf/datos-uf.component';
 import { DatosLiquidacionesGlobalesComponent } from './datos-liquidaciones-globales/datos-liquidaciones-globales.component';
-import { GrillaLiquidacionesGlobalesComponent } from './grilla-liquidaciones-globales/grilla-liquidaciones-globales.component';
+import { GrillaLiquidacionesGlobalesComponent } from './grilla-liquidacion-globales/grilla-liquidaciones-globales.component';
 import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla-conceptos-gastos.component';
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 import { GrillaCtasCtesComponent } from './grilla-ctas-ctes/grilla-ctas-ctes.component';
 import { CtaCteComponent } from './cta-cte/cta-cte.component';
 import { GastosExpensaComponent } from './gastos-expensa/gastos-expensa.component';
+import { GrillaGastosLiquidacionComponent } from './grilla-gastos-liquidacion/grilla-gastos-liquidacion.component';
 
 
 
@@ -28,6 +29,7 @@ const pagesRoutes: Routes = [
             { path: 'grilla-expensas',              component: GrillaLiquidacionesGlobalesComponent,    data: { titulo: 'Grilla de liquidaciones' } },
             { path: 'grilla-conceptos-gastos',      component: GrillaConceptosGastosComponent,          data: { titulo: 'Grilla de conceptos' } },
             { path: 'grilla-ctas-ctes',             component: GrillaCtasCtesComponent,                 data: { titulo: 'Grilla de ctas. ctes.' } },
+            { path: 'grilla-gastos-liquidacion/:id',component: GrillaGastosLiquidacionComponent,        data: { titulo: 'Grilla de gastos liquidaciones' } },
             { path: 'cta-cte/:id',                  component: CtaCteComponent,                         data: { titulo: 'Cuenta corriente UF' } },
             { path: 'datos-adherente/:id',          component: DatosAdherenteComponent,                 data: { titulo: 'Datos del adherente' } },
             { path: 'datos-uf/:id',                 component: DatosUFComponent,                        data: { titulo: 'Datos de la UF' } },

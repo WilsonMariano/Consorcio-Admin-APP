@@ -36,11 +36,11 @@ export class CommonService {
     if( column && text ) {
     
       params = params
-                .append( 'column', column.toString() )
-                .append( 'text', text.toString() );
+                .append( 'col1', column.toString() )
+                .append( 'txt1', text.toString() );
     }
     
-
+    console.log(params);
     return this._http.get( `${environment.apiUri}/generic/paged`, 
       { params }
     )
@@ -59,6 +59,23 @@ export class CommonService {
       .set('t', entity.toString());
 
     return this._http.get(`${environment.apiUri}/generic/one/${id}`, 
+      { params }
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
+    );
+  }
+
+
+
+  public getAll( entity: String ): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    let params = new HttpParams()
+      .set('t', entity.toString());
+
+    return this._http.get(`${environment.apiUri}/generic/all`, 
       { params }
     )
     .pipe(

@@ -25,8 +25,9 @@ import { GrillaAdherentesComponent } from './grilla-adherentes/grilla-adherentes
 import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.component';
 import { GrillaUFComponent } from './grilla-uf/grilla-uf.component';
 import { DatosUFComponent } from './datos-uf/datos-uf.component';
-import { GrillaLiquidacionesGlobalesComponent } from './grilla-liquidaciones-globales/grilla-liquidaciones-globales.component';
+import { GrillaLiquidacionesGlobalesComponent } from './grilla-liquidacion-globales/grilla-liquidaciones-globales.component';
 import { GrillaConceptosGastosComponent } from './grilla-conceptos-gastos/grilla-conceptos-gastos.component';
+import { GrillaGastosLiquidacionComponent } from './grilla-gastos-liquidacion/grilla-gastos-liquidacion.component';
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 import { GrillaCtasCtesComponent } from './grilla-ctas-ctes/grilla-ctas-ctes.component';
 import { CtaCteComponent } from './cta-cte/cta-cte.component';
@@ -50,6 +51,7 @@ import { GastosExpensaComponent } from './gastos-expensa/gastos-expensa.componen
         GrillaConceptosGastosComponent,
         DatosConceptosGastosComponent,
         GrillaCtasCtesComponent,
+        GrillaGastosLiquidacionComponent,
         CtaCteComponent,
         DatosLiquidacionesGlobalesComponent,
         GastosExpensaComponent

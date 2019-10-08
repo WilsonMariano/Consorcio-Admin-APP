@@ -49,7 +49,7 @@ export class DatosUFComponent implements OnInit {
       'idAdherente': new FormControl( '', Validators.required ),
       'nroEdificio': new FormControl( '', Validators.required ),
       'idManzana': new FormControl( '', Validators.required ),
-      'departamento': new FormControl( '', Validators.required ),
+      'departamento': new FormControl( '' ),
       'codSitLegal': new FormControl( '', Validators.required ),
       'coeficiente': new FormControl( '', Validators.required ),
       'codAlquila': new FormControl( '', Validators.required )
@@ -93,7 +93,7 @@ export class DatosUFComponent implements OnInit {
     uf.setCoeficiente( this.forma.get( 'coeficiente' ).value );
     uf.setCodAlquila( this.forma.get( 'codAlquila' ).value );
 
-
+    console.log(uf);
     if( this.neWoperation ) {
 
       // Inserto la UF
@@ -101,13 +101,7 @@ export class DatosUFComponent implements OnInit {
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'La unidad funcional se ha insertado con éxito', 'success' );
-
-          this.forma.reset();
-          this.forma.get('idManzana').setValue("");
-          this.forma.get('departamento').setValue("");
-          this.forma.get('codSitLegal').setValue("");
-          this.forma.get('codAlquila').setValue("");
-
+          this.router.navigate( ['grilla-uf']);
         }
       );
     }
@@ -143,7 +137,7 @@ export class DatosUFComponent implements OnInit {
         this.forma.get( 'codAlquila' ).setValue( data.codAlquila );
 
       },
-      err => this.router.navigate( ['grilla-adherentes'])
+      err => this.router.navigate( ['grilla-uf'])
     );  
   }
 
@@ -161,8 +155,8 @@ export class DatosUFComponent implements OnInit {
     this._diccionario.getAll('COD_DEPARTAMENTO').subscribe(
       data => this.arrDepartamentos = data);
 
-    this._diccionario.getAll('COD_MANZANA').subscribe(
-      data => this.arrManzanas = data);
+    this._common.getAll('manzanas').subscribe(
+      data => {this.arrManzanas = data; console.log(this.arrManzanas)});
   }
 
 

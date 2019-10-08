@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cta-cte',
@@ -17,8 +18,8 @@ export class CtaCteComponent implements OnInit {
   ];
 
   private filterParams = {
-    'column': 'idUf',
-    'text': 2
+    'col1': 'idUf',
+    'txt1': 2
   }
 
 
@@ -29,9 +30,17 @@ export class CtaCteComponent implements OnInit {
     'filterParams': this.filterParams
   }
 
-  constructor() { }
+  constructor(private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.activateRoute.params.subscribe(
+      data => {
+
+        if(data['id']) 
+          this.filterParams.txt1 = data['id'];
+          
+    });
   }
 
 

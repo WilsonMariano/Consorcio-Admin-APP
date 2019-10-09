@@ -14,19 +14,26 @@ export class GrillaComponent implements OnInit {
     'arrAttr':        arreglo de atributos, del objeto, que se mostraran en la tabla
     'arrControles:    arreglo de labels que tendra la tabla
     'buttons':        arreglo de botones que debera mostrar la tabla
+    'filterParams':   objeto con parametros para filtrar la tabla, por ejemplo id
   @arrObjects:        arreglo de objetos que se bindeara con la tabla
   @arrPaginate:       arreglo de enteros con los valores del paginado, lo genera el metodo 'getControlsPaginate'
-  @arrFilterParams:   en caso de escribir en los inputs de filtro, este arreglo se llenara con los valores por los que buscar
+  @filterParams:      objeto de filtros 
+    'filterId:        objeto con los parámetros para realizar el filtrado de los objetos por id
+    'filterGrid:      objeto con los parámetros para realizar el filtrado de la grilla
   @rowsWithPage:      atributo que establece la cantidad de filas que mostrara la tabla
   @numPage:           pagina actual que muestra la tabla (paginado)
   @totalResults:      cantidad de registros totales existentes de la db
    */
 
   @Input() options = [];
+
+  private filterParams = {
+    'filterId': null,
+    'filterGrid' : null,
+  };
   
   public arrObjects = [];
   public arrPaginate = [];
-  private arrFilterParams = [];
   public rowsWithPage = 20;
   public numPage = 1;
   public totalResults = 0;
@@ -40,24 +47,24 @@ export class GrillaComponent implements OnInit {
   ngOnInit() {
 
     // Cargo la tabla con los objetos iniciales
-    if(this.options['filterParams'])
-      this.getObjects(this.options['filterParams'].col1, this.options['filterParams'].txt1);
+    if(this.options['filterParams']) 
+      this.filterParams.filterId = this.options['filterParams'];
     
-    else
+    
       this.getObjects();
   }
 
 
 
   /**********************************************************************************************************************************
-   MEtodo que trae los objetos de la base de datos.
+   Método que trae los objetos de la base de datos.
    Es llamado cuando se abre la vista para traer los objetos iniciales.
    Tambien se llama cuando se pagina la tabla, tomando como valor el número de página actual.
    Se usa también cuando se filtra la tabla, recibiendo como valores la columna y texto a filtrar.
   ***********************************************************************************************************************************/
-  public getObjects(column?: String, text?: String) {
+  public getObjects() {
     
-    this._common.getWithPaged(this.options['entity'], this.rowsWithPage, this.numPage-1, column, text).subscribe(
+    this._common.getWithPaged(this.options['entity'], this.rowsWithPage, this.numPage-1, this.filterParams).subscribe(
       data => {
         console.log(data);
         this.arrObjects = data.data;
@@ -70,7 +77,7 @@ export class GrillaComponent implements OnInit {
 
 
   /***********************************************************************************************************************************/
-  /**************************************************** COMIENZO METODOS DE PAGINADO**************************************************/
+  /**************************************************** COMIENZO METODOS DE PAGINADO **************************************************/
   /***********************************************************************************************************************************/
 
 
@@ -107,10 +114,8 @@ export class GrillaComponent implements OnInit {
         break;
     }
     
-    if(this.arrFilterParams.length === 0)
-      this.getObjects();
-    else
-      this.getObjects(this.arrFilterParams[0], this.arrFilterParams[1]);
+    this.getObjects();
+
   }
 
 
@@ -137,8 +142,11 @@ export class GrillaComponent implements OnInit {
     if(text != "") {
       
       // Lleno el array de parámetro de los filtros
-      this.arrFilterParams[0] = id;
-      this.arrFilterParams[1] = text;
+      this.filterParams.filterGrid = {
+        'col': id,
+        'txt': text
+      }
+
 
       this.options['arrAttr'].forEach(control => {
   
@@ -149,7 +157,7 @@ export class GrillaComponent implements OnInit {
     // Si se borra todo el contenido del input, habilito todos los demás
     else {
 
-      this.arrFilterParams = [];
+      this.filterParams.filterGrid = null;
 
       this.options['arrAttr'].forEach(control => {
     
@@ -162,7 +170,7 @@ export class GrillaComponent implements OnInit {
     this.numPage = 1;
 
     // Traigo los objetos filtrados por id de columna y texto ingresado
-    this.getObjects(id, text);
+    this.getObjects();
   }
 
 

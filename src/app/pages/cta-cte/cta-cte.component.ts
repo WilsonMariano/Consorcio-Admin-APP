@@ -18,8 +18,8 @@ export class CtaCteComponent implements OnInit {
   ];
 
   private filterParams = {
-    'col1': 'idUf',
-    'txt1': 2
+    'col': 'idUf',
+    'txt': null
   }
 
 
@@ -38,7 +38,7 @@ export class CtaCteComponent implements OnInit {
       data => {
 
         if(data['id']) 
-          this.filterParams.txt1 = data['id'];
+          this.filterParams.txt = data['id'];
           
     });
   }

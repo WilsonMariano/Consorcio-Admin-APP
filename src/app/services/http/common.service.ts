@@ -22,7 +22,7 @@ export class CommonService {
 
 
 
-  public getWithPaged( entity: String, rows: Number, page: Number, column?: String, text?: String ): Observable<any> {
+  public getWithPaged( entity: String, rows: Number, page: Number, arrFilterParams?: any ): Observable<any> {
 
     this._fxGlobals.showSpinner();
 
@@ -32,12 +32,23 @@ export class CommonService {
       .set( 'page', page.toString() )
       .set( 'entity', entity.toString() )
 
-    
-    if( column && text ) {
-    
-      params = params
-                .append( 'col1', column.toString() )
-                .append( 'txt1', text.toString() );
+    console.log(arrFilterParams);
+
+    if( arrFilterParams ) {
+
+      let i = 1;
+  
+      for(let key in arrFilterParams) {
+        console.log(arrFilterParams[key]);
+        if( arrFilterParams[key] ) {
+  
+          params = params
+                .append( `col${ i }`, arrFilterParams[key]['col'] )
+                .append( `txt${ i }`, arrFilterParams[key]['txt'] );
+  
+          i++;
+        }
+      }
     }
     
     console.log(params);

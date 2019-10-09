@@ -18,8 +18,8 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
 
 
   private filterParams = {
-    'col1': 'idLiquidacionGlobal',
-    'txt1': null
+    'col': 'idLiquidacionGlobal',
+    'txt': null
   }
 
   public options = {
@@ -40,7 +40,7 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
       data => {
 
         if(data['id']) 
-          this.filterParams.txt1 = data['id'];
+          this.filterParams.txt = data['id'];
           
     });
   }

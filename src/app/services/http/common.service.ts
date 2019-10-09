@@ -133,4 +133,15 @@ export class CommonService {
   }
 
 
+
+  public getIsDuplicated( entity: String, id: Number ): Observable<any> {
+
+    let params = new HttpParams()
+      .set('t', entity.toString());
+
+    return this._http.get(`${environment.apiUri}/generic/is-duplicated/${id}`, 
+      { params }
+    );
+  }
+
 }

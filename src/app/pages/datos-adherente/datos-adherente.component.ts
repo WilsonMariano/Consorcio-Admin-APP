@@ -37,7 +37,7 @@ export class DatosAdherenteComponent implements OnInit {
   ngOnInit() {
 
     this.forma = new FormGroup({
-      'id': new FormControl( '', Validators.required ),
+      'id': new FormControl( '', Validators.required, this._validators.asyncExistsEntity('adherentes').bind(this) ),
       'nroDocumento': new FormControl( '', Validators.required ),
       'apellido': new FormControl( '', Validators.required ),
       'nombre': new FormControl( '', Validators.required ),
@@ -121,6 +121,10 @@ export class DatosAdherenteComponent implements OnInit {
       err => this.router.navigate( ['grilla-adherentes'] )
     );  
   }
+
+
+
+  
 
 
 }

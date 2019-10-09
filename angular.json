@@ -68,6 +68,7 @@
                         "production": {
                             "browserTarget": "angular8:build:production"
                         }
+                        
                     }
                 },
                 "extract-i18n": {

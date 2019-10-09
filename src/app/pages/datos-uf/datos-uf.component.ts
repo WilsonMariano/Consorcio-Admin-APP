@@ -4,7 +4,7 @@ import { ActivatedRoute, Router  } from '@angular/router';
 
 import { UnidadFuncional } from 'src/app/class/class.index';
 
-import { FxGlobalsService, CommonService, DiccionarioService } from '../../services/service.index';
+import { FxGlobalsService, CommonService, DiccionarioService, ValidatorsService } from '../../services/service.index';
 
 
 
@@ -38,6 +38,7 @@ export class DatosUFComponent implements OnInit {
     private _common: CommonService, 
     private _diccionario: DiccionarioService,
     private _fxGlobals: FxGlobalsService,
+    private _validators: ValidatorsService,
     private router: Router) { }
 
 
@@ -45,8 +46,8 @@ export class DatosUFComponent implements OnInit {
   ngOnInit() {
 
       this.forma = new FormGroup({
-      'id': new FormControl( '', Validators.required ),
-      'idAdherente': new FormControl( '', Validators.required ),
+      'id': new FormControl( '', Validators.required, this._validators.asyncExistsEntity('uf').bind(this) ),
+      'idAdherente': new FormControl( '', Validators.required, this._validators.asyncNotExistsEntity('adherentes').bind(this)),
       'nroEdificio': new FormControl( '', Validators.required ),
       'idManzana': new FormControl( '', Validators.required ),
       'departamento': new FormControl( '' ),

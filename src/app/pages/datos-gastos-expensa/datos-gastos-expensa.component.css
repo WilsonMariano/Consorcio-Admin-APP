@@ -1,0 +1,11 @@
+[type="checkbox"] + label:before, [type="checkbox"]:not(.filled-in) + label:after {
+
+    width: 14px;
+    height: 14px;
+}
+
+[type="checkbox"] + label {
+
+    font-size: 0.8rem;
+    padding-left: 20px;
+}

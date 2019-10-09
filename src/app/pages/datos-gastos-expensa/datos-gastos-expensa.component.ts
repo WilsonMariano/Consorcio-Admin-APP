@@ -1,24 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { ConceptosGastosService } from 'src/app/services/service.index';
+import { ConceptosGastosService, DiccionarioService, FxGlobalsService, CommonService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-datos-gastos-expensa',
-  templateUrl: './datos-gastos-expensa.component.html'
+  templateUrl: './datos-gastos-expensa.component.html',
+  styleUrls: ['./datos-gastos-expensa.component.css']
 })
 export class DatosGastosExpensaComponent implements OnInit {
 
   public forma: FormGroup;
+  public arrEntidades = [];
+  public arrManzanas  = [];
 
-  constructor( private _conceptoGastos: ConceptosGastosService ) { }
+  constructor( private _conceptoGastos: ConceptosGastosService, private _diccionario: DiccionarioService, private _fxGlobals: FxGlobalsService, private _common: CommonService ) { }
 
 
-  ngOnInit() {
+  ngOnInit() {  
 
     this.forma = new FormGroup({
-      'concepto': new FormControl( { value: '', disabled: true }, Validators.required )
+      'concepto': new FormControl( { value: '', disabled: true }, Validators.required ),
+      'monto': new FormControl( '', Validators.required ),
+      'descripcion': new FormControl( '', Validators.required ),
+      'entidad': new FormControl( '', Validators.required )
     });
+
+    this.getEntidades();
+    this.getManzanas();
   }
+
+
 
   public pressCodigo( event ): void {
 
@@ -32,11 +43,34 @@ export class DatosGastosExpensaComponent implements OnInit {
 
         data => this.forma.get('concepto').setValue(data.conceptoGasto),
         err => this.forma.get('concepto').reset()
-        // data => console.log(data)
       );
-
     }
-
   }
 
+
+
+  private getEntidades() : void {
+
+    this._diccionario.getAll('TIPO_ENTIDAD').subscribe(
+
+      data => this.arrEntidades = data 
+    );
+  }
+
+
+
+  private getManzanas() : void {
+
+    this._common.getAll('manzanas').subscribe(
+
+      data => this.arrManzanas = data 
+    );
+  }
+
+
+
+  public onChangeEntidad() : void {
+
+    console.log(this.forma.get('entidad').value);
+  }
 }

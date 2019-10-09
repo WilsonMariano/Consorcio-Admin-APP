@@ -1,42 +1,106 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title text-muted">Periodo Junio 2019</h4>
-                <hr>
-                <div class="r-panel-body">
-                    <form [formGroup]="forma">
+    <form [formGroup]="forma">
+        <div class="col-md-12">
+            <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
+                <div class="card-body">
+                    <h4 class="card-title text-muted">Periodo Junio 2019</h4>
+                    <hr>
+                    <div class="r-panel-body">
+
                         <div class="row">
-                            <div class="col-md-2 form-group">
+                            <div class="col-md-1 form-group">
                                 <label for="codigo">Código</label>
-                                <input type="text" class="form-control uppercase-text" placeholder="SUE" id="codigo"
-                                    (blur)="pressCodigo($event)" maxlength="3">
+                                <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE"
+                                    id="codigo" (blur)="pressCodigo($event)" maxlength="3">
                             </div>
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-2 form-group">
                                 <label for="concepto">Concepto</label>
-                                <input type="text" class="form-control" placeholder="SUELDOS Y JORNALES" id="concepto"
-                                 formControlName="concepto">
+                                <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES"
+                                    id="concepto" formControlName="concepto">
                             </div>
                             <div class="col-md-2 form-group">
                                 <label for="monto">Monto</label>
-                                <input type="number" class="form-control" onlyNumbers placeholder="15200.00" id="monto">
+                                <div class="input-group">
+                                    <span class="input-group-addon form-control-sm">$</span>
+                                    <input type="number" class="form-control form-control-sm" onlyNumbers
+                                        placeholder="15200.00" id="monto" formControlName='monto'>
+                                </div>
                             </div>
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-3 form-group">
                                 <label for="descripcion">Descripción</label>
-                                <input type="text" class="form-control" placeholder="Fabián Ochoa" id="descripcion">
+                                <input type="text" class="form-control form-control-sm" placeholder="Fabián Ochoa"
+                                    id="descripcion" formControlName='descripcion'>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-2 form-group">
                                 <label>Entidad a asignar</label>
-                                <select class="form-control">
-                                    <option>Manzanas</option>
-                                    <option>Edificios</option>
-                                    <option>Unidad funcional</option>
+                                <select class="form-control form-control-sm" formControlName="entidad"
+                                    (change)="onChangeEntidad()">
+                                    <option value="">Seleccionar...</option>
+                                    <option *ngFor="let e of arrEntidades" [value]="e.codigo">{{e.valor}}</option>
+
                                 </select>
                             </div>
+                            <div class="col-md-2" ng-switch="entidad">
+                                <ng-container ng-switch-when="TIPO_ENTIDAD_1">
+                                    <label style="display:block">Manzanas</label>
+                                    <div class="form-check form-check-inline" *ngFor="let m of arrManzanas">
+                                        <input class="form-check-input" type="checkbox"  [id]="m" [value]="m.id">
+                                        <label class="form-check-label" [for]="m">{{m.id}}</label>
+                                    </div>
+                                    <!-- <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                        <label class="form-check-label" for="inlineCheckbox2">141
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                        <label class="form-check-label" for="inlineCheckbox3">142</label>
+                                    </div> -->
+                                </ng-container>
+                                <ng-container ng-switch-when="TIPO_ENTIDAD_2">
+                                    <label style="display:block">Edificio</label>
+                                    <input type="text" name="" class="form-control form-control-sm" placeholder="Nº Edificio">
+                                </ng-container>
+                                <ng-container ng-switch-when="TIPO_ENTIDAD_3">
+                                    <label style="display:block">UF</label>
+                                    <input type="text" name="" class="form-control form-control-sm" placeholder="Nº Unidad Funcional">
+                                </ng-container>
+
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-themecolor btn-block btn-sm"><i
+                                        class="fa fa-arrow-down"></i></button>
+                            </div>
                         </div>
-                    </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="r-panel-body">
+                    <table class="table table-borderless table-striped table-responsive table-sm mt-3">
+                        <thead>
+                            <tr>
+                                <th>Gasto</th>
+                                <th>Gasto</th>
+                                <th>Gasto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gasto</td>
+                                <td>Gasto</td>
+                                <td>Gasto</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

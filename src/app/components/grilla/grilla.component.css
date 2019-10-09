@@ -11,7 +11,12 @@ button.page-link:hover {
     font-weight: 300;
 }
 
-.table td , .table th {
-  white-space: nowrap;
-  overflow: hidden;
+.table td,
+.table th {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.text-green {
+    color: green;
 }

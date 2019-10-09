@@ -7,18 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaCtasCtesComponent implements OnInit {
 
+  // SEE grilla.component
 
   private arrControls = ['UF', 'Apellido y Nombre', 'Nº Adherente', 'Saldo'];
-
-
+  
+  
   private arrAttr = [
     { 'attr': 'id',           'type': 'Number'  },
     { 'attr': 'adherente',    'type': 'String'  },
     { 'attr': 'nroAdherente', 'type': 'Number'  },
     { 'attr': 'saldo',        'type': 'Number'  },
   ];
-
-
+  
+  
   public options = {
     'entity': 'vwCtasCtes',
     'arrAttr': this.arrAttr,
@@ -27,14 +28,11 @@ export class GrillaCtasCtesComponent implements OnInit {
       { 'url': 'cta-cte', 'icon': 'mdi mdi-arrow-right' }
     ]
   }
-
-
   
-
-
+  
   constructor() { }
-
-  ngOnInit() {
+  
+  
+  ngOnInit() {}
+  
   }
-
-}

@@ -32,26 +32,27 @@ export class CommonService {
       .set( 'page', page.toString() )
       .set( 'entity', entity.toString() )
 
-    console.log(arrFilterParams);
 
+    // Se inicia la generación de parámetros de filtrado
     if( arrFilterParams ) {
 
       let i = 1;
   
       for(let key in arrFilterParams) {
-        console.log(arrFilterParams[key]);
+
         if( arrFilterParams[key] ) {
   
           params = params
                 .append( `col${ i }`, arrFilterParams[key]['col'] )
                 .append( `txt${ i }`, arrFilterParams[key]['txt'] );
-  
+    
           i++;
         }
       }
     }
+    // Fin de generación de parámetros
     
-    console.log(params);
+
     return this._http.get( `${environment.apiUri}/generic/paged`, 
       { params }
     )

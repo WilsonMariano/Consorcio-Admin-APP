@@ -3,11 +3,10 @@ import { ConceptosGastosService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-gastos-expensa',
-  templateUrl: './gastos-expensa.component.html',
-  styles: ['./gastos-expensa.component.css']
+  selector: 'app-datos-gastos-expensa',
+  templateUrl: './datos-gastos-expensa.component.html'
 })
-export class GastosExpensaComponent implements OnInit {
+export class DatosGastosExpensaComponent implements OnInit {
 
   public forma: FormGroup;
 

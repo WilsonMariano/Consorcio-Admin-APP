@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaAdherentesComponent implements OnInit {
   
+  // SEE grilla.component
+
 
   public arrAttr = [
     { 'attr': 'id',           'type': 'Number' }, 
@@ -16,6 +18,7 @@ export class GrillaAdherentesComponent implements OnInit {
     { 'attr': 'telefono',     'type': 'String' }, 
     { 'attr': 'email',        'type': 'email'  }
   ];
+
 
   public arrControls = ['Nro Adherente', 'Nro Documento', 'Apellido', 'Nombre', 'Teléfono', 'Email'];
 
@@ -30,12 +33,10 @@ export class GrillaAdherentesComponent implements OnInit {
   }
 
 
-
   constructor() {}
 
-  ngOnInit() {
 
-  }
+  ngOnInit() {}
   
 
 }

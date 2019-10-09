@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaUFComponent implements OnInit {
   
+  // SEE grilla.component
 
   private arrControls = ['UF', 'Manzana', 'Adherente', 'Edificio', 'Departamento', 'Sit Legal', 'Coeficiente', 'Cod Alquila'];
 
@@ -35,6 +36,7 @@ export class GrillaUFComponent implements OnInit {
 
   constructor() { }
 
+  
   ngOnInit() {
   }
 

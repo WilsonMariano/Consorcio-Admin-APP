@@ -11,12 +11,16 @@ export class GrillaComponent implements OnInit {
   /*
   @options:           arreglo de objetos con opciones para la grilla, entre ellos: 
     'entity':         entidad que va a manejar la tabla (se usa en metodo para traer objetos de la db)
-    'arrAttr':        arreglo de atributos, del objeto, que se mostraran en la tabla
+    'arrAttr':        arreglo de atributos del objeto que se mostraran en la tabla
     'arrControles:    arreglo de labels que tendra la tabla
     'buttons':        arreglo de botones que debera mostrar la tabla
+      'url'           url donde se direccionará al presionar el botón
+      'icon'          url ícono que mostrará el botón
     'filterParams':   objeto con parametros para filtrar la tabla, por ejemplo id
+      'col'           columna de la tabla por la que se filtrará
+      'txt'           valor del campo por el que se realizará el filtrado
   @arrObjects:        arreglo de objetos que se bindeara con la tabla
-  @arrPaginate:       arreglo de enteros con los valores del paginado, lo genera el metodo 'getControlsPaginate'
+  @arrPaginate:       arreglo de enteros con los valores del paginado, lo genera el método 'getControlsPaginate'
   @filterParams:      objeto de filtros 
     'filterId:        objeto con los parámetros para realizar el filtrado de los objetos por id
     'filterGrid:      objeto con los parámetros para realizar el filtrado de la grilla
@@ -31,7 +35,7 @@ export class GrillaComponent implements OnInit {
     'filterId': null,
     'filterGrid' : null,
   };
-  
+
   public arrObjects = [];
   public arrPaginate = [];
   public rowsWithPage = 20;
@@ -46,12 +50,12 @@ export class GrillaComponent implements OnInit {
 
   ngOnInit() {
 
-    // Cargo la tabla con los objetos iniciales
+    // Asigno los filtros recibidos al objeto de filtros
     if(this.options['filterParams']) 
       this.filterParams.filterId = this.options['filterParams'];
     
-    
-      this.getObjects();
+    // Cargo la tabla con los objetos iniciales
+    this.getObjects();
   }
 
 
@@ -60,7 +64,7 @@ export class GrillaComponent implements OnInit {
    Método que trae los objetos de la base de datos.
    Es llamado cuando se abre la vista para traer los objetos iniciales.
    Tambien se llama cuando se pagina la tabla, tomando como valor el número de página actual.
-   Se usa también cuando se filtra la tabla, recibiendo como valores la columna y texto a filtrar.
+   Se usa también cuando se filtra la tabla, pasando como parámetro el objeto de filtros.
   ***********************************************************************************************************************************/
   public getObjects() {
     
@@ -115,7 +119,6 @@ export class GrillaComponent implements OnInit {
     }
     
     this.getObjects();
-
   }
 
 
@@ -138,32 +141,35 @@ export class GrillaComponent implements OnInit {
     let id = event.srcElement['id'];
     let text = $('#'+id).val();
 
-    // Si se ingresa algo en un input, desabilito todos los demas
+    // Si se ingresa algo en un input
     if(text != "") {
       
-      // Lleno el array de parámetro de los filtros
-      this.filterParams.filterGrid = {
-        'col': id,
-        'txt': text
-      }
-
-
+      // Deshabilito todos los demas
       this.options['arrAttr'].forEach(control => {
   
         if(control.attr != id)
           $('#'+control.attr).prop('disabled', true);
       });
+
+      // Lleno el array de parámetro de los filtros
+      this.filterParams.filterGrid = {
+        'col': id,
+        'txt': text
+      }
     }
-    // Si se borra todo el contenido del input, habilito todos los demás
+
+    // Si se borra todo el contenido del input
     else {
 
-      this.filterParams.filterGrid = null;
-
+      // Si se borra todo el contenido del input, habilito todos los demás
       this.options['arrAttr'].forEach(control => {
     
         if(control.attr != id)
           $('#'+control.attr).removeAttr('disabled');
       });
+
+      // Nulleo los parámetros de filtro
+      this.filterParams.filterGrid = null;
     }
 
     // Asigno que la página sea la primera y ejecuto el método para traer los objetos filtrados

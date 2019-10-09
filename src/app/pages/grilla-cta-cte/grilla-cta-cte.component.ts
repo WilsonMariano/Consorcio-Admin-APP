@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-cta-cte',
-  templateUrl: './cta-cte.component.html'
+  selector: 'app-grilla-cta-cte',
+  templateUrl: './grilla-cta-cte.component.html'
 })
-export class CtaCteComponent implements OnInit {
+export class GrillaCtaCteComponent implements OnInit {
+
+  // SEE grilla.component
 
   private arrControls = ['Fecha', 'Descrpicion', 'Monto', 'Saldo'];
 
@@ -13,9 +15,10 @@ export class CtaCteComponent implements OnInit {
   private arrAttr = [
     { 'attr': 'fecha',          'type': 'Date'  },
     { 'attr': 'descripcion',    'type': 'String'  },
-    { 'attr': 'monto',          'type': 'Number'  },
+    { 'attr': 'monto',          'type': 'Currency'  },
     { 'attr': 'saldo',          'type': 'Number'  },
   ];
+
 
   private filterParams = {
     'col': 'idUf',
@@ -30,10 +33,13 @@ export class CtaCteComponent implements OnInit {
     'filterParams': this.filterParams
   }
 
+
   constructor(private activateRoute: ActivatedRoute) { }
 
-  ngOnInit() {
 
+  ngOnInit() {
+    
+    // Recibo el id de la cta. cte. por url y lo asigno al objeto de filtros
     this.activateRoute.params.subscribe(
       data => {
 
@@ -42,7 +48,5 @@ export class CtaCteComponent implements OnInit {
           
     });
   }
-
-
 
 }

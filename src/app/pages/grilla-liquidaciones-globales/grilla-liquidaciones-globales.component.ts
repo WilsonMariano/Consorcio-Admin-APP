@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-grilla-liquidaciones-globales',
-  templateUrl: './grilla-liquidaciones-globales.component.html',
-  styles: []
+  templateUrl: './grilla-liquidaciones-globales.component.html'
 })
 export class GrillaLiquidacionesGlobalesComponent implements OnInit {
+
+  // SEE grilla.component
 
   private arrControls = ['Año', 'Mes', '1er vencimiento', '2do vencimiento', 'Fecha de emisión', 'Estado'];
 
@@ -26,14 +27,14 @@ export class GrillaLiquidacionesGlobalesComponent implements OnInit {
     'arrControls': this.arrControls,
     'buttons': [
       { 'url': 'datos-expensa',                 'icon': 'mdi mdi-lead-pencil'   },
-      { 'url': 'grilla-gastos-liquidacion',   'icon': 'mdi mdi-currency-usd'  }
+      { 'url': 'grilla-gastos-liquidacion',     'icon': 'mdi mdi-currency-usd'  }
     ]
   }
   
 
   constructor() { }
 
-  ngOnInit() {
-  }
+
+  ngOnInit() {}
 
 }

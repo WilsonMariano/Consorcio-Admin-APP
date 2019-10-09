@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GrillaGastosLiquidacionComponent implements OnInit {
 
+  // SEE grilla.component
 
   private arrControls = ['Concepto', 'Monto'];
 
@@ -22,6 +23,7 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
     'txt': null
   }
 
+
   public options = {
     'entity': 'gastosLiquidaciones',
     'arrAttr': this.arrAttr,
@@ -32,8 +34,10 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
     ]
   }
 
+
   constructor(private activateRoute: ActivatedRoute) { }
 
+  
   ngOnInit() {
 
     this.activateRoute.params.subscribe(

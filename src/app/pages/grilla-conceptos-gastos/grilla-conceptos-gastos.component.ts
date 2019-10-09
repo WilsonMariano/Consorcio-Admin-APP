@@ -7,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaConceptosGastosComponent implements OnInit {
 
+  // SEE grilla.component
+
   private arrControls = ['Código', 'Concepto'];
+
   private arrAttr = [
     { 'attr': 'codigo',       'type': 'String' },
     { 'attr': 'conceptoGasto','type': 'String' }
   ];
+
 
   public options = {
     'entity': 'conceptosgastos',
@@ -22,9 +26,10 @@ export class GrillaConceptosGastosComponent implements OnInit {
     ]
   }
 
+
   constructor() { }
 
-  ngOnInit() {
-  }
+
+  ngOnInit() {}
 
 }

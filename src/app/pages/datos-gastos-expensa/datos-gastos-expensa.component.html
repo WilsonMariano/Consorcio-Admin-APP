@@ -1,5 +1,5 @@
 <div class="row">
-    <form [formGroup]="forma">
+    <form [formGroup]="forma" (ngSubmit)="agregarGasto()">
         <div class="col-md-12">
             <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
                 <div class="card-body">
@@ -8,12 +8,12 @@
                     <div class="r-panel-body">
 
                         <div class="row">
-                            <div class="col-md-1 form-group">
+                            <div class="col-md-2 form-group">
                                 <label for="codigo">Código</label>
                                 <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE"
                                     id="codigo" (blur)="pressCodigo($event)" maxlength="3">
                             </div>
-                            <div class="col-md-2 form-group">
+                            <div class="col-md-3 form-group">
                                 <label for="concepto">Concepto</label>
                                 <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES"
                                     id="concepto" formControlName="concepto">
@@ -26,13 +26,8 @@
                                         placeholder="15200.00" id="monto" formControlName='monto'>
                                 </div>
                             </div>
-                            <div class="col-md-3 form-group">
-                                <label for="descripcion">Descripción</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="Fabián Ochoa"
-                                    id="descripcion" formControlName='descripcion'>
-                            </div>
                             <div class="col-md-2 form-group">
-                                <label>Entidad a asignar</label>
+                                <label>Entidad</label>
                                 <select class="form-control form-control-sm" formControlName="entidad"
                                     (change)="onChangeEntidad()">
                                     <option value="">Seleccionar...</option>
@@ -40,39 +35,39 @@
 
                                 </select>
                             </div>
-                            <div class="col-md-2" ng-switch="entidad">
-                                <ng-container ng-switch-when="TIPO_ENTIDAD_1">
-                                    <label style="display:block">Manzanas</label>
-                                    <div class="form-check form-check-inline" *ngFor="let m of arrManzanas">
-                                        <input class="form-check-input" type="checkbox"  [id]="m" [value]="m.id">
-                                        <label class="form-check-label" [for]="m">{{m.id}}</label>
-                                    </div>
-                                    <!-- <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                        <label class="form-check-label" for="inlineCheckbox2">141
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                        <label class="form-check-label" for="inlineCheckbox3">142</label>
-                                    </div> -->
-                                </ng-container>
-                                <ng-container ng-switch-when="TIPO_ENTIDAD_2">
-                                    <label style="display:block">Edificio</label>
-                                    <input type="text" name="" class="form-control form-control-sm" placeholder="Nº Edificio">
-                                </ng-container>
-                                <ng-container ng-switch-when="TIPO_ENTIDAD_3">
-                                    <label style="display:block">UF</label>
-                                    <input type="text" name="" class="form-control form-control-sm" placeholder="Nº Unidad Funcional">
-                                </ng-container>
+                            <div class="col-md-3" [ngSwitch]="forma.get('entidad').value">
 
+                                <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
+                                    <label>Manzanas</label>
+                                    <div class="form-check form-check-inline" *ngFor="let m of arrManzanas">
+                                        <input class="form-check-input" type="checkbox" [id]="m.id" [value]="m.id">
+                                        <label class="form-check-label" [for]="m.id">{{m.id}}</label>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'TIPO_ENTIDAD_2'">
+                                    <label>Edificio</label>
+                                    <input type="text" class="form-control form-control-sm" placeholder="Nº Edificio">
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'TIPO_ENTIDAD_3'">
+                                    <label>UF</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                        placeholder="Nº Unidad Funcional">
+                                </ng-container>
+                                <ng-container *ngSwitchDefault>
+                                    <label>Entidad a asignar</label>
+                                    <input type="text" class="form-control form-control-sm" disabled>
+                                </ng-container>
                             </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-themecolor btn-block btn-sm"><i
+                            <div class="col-md-10 col-sm-12">
+                                <input type="text" class="form-control form-control-sm"
+                                    placeholder="Ingrese una descripción..." id="descripcion"
+                                    formControlName='descripcion'>
+                            </div>
+                            <div class="col-md-2 col-sm-12">
+                                <button type="submit" class="btn btn-themecolor btn-block btn-sm" [disabled]="forma.invalid"><i
                                         class="fa fa-arrow-down"></i></button>
                             </div>
                         </div>
-
 
                     </div>
                 </div>
@@ -106,3 +101,6 @@
         </div>
     </div>
 </div>
+
+
+<app-spinner></app-spinner>

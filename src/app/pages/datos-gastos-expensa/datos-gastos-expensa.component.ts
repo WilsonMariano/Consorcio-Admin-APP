@@ -73,4 +73,9 @@ export class DatosGastosExpensaComponent implements OnInit {
 
     console.log(this.forma.get('entidad').value);
   }
+
+
+  public agregarGasto() {
+    console.log("Agregado");
+  }
 }

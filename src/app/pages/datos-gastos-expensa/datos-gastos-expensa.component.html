@@ -8,12 +8,12 @@
                     <div class="r-panel-body">
 
                         <div class="row">
-                            <div class="col-md-2 form-group">
+                            <div class="col-md-1 form-group">
                                 <label for="codigo">Código</label>
                                 <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE"
                                     id="codigo" (blur)="pressCodigo($event)" maxlength="3">
                             </div>
-                            <div class="col-md-3 form-group">
+                            <div class="col-md-2 form-group">
                                 <label for="concepto">Concepto</label>
                                 <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES"
                                     id="concepto" formControlName="concepto">
@@ -26,7 +26,7 @@
                                         placeholder="15200.00" id="monto" formControlName='monto'>
                                 </div>
                             </div>
-                            <div class="col-md-2 form-group">
+                            <div class="col-md-1 form-group">
                                 <label>Entidad</label>
                                 <select class="form-control form-control-sm" formControlName="entidad"
                                     (change)="onChangeEntidad()">
@@ -58,8 +58,9 @@
                                     <input type="text" class="form-control form-control-sm" disabled>
                                 </ng-container>
                             </div>
-                            <div class="col-md-10 col-sm-12">
-                                <input type="text" class="form-control form-control-sm"
+                            <div class="form-group col-md-3 col-sm-12">
+                                <label for="descripcion">Descripción</label>
+                                <input type="text" class="form-control form-control-sm" id="descripcion"
                                     placeholder="Ingrese una descripción..." id="descripcion"
                                     formControlName='descripcion'>
                             </div>
@@ -75,32 +76,7 @@
         </div>
     </form>
 </div>
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="r-panel-body">
-                    <table class="table table-borderless table-striped table-responsive table-sm mt-3">
-                        <thead>
-                            <tr>
-                                <th>Gasto</th>
-                                <th>Gasto</th>
-                                <th>Gasto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Gasto</td>
-                                <td>Gasto</td>
-                                <td>Gasto</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <app-spinner></app-spinner>

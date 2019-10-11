@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ConceptosGastosService, DiccionarioService, FxGlobalsService, CommonService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+declare var $ : any;
+
 @Component({
   selector: 'app-datos-gastos-expensa',
   templateUrl: './datos-gastos-expensa.component.html',
@@ -27,6 +29,7 @@ export class DatosGastosExpensaComponent implements OnInit {
 
     this.getEntidades();
     this.getManzanas();
+
   }
 
 

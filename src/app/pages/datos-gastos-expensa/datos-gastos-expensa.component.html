@@ -1,81 +1,151 @@
-<div class="row">
-    <form [formGroup]="forma" (ngSubmit)="agregarGasto()">
-        <div class="col-md-12">
-            <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
-                <div class="card-body">
-                    <h4 class="card-title text-muted">Periodo Junio 2019</h4>
-                    <hr>
-                    <div class="r-panel-body">
+<!-- <div class="row"> -->
+<form [formGroup]="forma">
+    <!-- <div class="col-md-12"> -->
+    <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
+        <div class="card-body">
+            <h4 class="card-title text-muted">Periodo Junio 2019</h4>
+            <hr>
+            <div class="r-panel-body">
 
-                        <div class="row">
-                            <div class="col-md-1 form-group">
-                                <label for="codigo">Código</label>
-                                <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE"
-                                    id="codigo" (blur)="pressCodigo($event)" maxlength="3">
-                            </div>
-                            <div class="col-md-2 form-group">
-                                <label for="concepto">Concepto</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES"
-                                    id="concepto" formControlName="concepto">
-                            </div>
-                            <div class="col-md-2 form-group">
-                                <label for="monto">Monto</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon form-control-sm">$</span>
-                                    <input type="number" class="form-control form-control-sm" onlyNumbers
-                                        placeholder="15200.00" id="monto" formControlName='monto'>
-                                </div>
-                            </div>
-                            <div class="col-md-1 form-group">
-                                <label>Entidad</label>
-                                <select class="form-control form-control-sm" formControlName="entidad"
-                                    (change)="onChangeEntidad()">
-                                    <option value="">Seleccionar...</option>
-                                    <option *ngFor="let e of arrEntidades" [value]="e.codigo">{{e.valor}}</option>
+                <div class="row">
 
-                                </select>
-                            </div>
-                            <div class="col-md-3" [ngSwitch]="forma.get('entidad').value">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr class="d-flex">
+                                <th class="col-1">Código</th>
+                                <th class="col-2">Concepto</th>
+                                <th class="col-2">Monto</th>
+                                <th class="col-1">Entidad</th>
+                                <th class="col-3">Manzanas</th>
+                                <th class="col-2">Descripcion</th>
+                                <th class="col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="d-flex" *ngFor="let forma of t.controls; let i = index">
+                                <ng-container [formGroup]="forma">
+                                    <td class="col-1 form-group">
+                                        <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE" id="codigo" (blur)="pressCodigo($event, i)" maxlength="3">
+                                    </td>
+                                    <td class="col-2 form-group">
+                                        <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES" id="concepto" formControlName="concepto">
+                                    </td>
+                                    <td class="col-2 form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon form-control-sm">$</span>
+                                            <input type="number" class="form-control form-control-danger form-control-sm" onlyNumbers placeholder="15200.00" id="monto" formControlName='monto'>
+                                        </div>
+                                        <span class="form-invalid" *ngIf="t.controls[i].controls['monto'].errors?.required && t.controls[i].controls['monto'].touched">*Requerido</span>
+                                    </td>
+                                    <td class="col-1 form-group">
+                                        <select class="form-control form-control-sm" formControlName="entidad" (change)="onChangeEntidad(i)">
+                                            <option value="">Seleccionar...</option>
+                                            <option *ngFor="let e of arrEntidades" [value]="e.codigo">{{e.valor}}</option>
+                                        </select>
+                                        <span class="form-invalid" *ngIf="t.controls[i].controls['entidad'].errors?.required && t.controls[i].controls['entidad'].touched">*Requerido</span>
+                                    </td>
+                                    <td class="col-2 form-group" [ngSwitch]="forma.get('entidad').value">
 
-                                <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
-                                    <label>Manzanas</label>
-                                    <div class="form-check form-check-inline" *ngFor="let m of arrManzanas">
-                                        <input class="form-check-input" type="checkbox" [id]="m.id" [value]="m.id">
-                                        <label class="form-check-label" [for]="m.id">{{m.id}}</label>
-                                    </div>
-                                </ng-container>
-                                <ng-container *ngSwitchCase="'TIPO_ENTIDAD_2'">
-                                    <label>Edificio</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Nº Edificio">
-                                </ng-container>
-                                <ng-container *ngSwitchCase="'TIPO_ENTIDAD_3'">
-                                    <label>UF</label>
-                                    <input type="text" class="form-control form-control-sm"
-                                        placeholder="Nº Unidad Funcional">
-                                </ng-container>
-                                <ng-container *ngSwitchDefault>
-                                    <label>Entidad a asignar</label>
-                                    <input type="text" class="form-control form-control-sm" disabled>
-                                </ng-container>
-                            </div>
-                            <div class="form-group col-md-3 col-sm-12">
-                                <label for="descripcion">Descripción</label>
-                                <input type="text" class="form-control form-control-sm" id="descripcion"
-                                    placeholder="Ingrese una descripción..." id="descripcion"
-                                    formControlName='descripcion'>
-                            </div>
-                            <div class="col-md-2 col-sm-12">
-                                <button type="submit" class="btn btn-themecolor btn-block btn-sm" [disabled]="forma.invalid"><i
-                                        class="fa fa-arrow-down"></i></button>
-                            </div>
-                        </div>
+                                        <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
+                                            <div class="form-check form-check-inline" *ngFor="let m of arrManzanas">
+                                                <input class="form-check-input" type="checkbox" [id]="m.id + i" [value]="m.id" [formControlName]="m.id">
+                                                <label class="form-check-label" [for]="m.id + i">{{m.id}}</label>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="'TIPO_ENTIDAD_2'">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Nº Edificio" formControlName="numero">
+                                            <span class="form-invalid" *ngIf="t.controls[i].controls['valores'].errors?.required && t.controls[i].controls['valores'].touched">*El campo es requerido</span>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="'TIPO_ENTIDAD_3'">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Nº Unidad Funcional" formControlName="numero">
+                                        </ng-container>
+                                        <ng-container *ngSwitchDefault>
+                                            <input type="text" class="form-control form-control-sm" disabled>
+                                        </ng-container>
 
-                    </div>
+                                    </td>
+                                    <td class="col-3 form-group">
+                                        <input type="text" class="form-control form-control-sm" id="descripcion" placeholder="Ingrese una descripción..." id="descripcion" formControlName='descripcion'>
+                                    </td>
+                                    <td class="col-1">
+                                        <i class="fa fa-times fa-2x text-danger" *ngIf="t.controls[i].invalid"></i>
+                                        <i class="fa fa-check fa-2x text-success" *ngIf="t.controls[i].valid"></i>
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
+
+                <!-- <div class="row" *ngFor="let forma of t.controls; let i = index">
+                            <ng-container [formGroup]="forma">
+                                <div class="col-md-1 form-group">
+                                    <label for="codigo">Código</label>
+                                    <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE" id="codigo" (blur)="pressCodigo($event, i)" maxlength="3">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label for="concepto">Concepto</label>
+                                    <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES" id="concepto" formControlName="concepto">
+                                </div>
+                                <span class="form-invalid" *ngIf="t.controls[i].controls['concepto'].errors?.required && t.controls[i].controls['concepto'].touched">*El campo es requerido</span>
+                                <div class="col-md-2 form-group">
+                                    <label for="monto">Monto</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon form-control-sm">$</span>
+                                        <input type="number" class="form-control form-control-sm" onlyNumbers placeholder="15200.00" id="monto" formControlName='monto'>
+                                    </div>
+                                    <span class="form-invalid" *ngIf="t.controls[i].controls['monto'].errors?.required && t.controls[i].controls['monto'].touched">*El campo es requerido</span>
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <label>Entidad</label>
+                                    <select class="form-control form-control-sm" formControlName="entidad" (change)="onChangeEntidad(i)">
+                                        <option value="">Seleccionar...</option>
+                                        <option *ngFor="let e of arrEntidades" [value]="e.codigo">{{e.valor}}</option>
+    
+                                    </select>
+                                </div>
+                                <div class="col-md-3" [ngSwitch]="forma.get('entidad').value">
+
+                                    <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
+                                        <label>Manzanas</label>
+                                        <div class="form-check form-check-inline" *ngFor="let m of arrManzanas">
+                                            <input class="form-check-input" type="checkbox" [id]="m.id + i" [value]="m.id" [formControlName]="m.id">
+                                            <label class="form-check-label" [for]="m.id + i">{{m.id}}</label>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'TIPO_ENTIDAD_2'">
+                                        <label>Edificio</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Nº Edificio" formControlName="numero">
+                                        <span class="form-invalid" *ngIf="t.controls[i].controls['valores'].errors?.required && t.controls[i].controls['valores'].touched">*El campo es requerido</span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'TIPO_ENTIDAD_3'">
+                                        <label>UF</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Nº Unidad Funcional" formControlName="numero">
+                                    </ng-container>
+                                    <ng-container *ngSwitchDefault>
+                                        <label>Entidad a asignar</label>
+                                        <input type="text" class="form-control form-control-sm" disabled>
+                                    </ng-container>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="descripcion">Descripción</label>
+                                    <input type="text" class="form-control form-control-sm" id="descripcion" placeholder="Ingrese una descripción..." id="descripcion" formControlName='descripcion'>
+                                </div>
+                            </ng-container>
+
+                        </div> -->
+                <div class="col-md-12 col-sm-12">
+                    <!-- <button type="button" class="btn btn-themecolor btn-block btn-sm" [disabled]="!t.valid" (click)="addRow()"><i class="fa fa-plus"></i></button> -->
+                    <button type="button" class="btn btn-themecolor btn-block btn-sm" (click)="test()"><i class="fa fa-plus"></i></button>
+                </div>
+
             </div>
         </div>
-    </form>
-</div>
+    </div>
+    <!-- </div> -->
+</form>
+<!-- </div> -->
 
 
 

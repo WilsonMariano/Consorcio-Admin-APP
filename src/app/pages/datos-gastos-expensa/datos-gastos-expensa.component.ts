@@ -37,7 +37,21 @@ export class DatosGastosExpensaComponent implements OnInit {
   //  get f() { return this.forma.controls; }
    get t() { return this.forma.controls.controls as FormArray; }
   //  private getControl(i) { return this.t.controls[i].controls as  }
+  get manzanasArray() {
 
+    return <FormArray> this.t;
+  }
+
+
+  private addManzanasControls() {
+
+    const arr = this.arrManzanas.map(element => {
+
+      return this.formBuilder.control(false);
+    });
+
+    return this.formBuilder.array(arr, this.checkValidator);
+  }
 
 
   public pressCodigo( event, index ): void {
@@ -50,8 +64,7 @@ export class DatosGastosExpensaComponent implements OnInit {
       console.log(value);
       this._conceptoGastos.getOne( value ).subscribe(
 
-        data => this.t.controls[index].controls['concepto'].setValue(data.conceptoGasto),
-        // data => this.getControl['concepto'].setValue(data.conceptoGasto),
+        data => (<FormArray>this.t.controls[index]).controls['concepto'].setValue(data.conceptoGasto),
         err => this.forma.get('concepto').reset()
       );
     }
@@ -81,20 +94,25 @@ export class DatosGastosExpensaComponent implements OnInit {
 
   public onChangeEntidad(i) : void {
 
+    this.forma.get('controls')['controls'][i].removeControl('manzanas');
+    this.forma.get('controls')['controls'][i].removeControl('edificio');
+    this.forma.get('controls')['controls'][i].removeControl('uf');
+
     let entidad = this.forma.get('controls')['controls'][i].get('entidad').value;
 
 
     switch(entidad) {
 
       case 'TIPO_ENTIDAD_1':
-          this.forma.get('controls')['controls'][i].addControl('140', new FormControl(''));
-          this.forma.get('controls')['controls'][i].addControl('141', new FormControl(''));
-          this.forma.get('controls')['controls'][i].addControl('142', new FormControl(''));
-          this.forma.get('controls')['controls'][i].addControl('143', new FormControl(''));
+          this.forma.get('controls')['controls'][i].addControl('manzanas', this.addManzanasControls());        
         break;
 
-      default:
-        this.forma.get('controls')['controls'][i].addControl('numero', new FormControl(''));
+      case 'TIPO_ENTIDAD_2':
+        this.forma.get('controls')['controls'][i].addControl('edificio', new FormControl('', Validators.required));
+        break;
+
+      case 'TIPO_ENTIDAD_3':
+        this.forma.get('controls')['controls'][i].addControl('uf', new FormControl('', Validators.required));
         break;
 
     }
@@ -103,7 +121,8 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 test(){
 
-  console.log(this.forma);
+  console.log(this.manzanasArray);
+  console.log(this.getValidity(0));
 }
 
   public addRow() {
@@ -114,15 +133,36 @@ test(){
 
         for (let i = this.t.length; i < this.amountRows; i++) {
             this.t.push(this.formBuilder.group({
-                concepto: [{ value: '', disabled: true }, Validators.required],
+                codigo: [''],
+                concepto: ['', Validators.required],
                 monto: ['', Validators.required],
                 descripcion: [''],
-                entidad: ['', Validators.required],
-                valores: ['', Validators.required]
+                entidad: ['', Validators.required]
             }));
         }
   
         
+  }
+
+  public getValidity(i) {
+    return (<FormArray>this.forma.get('controls')).controls[i].invalid;
+  }
+
+
+  public checkValidator( controls: FormArray ): null | object {
+
+    let flag = false
+    let invalid = { 'unchecked': true };
+
+    controls.controls.forEach(element => {
+
+      if(element.value) 
+        flag = true;      
+    });
+
+    
+    return flag ? null : invalid;
+  
   }
 
 }

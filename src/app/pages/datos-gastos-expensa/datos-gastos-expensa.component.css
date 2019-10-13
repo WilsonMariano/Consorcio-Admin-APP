@@ -13,3 +13,8 @@ label,
 span.form-invalid {
     display: block;
 }
+
+input[id=concepto] {
+    pointer-events: none;
+    background-color: #e9ecef;
+}

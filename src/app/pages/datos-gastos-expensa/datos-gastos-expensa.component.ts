@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConceptosGastosService, DiccionarioService, FxGlobalsService, CommonService } from 'src/app/services/service.index';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 declare var $ : any;
+
+
 
 @Component({
   selector: 'app-datos-gastos-expensa',
@@ -11,18 +13,31 @@ declare var $ : any;
 })
 export class DatosGastosExpensaComponent implements OnInit {
 
-  public forma: FormGroup;
+
+  /*
+  formBuider:  se utilizará para construir 
+  */
+  public formBuilder: FormGroup;
   public amountRows = 0;
   public arrEntidades = [];
   public arrManzanas  = [];
 
-  constructor( private formBuilder: FormBuilder, private _conceptoGastos: ConceptosGastosService, private _diccionario: DiccionarioService, private _fxGlobals: FxGlobalsService, private _common: CommonService ) { }
+
+
+  constructor( 
+    private _fb: FormBuilder, 
+    private _conceptoGastos: ConceptosGastosService, 
+    private _diccionario: DiccionarioService, 
+    private _fxGlobals: FxGlobalsService, 
+    private _common: CommonService ) { }
+
 
 
   ngOnInit() {  
 
-    this.forma = this.formBuilder.group({
-      controls: new FormArray([])
+    this.formBuilder = this._fb.group({
+
+      forma: new FormArray ([])
     });
 
 
@@ -30,28 +45,33 @@ export class DatosGastosExpensaComponent implements OnInit {
     this.getManzanas();
 
     this.addRow();
-
   }
 
-   // convenience getters for easy access to form fields
-  //  get f() { return this.forma.controls; }
-   get t() { return this.forma.controls.controls as FormArray; }
-  //  private getControl(i) { return this.t.controls[i].controls as  }
-  get manzanasArray() {
 
-    return <FormArray> this.t;
+
+  // Getters
+  get getForma() { return this.formBuilder.controls.forma as FormArray; }
+  get lengthForms() { return this.getForma.controls.length }
+
+
+
+  private getFormGroup( index: any ) {
+
+    return this.getForma.controls[index] as FormGroup
   }
+
 
 
   private addManzanasControls() {
 
     const arr = this.arrManzanas.map(element => {
 
-      return this.formBuilder.control(false);
+      return this._fb.control(false);
     });
 
-    return this.formBuilder.array(arr, this.checkValidator);
+    return this._fb.array(arr, this.checkValidator);
   }
+
 
 
   public pressCodigo( event, index ): void {
@@ -64,8 +84,8 @@ export class DatosGastosExpensaComponent implements OnInit {
       console.log(value);
       this._conceptoGastos.getOne( value ).subscribe(
 
-        data => (<FormArray>this.t.controls[index]).controls['concepto'].setValue(data.conceptoGasto),
-        err => this.forma.get('concepto').reset()
+        data => (<FormArray>this.getForma.controls[index]).controls['concepto'].setValue(data.conceptoGasto),
+        err => this.formBuilder.get('concepto').reset()
       );
     }
   }
@@ -92,61 +112,62 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
 
-  public onChangeEntidad(i) : void {
+  public onChangeEntidad( index ) : void {
 
-    this.forma.get('controls')['controls'][i].removeControl('manzanas');
-    this.forma.get('controls')['controls'][i].removeControl('edificio');
-    this.forma.get('controls')['controls'][i].removeControl('uf');
+    this.getFormGroup(index).removeControl('manzanas');
+    this.getFormGroup(index).removeControl('edificio');
+    this.getFormGroup(index).removeControl('uf');
 
-    let entidad = this.forma.get('controls')['controls'][i].get('entidad').value;
+
+    let entidad = this.getFormGroup(index).get('entidad').value;
 
 
     switch(entidad) {
 
       case 'TIPO_ENTIDAD_1':
-          this.forma.get('controls')['controls'][i].addControl('manzanas', this.addManzanasControls());        
+          this.getFormGroup(index).addControl('manzanas', this.addManzanasControls());        
         break;
 
       case 'TIPO_ENTIDAD_2':
-        this.forma.get('controls')['controls'][i].addControl('edificio', new FormControl('', Validators.required));
+        this.getFormGroup(index).addControl('edificio', new FormControl('', Validators.required));
         break;
 
       case 'TIPO_ENTIDAD_3':
-        this.forma.get('controls')['controls'][i].addControl('uf', new FormControl('', Validators.required));
+        this.getFormGroup(index).addControl('uf', new FormControl('', Validators.required));
         break;
 
     }
   }
 
 
-test(){
-
-  console.log(this.manzanasArray);
-  console.log(this.getValidity(0));
-}
 
   public addRow() {
 
-    
-
     this.amountRows ++;
 
-        for (let i = this.t.length; i < this.amountRows; i++) {
-            this.t.push(this.formBuilder.group({
+        for (let i = this.getForma.length; i < this.amountRows; i++) {
+
+            this.getForma.push(this._fb.group({
+
                 codigo: [''],
                 concepto: ['', Validators.required],
                 monto: ['', Validators.required],
                 descripcion: [''],
                 entidad: ['', Validators.required]
             }));
-        }
-  
-        
+        }        
   }
 
-  public getValidity(i) {
-    return (<FormArray>this.forma.get('controls')).controls[i].invalid;
+
+
+  public deleteRow(i: number) {
+  
+    console.log(this.getForma.controls);
+    this.getForma.controls.splice(i, 1);
+    this.amountRows--;
+
   }
+
 
 
   public checkValidator( controls: FormArray ): null | object {
@@ -162,7 +183,7 @@ test(){
 
     
     return flag ? null : invalid;
-  
   }
 
+  
 }

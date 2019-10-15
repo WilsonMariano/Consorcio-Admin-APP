@@ -1,86 +1,82 @@
-<form [formGroup]="forma">
+<form [formGroup]="formBuilder">
     <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
         <div class="card-body">
             <h4 class="card-title text-muted">Periodo Junio 2019</h4>
             <hr>
             <div class="r-panel-body">
 
-                <div class="row">
 
-                    <table class="table table-borderless">
-                        <thead>
-                            <tr class="d-flex">
-                                <th class="col-1">Código</th>
-                                <th class="col-2">Concepto</th>
-                                <th class="col-2">Monto</th>
-                                <th class="col-1">Entidad</th>
-                                <th class="col-3">Número</th>
-                                <th class="col-2">Descripción</th>
-                                <th class="col-1"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="d-flex" *ngFor="let forma of t.controls; let i = index">
-                                <ng-container [formGroup]="forma">
-                                    <td class="col-1 form-group">
-                                        <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE" id="codigo" formControlName="codigo" (blur)="pressCodigo($event, i)" maxlength="3">
-                                    </td>
-                                    <td class="col-2 form-group">
-                                        <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES" id="concepto" formControlName="concepto">
-                                        <span class="form-invalid" *ngIf="t.controls[i].controls['concepto'].value == '' && t.controls[i].controls['codigo'].touched">*Requerido</span>
-                                    </td>
-                                    <td class="col-2 form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon form-control-sm">$</span>
-                                            <input type="number" class="form-control form-control-danger form-control-sm" onlyNumbers placeholder="15200.00" id="monto" formControlName='monto'>
-                                        </div>
-                                        <span class="form-invalid" *ngIf="t.controls[i].controls['monto'].errors?.required && t.controls[i].controls['monto'].touched">*Requerido</span>
-                                    </td>
-                                    <td class="col-1 form-group">
-                                        <select class="form-control form-control-sm" formControlName="entidad" (change)="onChangeEntidad(i)">
+
+                <table class="table table-borderless">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-1">Código</th>
+                            <th class="col-2">Concepto</th>
+                            <th class="col-2">Monto</th>
+                            <th class="col-1">Entidad</th>
+                            <th class="col-3">Número</th>
+                            <th class="col-2">Descripción</th>
+                            <th class="col-1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let forma of getForma.controls; let i = index">
+                            <ng-container [formGroup]="forma">
+                                <td class="col-1 form-group">
+                                    <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE" id="codigo" formControlName="codigo" (blur)="pressCodigo($event, i)" maxlength="3">
+                                </td>
+                                <td class="col-2 form-group">
+                                    <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES" id="concepto" formControlName="concepto">
+                                    <span class="form-invalid" *ngIf="getFormGroup(i).controls['concepto'].value == '' && getFormGroup(i).controls['codigo'].touched">*Requerido</span>
+                                </td>
+                                <td class="col-2 form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon form-control-sm">$</span>
+                                        <input type="number" class="form-control form-control-danger form-control-sm" onlyNumbers placeholder="15200.00" id="monto" formControlName='monto'>
+                                    </div>
+                                    <span class="form-invalid" *ngIf="getFormGroup(i).controls['monto'].errors?.required && getFormGroup(i).controls['monto'].touched">*Requerido</span>
+                                </td>
+                                <td class="col-1 form-group">
+                                    <select class="form-control form-control-sm" formControlName="entidad" (change)="onChangeEntidad(i)">
                                             <option value="">Seleccionar...</option>
                                             <option *ngFor="let e of arrEntidades" [value]="e.codigo">{{e.valor}}</option>
                                         </select>
-                                        <span class="form-invalid" *ngIf="t.controls[i].controls['entidad'].errors?.required && t.controls[i].controls['entidad'].touched">*Requerido</span>
-                                    </td>
-                                    <td class="col-2 form-group" [ngSwitch]="forma.get('entidad').value">
-
-                                        <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
-                                            <div class="form-check form-check-inline" *ngFor="let control of t.controls[i].controls['manzanas'].controls ; let j = index">
-                                                <input class="form-check-input" type="checkbox" [formControl]="control" id="{{i}}inlineCheckbox{{j}}">
-                                                <label class="form-check-label" for="{{i}}inlineCheckbox{{j}}">{{arrManzanas[j].id}}</label>
-                                            </div>
-                                            <span class="form-invalid" *ngIf="t.controls[i].controls['manzanas'].errors">*Requerido</span>
-                                        </ng-container>
-                                        <ng-container *ngSwitchCase="'TIPO_ENTIDAD_2'">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Nº Edificio" formControlName="edificio">
-                                            <span class="form-invalid" *ngIf="t.controls[i].controls['edificio'].errors?.required && t.controls[i].controls['edificio'].touched">*Requerido</span>
-                                        </ng-container>
-                                        <ng-container *ngSwitchCase="'TIPO_ENTIDAD_3'">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Nº Unidad Funcional" formControlName="uf">
-                                        </ng-container>
-                                        <ng-container *ngSwitchDefault>
-                                            <input type="text" class="form-control form-control-sm" disabled>
-                                        </ng-container>
-
-                                    </td>
-                                    <td class="col-3 form-group">
-                                        <input type="text" class="form-control form-control-sm" id="descripcion" placeholder="Ingrese una descripción..." id="descripcion" formControlName='descripcion'>
-                                    </td>
-                                    <td class="col-1">
-                                        <!-- <i class="fa fa-times fa-2x text-danger" *ngIf="t.controls[i].invalid"></i>
-                                        <i class="fa fa-check fa-2x text-success" *ngIf="t.controls[i].valid"></i> -->
-                                        <button type="button" class="btn btn-themecolor btn-block btn-sm" [disabled]="!t.valid" (click)="addRow()"><i class="fa fa-plus"></i></button>
-                                    </td>
-                                </ng-container>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+                                    <span class="form-invalid" *ngIf="getFormGroup(i).controls['entidad'].errors?.required && getFormGroup(i).controls['entidad'].touched">*Requerido</span>
+                                </td>
+                                <td class="col-2 form-group" [ngSwitch]="forma.get('entidad').value">
+                                    <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
+                                        <div class="form-check form-check-inline" *ngFor="let control of getFormGroup(i).controls['manzanas'].controls ; let j = index">
+                                            <input class="form-check-input" type="checkbox" [formControl]="control" id="{{i}}inlineCheckbox{{j}}">
+                                            <label class="form-check-label" for="{{i}}inlineCheckbox{{j}}">{{arrManzanas[j].id}}</label>
+                                        </div>
+                                        <span class="form-invalid" *ngIf="getFormGroup(i).controls['manzanas'].errors">*Requerido</span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'TIPO_ENTIDAD_2'">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Nº Edificio" formControlName="edificio">
+                                        <span class="form-invalid" *ngIf="getFormGroup(i).controls['edificio'].errors?.required && getFormGroup(i).controls['edificio'].touched">*Requerido</span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'TIPO_ENTIDAD_3'">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Nº Unidad Funcional" formControlName="uf">
+                                        <span class="form-invalid" *ngIf="getFormGroup(i).controls['uf'].errors?.required && getFormGroup(i).controls['uf'].touched">*Requerido</span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchDefault>
+                                        <input type="text" class="form-control form-control-sm" disabled>
+                                    </ng-container>
+                                </td>
+                                <td class="col-3 form-group">
+                                    <input type="text" class="form-control form-control-sm" id="descripcion" placeholder="Ingrese una descripción..." id="descripcion" formControlName='descripcion'>
+                                </td>
+                                <td class="col-1">
+                                    <button type="button" class="btn btn-themecolor btn-sm" [disabled]="!getForma.valid" (click)="addRow()" *ngIf="i == lengthForms-1" id="add"><i class="fa fa-plus"></i></button>
+                                    <span class="close" (click)="deleteRow(i)" *ngIf="lengthForms != 1">&times;</span>
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="col-md-12 col-sm-12">
-                    <!-- <button type="button" class="btn btn-themecolor btn-block btn-sm" [disabled]="!t.valid" (click)="addRow()"><i class="fa fa-plus"></i></button> -->
-
+                    <button type="button" class="btn btn-themecolor" [disabled]="!getForma.valid"> <i class="fa fa-save"></i> Guardar gastos</button>
+                    <small class="text-muted" *ngIf="!getForma.valid && getForma.touched"> El formulario contiene errores</small>
                 </div>
             </div>
         </div>

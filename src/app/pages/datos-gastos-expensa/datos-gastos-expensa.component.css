@@ -18,3 +18,11 @@ input[id=concepto] {
     pointer-events: none;
     background-color: #e9ecef;
 }
+
+span.close {
+    cursor: pointer;
+}
+
+button#add {
+    width: 60px;
+}

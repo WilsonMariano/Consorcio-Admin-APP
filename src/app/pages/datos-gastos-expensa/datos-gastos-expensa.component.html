@@ -1,5 +1,6 @@
 <form [formGroup]="formBuilder">
     <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
+        <!-- <div class="card"> -->
         <div class="card-body">
             <h4 class="card-title text-muted">Periodo Junio 2019</h4>
             <hr>
@@ -26,7 +27,7 @@
                                     <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE" id="codigo" formControlName="codigo" (blur)="pressCodigo($event, i)" maxlength="3">
                                 </td>
                                 <td class="col-2 form-group">
-                                    <input type="text" class="form-control form-control-sm" placeholder="SUELDOS Y JORNALES" id="concepto" formControlName="concepto">
+                                    <input type="text" class="form-control form-control-sm disabled" tabIndex="-1" placeholder="(vacío)" id="concepto" formControlName="concepto">
                                     <span class="form-invalid" *ngIf="getFormGroup(i).controls['concepto'].value == '' && getFormGroup(i).controls['codigo'].touched">*Requerido</span>
                                 </td>
                                 <td class="col-2 form-group">
@@ -60,7 +61,7 @@
                                         <span class="form-invalid" *ngIf="getFormGroup(i).controls['uf'].errors?.required && getFormGroup(i).controls['uf'].touched">*Requerido</span>
                                     </ng-container>
                                     <ng-container *ngSwitchDefault>
-                                        <input type="text" class="form-control form-control-sm" disabled>
+                                        <input type="text" class="form-control form-control-sm disabled" placeholder="(vacío)" disabled>
                                     </ng-container>
                                 </td>
                                 <td class="col-3 form-group">

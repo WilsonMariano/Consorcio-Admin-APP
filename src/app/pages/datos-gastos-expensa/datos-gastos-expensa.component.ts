@@ -15,7 +15,10 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
   /*
-  formBuider:  se utilizará para construir 
+  formBuider:    se utilizará para construir el arreglo de formularios
+  amountRows:    cantidad de registros que tendra el arreglo de formularios 
+  arrEntidad:    arreglo de entidades que se desplegaran en el combo del formulario
+  arrManzanas:   idem arrEntidad pero con manzanas
   */
   public formBuilder: FormGroup;
   public amountRows = 0;
@@ -40,58 +43,51 @@ export class DatosGastosExpensaComponent implements OnInit {
       forma: new FormArray ([])
     });
 
-
+    
+    // Lleno los combobox
     this.getEntidades();
     this.getManzanas();
 
+    // Inserto el primer registro del formulario
     this.addRow();
   }
 
 
 
-  // Getters
-  get getForma() { return this.formBuilder.controls.forma as FormArray; }
-  get lengthForms() { return this.getForma.controls.length }
+  /**********************************************************************************************************************************/
+  /******************************************************* MÉTODOS DE FORMA *********************************************************/
+  /**********************************************************************************************************************************/
+
+
+  // GETERS
+
+  // Devuelve un arreglo de forms contenido en el formBuilder principal
+  get getForma()      { return this.formBuilder.controls.forma as FormArray; }
+
+  // Devuelve la cantidad de forms que tiene el formBuilder principal
+  get lengthForms()   { return this.getForma.controls.length }
+
+  // Devuelve un grupo de controles contenidOs en la forma de la posición pasada por parámetro
+  private getFormGroup( index: any ) { return this.getForma.controls[index] as FormGroup }
 
 
 
-  private getFormGroup( index: any ) {
-
-    return this.getForma.controls[index] as FormGroup
-  }
-
-
-
+  // Genera los controles en base al arreglo de manzanas
   private addManzanasControls() {
 
-    const arr = this.arrManzanas.map(element => {
-
-      return this._fb.control(false);
-    });
+    const arr = this.arrManzanas.map(() => this._fb.control(false));
 
     return this._fb.array(arr, this.checkValidator);
   }
 
 
 
-  public pressCodigo( event, index ): void {
-
-    let value: String = event['srcElement'].value;
-
-
-    if(value.length == 3) {
-
-      console.log(value);
-      this._conceptoGastos.getOne( value ).subscribe(
-
-        data => (<FormArray>this.getForma.controls[index]).controls['concepto'].setValue(data.conceptoGasto),
-        err => this.formBuilder.get('concepto').reset()
-      );
-    }
-  }
+  /**********************************************************************************************************************************/
+  /************************************************** DATOS PARA LOS COMBO **********************************************************/
+  /**********************************************************************************************************************************/
 
 
-
+  // Trae de la db los tipos de entidad existentes para llenar el combo
   private getEntidades() : void {
 
     this._diccionario.getAll('TIPO_ENTIDAD').subscribe(
@@ -102,6 +98,7 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
 
+   // Trae de la db las manzanas existentes para llenar el combo
   private getManzanas() : void {
 
     this._common.getAll('manzanas').subscribe(
@@ -112,17 +109,23 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
 
+  /**********************************************************************************************************************************/
+  /********************************************************** LISTENERS *************************************************************/
+  /**********************************************************************************************************************************/
+
+
+  // Se ejecuta cada vez que se presiona un elemento en el combo de entidades
   public onChangeEntidad( index ) : void {
 
+    // Elimino el control en caso de que existiera
     this.getFormGroup(index).removeControl('manzanas');
     this.getFormGroup(index).removeControl('edificio');
     this.getFormGroup(index).removeControl('uf');
 
 
-    let entidad = this.getFormGroup(index).get('entidad').value;
-
-
-    switch(entidad) {
+    // Agrego los controles correspondientes en base a la entidad elegida
+    // Si se elige manzana, se agrega un arreglo de controles en base a la cantidad de manzanas existentes 
+    switch(this.getFormGroup(index).get('entidad').value) {
 
       case 'TIPO_ENTIDAD_1':
           this.getFormGroup(index).addControl('manzanas', this.addManzanasControls());        
@@ -135,41 +138,72 @@ export class DatosGastosExpensaComponent implements OnInit {
       case 'TIPO_ENTIDAD_3':
         this.getFormGroup(index).addControl('uf', new FormControl('', Validators.required));
         break;
-
     }
   }
 
 
 
+  // Se ejecuta cada vez que se escribe en el input de código
+  public pressCodigo( event, index ): void {
+
+    let value: String = event['srcElement'].value;
+
+    // Si la cadena ingresada en el input tiene mas de 3 caracteres, trae de la db el concepto relacionado al codigo ingresado
+    if(value.length == 3) {
+
+      this._conceptoGastos.getOne( value ).subscribe(
+
+        data =>  this.getFormGroup(index).controls['concepto'].setValue(data.conceptoGasto),
+        err =>   this.getFormGroup(index).controls['concepto'].setValue('')
+      );
+    }
+  }
+
+
+
+  /**********************************************************************************************************************************/
+  /****************************************************** ADD & REMOVE ROWS *********************************************************/
+  /**********************************************************************************************************************************/
+
+
+
+  // Agrego  una forma nueva al arreglo de formas
   public addRow() {
 
     this.amountRows ++;
 
-        for (let i = this.getForma.length; i < this.amountRows; i++) {
+    this.getForma.push(this._fb.group({
 
-            this.getForma.push(this._fb.group({
-
-                codigo: [''],
-                concepto: ['', Validators.required],
-                monto: ['', Validators.required],
-                descripcion: [''],
-                entidad: ['', Validators.required]
-            }));
-        }        
+        codigo: [''],
+        concepto: ['', Validators.required],
+        monto: ['', Validators.required],
+        descripcion: [''],
+        entidad: ['', Validators.required]
+    }));   
   }
 
 
 
+  // Elimino la forma de la posición pasada por parámetro
+  // Actualizo el estado del formBuilder
   public deleteRow(i: number) {
   
-    console.log(this.getForma.controls);
     this.getForma.controls.splice(i, 1);
     this.amountRows--;
 
+    this.getForma.updateValueAndValidity();
+
   }
 
 
 
+  /**********************************************************************************************************************************/
+  /******************************************************** VALIDATORS FORM *********************************************************/
+  /**********************************************************************************************************************************/
+
+
+  
+  // Validador que recorre el arreglo de controles de las manzanas y verifica que se haya tildado al menos una
   public checkValidator( controls: FormArray ): null | object {
 
     let flag = false
@@ -184,6 +218,5 @@ export class DatosGastosExpensaComponent implements OnInit {
     
     return flag ? null : invalid;
   }
-
   
 }

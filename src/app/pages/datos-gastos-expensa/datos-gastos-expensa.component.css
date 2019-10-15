@@ -1,3 +1,8 @@
+[class*=col]{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
 [type="checkbox"]+label:before,
 [type="checkbox"]:not(.filled-in)+label:after {
     width: 14px;
@@ -19,13 +24,17 @@ span.close {
 }
 
 button#add {
-    width: 60px;
+    width: 50px;
 }
 
 .disabled {
     pointer-events: none;
     background-color: #e9ecef;
     opacity: 0.7;
+}
+
+.form-group {
+    margin-bottom: 0;
 }
 
 .disabled::-webkit-input-placeholder {
@@ -50,4 +59,9 @@ button#add {
     /* Firefox 18- */
     font-style: italic;
     font-size: 0.8rem;
+}
+
+
+tbody tr {
+    border-top: 1px solid #e0e0e0;
 }

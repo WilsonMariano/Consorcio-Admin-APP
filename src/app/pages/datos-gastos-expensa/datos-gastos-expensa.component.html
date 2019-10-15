@@ -1,14 +1,11 @@
-<form [formGroup]="formBuilder">
+<form [formGroup]="formBuilder" (ngSubmit)="onSubmit()">
     <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
         <!-- <div class="card"> -->
         <div class="card-body">
             <h4 class="card-title text-muted">Periodo Junio 2019</h4>
             <hr>
             <div class="r-panel-body">
-
-
-
-                <table class="table table-borderless">
+                <table class="table">
                     <thead>
                         <tr class="d-flex">
                             <th class="col-1">Código</th>
@@ -44,7 +41,7 @@
                                         </select>
                                     <span class="form-invalid" *ngIf="getFormGroup(i).controls['entidad'].errors?.required && getFormGroup(i).controls['entidad'].touched">*Requerido</span>
                                 </td>
-                                <td class="col-2 form-group" [ngSwitch]="forma.get('entidad').value">
+                                <td class="col-3 form-group" [ngSwitch]="forma.get('entidad').value">
                                     <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
                                         <div class="form-check form-check-inline" *ngFor="let control of getFormGroup(i).controls['manzanas'].controls ; let j = index">
                                             <input class="form-check-input" type="checkbox" [formControl]="control" id="{{i}}inlineCheckbox{{j}}">
@@ -64,8 +61,8 @@
                                         <input type="text" class="form-control form-control-sm disabled" placeholder="(vacío)" disabled>
                                     </ng-container>
                                 </td>
-                                <td class="col-3 form-group">
-                                    <input type="text" class="form-control form-control-sm" id="descripcion" placeholder="Ingrese una descripción..." id="descripcion" formControlName='descripcion'>
+                                <td class="col-2 form-group">
+                                    <textarea class="form-control form-control-sm" id="descripcion" placeholder="Ingrese una descripción..." id="descripcion" formControlName='descripcion'></textarea>
                                 </td>
                                 <td class="col-1">
                                     <button type="button" class="btn btn-themecolor btn-sm" [disabled]="!getForma.valid" (click)="addRow()" *ngIf="i == lengthForms-1" id="add"><i class="fa fa-plus"></i></button>
@@ -76,13 +73,13 @@
                     </tbody>
                 </table>
                 <div class="col-md-12 col-sm-12">
-                    <button type="button" class="btn btn-themecolor" [disabled]="!getForma.valid"> <i class="fa fa-save"></i> Guardar gastos</button>
+                    <button type="submit" class="btn btn-themecolor" [disabled]="!getForma.valid"> <i class="fa fa-save"></i> Guardar gastos</button>
                     <small class="text-muted" *ngIf="!getForma.valid && getForma.touched"> El formulario contiene errores</small>
                 </div>
             </div>
         </div>
     </div>
+</form>
 
 
-
-    <app-spinner></app-spinner>
+<app-spinner></app-spinner>

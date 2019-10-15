@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConceptosGastosService, DiccionarioService, FxGlobalsService, CommonService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { GastoLiquidacion } from 'src/app/class/class.index';
 
 declare var $ : any;
 
@@ -217,6 +218,33 @@ export class DatosGastosExpensaComponent implements OnInit {
 
     
     return flag ? null : invalid;
+  }
+
+
+
+  /**********************************************************************************************************************************/
+  /************************************************************** SUBMIT ************************************************************/
+  /**********************************************************************************************************************************/
+
+
+
+  public onSubmit() {
+
+    let arrGastos = new Array<GastoLiquidacion>();
+    let gasto = new GastoLiquidacion();
+
+    for(let i=0 ; i < this.lengthForms; i++) {
+
+      gasto.setCodConceptoGasto(this.getFormGroup(i).get('codigo').value);
+      gasto.setMonto(Number.parseFloat(this.getFormGroup(i).get('monto').value));
+      gasto.setDetalle(this.getFormGroup(i).get('detalle').value);
+
+    
+      console.log(gasto);
+      
+    }
+
+
   }
   
 }

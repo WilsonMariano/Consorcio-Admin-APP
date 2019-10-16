@@ -7,7 +7,7 @@ export class GastoLiquidacion {
     private codConceptoGasto: String;
     private monto: Number;
     private detalle: String;
-    private relacionesGastos: Array<RelacionGasto>;
+    private relacionesGastos = new Array<RelacionGasto>();
     
 
     // CONSTRUCTOR
@@ -20,12 +20,16 @@ export class GastoLiquidacion {
         detalle?: String,
         relacionesGastos?: Array<RelacionGasto>) {
 
-        this.id = id;
-        this.idLiquidacionGlobal = idLiquidacionGlobal;
-        this.monto = monto;
-        this.codConceptoGasto = codConceptoGasto;
-        this.detalle = detalle;
-        this.relacionesGastos = relacionesGastos;
+        // this.id = id;
+        // this.idLiquidacionGlobal = idLiquidacionGlobal;
+        // this.monto = monto;
+        // this.codConceptoGasto = codConceptoGasto;
+        // this.detalle = detalle;
+        // this.relacionesGastos = relacionesGastos;
+
+        console.log(this.relacionesGastos);
+
+        if(relacionesGastos == null) this.relacionesGastos = new Array<RelacionGasto>();
     }
 
 

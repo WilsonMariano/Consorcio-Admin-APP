@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConceptosGastosService, DiccionarioService, FxGlobalsService, CommonService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { GastoLiquidacion } from 'src/app/class/class.index';
+import { GastoLiquidacion, RelacionGasto } from 'src/app/class/class.index';
 
 declare var $ : any;
 
@@ -126,18 +126,17 @@ export class DatosGastosExpensaComponent implements OnInit {
 
     // Agrego los controles correspondientes en base a la entidad elegida
     // Si se elige manzana, se agrega un arreglo de controles en base a la cantidad de manzanas existentes 
-    switch(this.getFormGroup(index).get('entidad').value) {
+
+    let codEntidad: string = this.getFormGroup(index).get('entidad').value;
+
+    switch(codEntidad) {
 
       case 'TIPO_ENTIDAD_1':
-          this.getFormGroup(index).addControl('manzanas', this.addManzanasControls());        
+          this.getFormGroup(index).addControl(codEntidad, this.addManzanasControls());        
         break;
 
-      case 'TIPO_ENTIDAD_2':
-        this.getFormGroup(index).addControl('edificio', new FormControl('', Validators.required));
-        break;
-
-      case 'TIPO_ENTIDAD_3':
-        this.getFormGroup(index).addControl('uf', new FormControl('', Validators.required));
+      default:
+        this.getFormGroup(index).addControl(codEntidad, new FormControl('', Validators.required));
         break;
     }
   }
@@ -231,18 +230,52 @@ export class DatosGastosExpensaComponent implements OnInit {
   public onSubmit() {
 
     let arrGastos = new Array<GastoLiquidacion>();
-    let gasto = new GastoLiquidacion();
+    
 
     for(let i=0 ; i < this.lengthForms; i++) {
 
-      gasto.setCodConceptoGasto(this.getFormGroup(i).get('codigo').value);
-      gasto.setMonto(Number.parseFloat(this.getFormGroup(i).get('monto').value));
-      gasto.setDetalle(this.getFormGroup(i).get('detalle').value);
+      let gasto = new GastoLiquidacion();
 
-    
-      console.log(gasto);
+      gasto.setCodConceptoGasto = this.getFormGroup(i).get('codigo').value.toString().toUpperCase();
+      gasto.setMonto = Number.parseFloat(this.getFormGroup(i).get('monto').value);
+      gasto.setDetalle = this.getFormGroup(i).get('descripcion').value;
+
+      let codEntidad: String = this.getFormGroup(i).get('entidad').value;
+      let relaciones = this.getFormGroup(i).get(codEntidad.toString()).value;
+
+      // Si la entidad es manzana
+      if(Array.isArray(relaciones)) {
+       
+        for(let i = 0 ; i < relaciones.length ; i++) {
+
+          if(relaciones[i]) {
+            let relacion = new RelacionGasto();
+  
+            relacion.setEntidad = codEntidad;
+            relacion.setNumero = this.arrManzanas[i].id;
+  
+            gasto.getRelacionesGastos.push(relacion);
+          }
+        }
+
+      // Si la entidad es unidad  
+      } else {
+
+        let relacion = new RelacionGasto();
+        relacion.setEntidad = codEntidad;
+        relacion.setNumero = relaciones;
+
+        gasto.getRelacionesGastos.push(relacion);
+      }
+
+      arrGastos.push(gasto);
+
+      // console.log(relaciones);
       
     }
+
+    console.log(arrGastos);
+
 
 
   }

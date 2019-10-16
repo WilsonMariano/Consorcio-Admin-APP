@@ -52,7 +52,7 @@ export class RelacionGasto {
         this.idGastosLiquidaciones = idGastosLiquidaciones;
     }
 
-    public setEntidad ( entidad: String ) {
+    set setEntidad ( entidad: String ) {
         
         this.entidad = entidad;
     }

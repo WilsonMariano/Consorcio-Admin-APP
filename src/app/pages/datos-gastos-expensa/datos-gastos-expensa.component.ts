@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
 import { ConceptosGastosService, DiccionarioService, FxGlobalsService, CommonService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { GastoLiquidacion, RelacionGasto } from 'src/app/class/class.index';
@@ -16,19 +17,22 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
   /*
-  formBuider:    se utilizará para construir el arreglo de formularios
-  amountRows:    cantidad de registros que tendra el arreglo de formularios 
-  arrEntidad:    arreglo de entidades que se desplegaran en el combo del formulario
-  arrManzanas:   idem arrEntidad pero con manzanas
+  formBuider:     se utilizará para construir el arreglo de formularios
+  amountRows:     cantidad de registros que tendra el arreglo de formularios 
+  arrEntidad:     arreglo de entidades que se desplegaran en el combo del formulario
+  arrManzanas:    idem arrEntidad pero con manzanas
+  idLiquidacion:  id de la liquidacion pasada por url  
   */
   public formBuilder: FormGroup;
   public amountRows = 0;
   public arrEntidades = [];
   public arrManzanas  = [];
+  private idLiquidacion: Number = null;
 
 
 
   constructor( 
+    private activatedRoute: ActivatedRoute,
     private _fb: FormBuilder, 
     private _conceptoGastos: ConceptosGastosService, 
     private _diccionario: DiccionarioService, 
@@ -38,6 +42,14 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
   ngOnInit() {  
+
+    // Recibo el id de la liquidacion
+    this.activatedRoute.params.subscribe(
+      data => { 
+
+        if(data.id) this.idLiquidacion = Number.parseInt(data.id); 
+      }
+    )
 
     this.formBuilder = this._fb.group({
 
@@ -236,6 +248,7 @@ export class DatosGastosExpensaComponent implements OnInit {
 
       let gasto = new GastoLiquidacion();
 
+      gasto.setIdLiquidacionGlobal = this.idLiquidacion;
       gasto.setCodConceptoGasto = this.getFormGroup(i).get('codigo').value.toString().toUpperCase();
       gasto.setMonto = Number.parseFloat(this.getFormGroup(i).get('monto').value);
       gasto.setDetalle = this.getFormGroup(i).get('descripcion').value;
@@ -275,6 +288,10 @@ export class DatosGastosExpensaComponent implements OnInit {
     }
 
     console.log(arrGastos);
+    this._common.insertEntity({ 'GastosLiquidaciones': arrGastos }, 'gastos-liq').subscribe(
+
+      data => console.log(data)
+    )
 
 
 

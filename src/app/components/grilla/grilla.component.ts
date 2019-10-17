@@ -70,7 +70,6 @@ export class GrillaComponent implements OnInit {
     
     this._common.getWithPaged(this.options['entity'], this.rowsWithPage, this.numPage-1, this.filterParams).subscribe(
       data => {
-        console.log(data);
         this.arrObjects = data.data;
         this.totalResults = data.total_rows;
         this.genControlsPaginate( data.total_pages );

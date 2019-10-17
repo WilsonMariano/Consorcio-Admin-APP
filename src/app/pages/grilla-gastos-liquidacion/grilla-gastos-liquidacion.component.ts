@@ -6,21 +6,25 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './grilla-gastos-liquidacion.component.html'
 })
 export class GrillaGastosLiquidacionComponent implements OnInit {
+  
+  // Id de liquidacion recibida
+  private idLiquidacion;
 
   // SEE grilla.component
 
-  private arrControls = ['Concepto', 'Monto'];
+  private arrControls = ['Concepto', 'Monto', 'Detalle'];
 
 
   private arrAttr = [
-    { 'attr': 'codConceptoGasto',           'type': 'String'  },
-    { 'attr': 'monto',    'type': 'Number'  }
+    { 'attr': 'codConceptoGasto',   'type': 'String'  },
+    { 'attr': 'monto',              'type': 'Number'  },
+    { 'attr': 'detalle',            'type': 'String'  },
   ];
 
 
   private filterParams = {
     'col': 'idLiquidacionGlobal',
-    'txt': null
+    'txt': this.idLiquidacion
   }
 
 
@@ -43,8 +47,8 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
     this.activateRoute.params.subscribe(
       data => {
 
-        if(data['id']) 
-          this.filterParams.txt = data['id'];
+        if( data['id'] ) this.idLiquidacion = data['id'];
+        this.filterParams.txt = data['id'];
           
     });
   }

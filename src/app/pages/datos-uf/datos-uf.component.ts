@@ -132,6 +132,7 @@ export class DatosUFComponent implements OnInit {
         this.forma.get( 'idAdherente' ).setValue( data.idAdherente );
         this.forma.get( 'nroEdificio' ).setValue( data.nroEdificio );
         this.forma.get( 'idManzana' ).setValue( data.idManzana );
+        console.log(data);
         this.forma.get( 'departamento' ).setValue( data.departamento );
         this.forma.get( 'codSitLegal' ).setValue( data.codSitLegal );
         this.forma.get( 'coeficiente' ).setValue( data.coeficiente );

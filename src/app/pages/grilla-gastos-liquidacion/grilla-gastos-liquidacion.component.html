@@ -3,7 +3,26 @@
         <div class="card">
             <div class="card-body">
                 <div class="r-panel-body">
-                    <a class="btn btn-themecolor" routerLink="/gastos-expensa/{{idLiquidacion}}">Cargar gastos</a>
+
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="!canEdit">
+                        La expensa se encuentra <strong>cerrada</strong> y no se puede editar
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="dropdown show">
+                        <a class="btn btn-themecolor dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="canEdit">
+                            Cargar gastos
+                        </a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" routerLink="/gastos-expensa/{{idLiquidacion}}">Manual</a>
+                            <a class="dropdown-item" routerLink="/gastos-expensa-csv/{{idLiquidacion}}">Cargar .csv</a>
+                        </div>
+                    </div>
+
+                    <!-- <a class="btn btn-themecolor" routerLink="/gastos-expensa/{{idLiquidacion}}" *ngIf="canEdit">Cargar gastos</a> -->
                     <app-grilla [options]="options"></app-grilla>
                 </div>
             </div>

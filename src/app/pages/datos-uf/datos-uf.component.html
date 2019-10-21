@@ -39,7 +39,7 @@
                                 <label>Departamento</label>
                                 <select class="form-control" formControlName="departamento">
                                     <option value="">Seleccionar...</option>
-                                    <option *ngFor="let d of arrDepartamentos" [value]="d.codigo">{{d.valor}}</option>
+                                    <option *ngFor="let d of arrDepartamentos" [value]="d.valor">{{d.valor}}</option>
                                 </select>
                                 <span class="form-invalid" *ngIf="forma.controls['departamento'].errors?.required && forma.controls['departamento'].touched">*El campo es requerido</span>
                             </div>

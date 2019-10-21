@@ -17,6 +17,7 @@ import { DatosUFComponent } from './datos-uf/datos-uf.component';
 import { DatosLiquidacionesGlobalesComponent } from './datos-liquidaciones-globales/datos-liquidaciones-globales.component';
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 import { DatosGastosExpensaComponent } from './datos-gastos-expensa/datos-gastos-expensa.component';
+import { DatosGastosExpensasCsvComponent } from './datos-gastos-expensas-csv/datos-gastos-expensas-csv.component';
 
 
 
@@ -38,6 +39,7 @@ const pagesRoutes: Routes = [
             { path: 'datos-conceptos-gastos/:id',   component: DatosConceptosGastosComponent,           data: { titulo: 'Conceptos de Gastos' } },
             { path: 'datos-expensa/:id',            component: DatosLiquidacionesGlobalesComponent,     data: { titulo: 'Datos de la liquidación' } },
             { path: 'gastos-expensa/:id',           component: DatosGastosExpensaComponent,             data: { titulo: 'Carga de gastos' } },
+            { path: 'gastos-expensa-csv/:id',       component: DatosGastosExpensasCsvComponent,         data: { titulo: 'Carga csv de gastos' } },
             { path: 'account-settings',             component: AccountSettingsComponent,                data: { titulo: 'Ajustes del tema' } },
             { path: '',                             redirectTo: '/dashboard',                           pathMatch: 'full' }
         ]

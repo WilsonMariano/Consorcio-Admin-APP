@@ -19,10 +19,6 @@ span.form-invalid {
     display: block;
 }
 
-span.close {
-    cursor: pointer;
-}
-
 button#add {
     width: 50px;
 }

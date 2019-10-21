@@ -20,6 +20,12 @@
 }
 
 
+/* Boton cerrar de los alert */
+.close {
+    cursor: pointer;
+}
+
+
 /* Material Icons Size */
 
 .mdi.md-18 {

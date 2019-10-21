@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommonService } from 'src/app/services/service.index';
 
 @Component({
   selector: 'app-grilla-gastos-liquidacion',
@@ -9,6 +10,7 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
   
   // Id de liquidacion recibida
   private idLiquidacion;
+  private canEdit: Boolean = false;
 
   // SEE grilla.component
 
@@ -39,7 +41,7 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
   }
 
 
-  constructor(private activateRoute: ActivatedRoute) { }
+  constructor(private activateRoute: ActivatedRoute, private _common: CommonService) { }
 
   
   ngOnInit() {
@@ -47,10 +49,33 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
     this.activateRoute.params.subscribe(
       data => {
 
-        if( data['id'] ) this.idLiquidacion = data['id'];
-        this.filterParams.txt = data['id'];
-          
+        if( data['id'] ) {
+
+          this.idLiquidacion = data['id'];
+          this.filterParams.txt = data['id'];
+          this.validateStatus();
+        }           
     });
+  }
+
+
+
+  private validateStatus() {
+
+    this._common.getOne( 'vwliquidacionesglobales', this.idLiquidacion ).subscribe(
+      
+      data => {
+
+        if(data.codEstado == 'COD_ESTADO_1')
+          this.canEdit = true;
+
+        else{
+
+          this.canEdit = false
+          this.options.buttons.pop();
+        }
+      }
+    )
   }
 
 }

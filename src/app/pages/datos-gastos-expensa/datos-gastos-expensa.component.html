@@ -21,7 +21,7 @@
                         <tr class="d-flex" *ngFor="let forma of getForma.controls; let i = index">
                             <ng-container [formGroup]="forma">
                                 <td class="col-1 form-group">
-                                    <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE" id="codigo" formControlName="codigo" (keypress)="press($event)" (blur)="pressCodigo($event, i)" maxlength="3">
+                                    <input type="text" class="form-control form-control-sm uppercase-text" placeholder="SUE" id="codigo" formControlName="codigo" (keypress)="pressCodigo($event, i)" (blur)="blurCodigo($event, i)" maxlength="3">
                                 </td>
                                 <td class="col-2 form-group">
                                     <input type="text" class="form-control form-control-sm disabled" tabIndex="-1" placeholder="(vacío)" id="concepto" formControlName="concepto">
@@ -30,7 +30,7 @@
                                 <td class="col-2 form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon form-control-sm">$</span>
-                                        <input type="number" class="form-control form-control-danger form-control-sm" onlyNumbers placeholder="15200.00" id="monto" formControlName='monto'>
+                                        <input type="number" class="form-control form-control-danger form-control-sm" onlyNumbers placeholder="15200.00" id="monto{{i}}" formControlName='monto'>
                                     </div>
                                     <span class="form-invalid" *ngIf="getFormGroup(i).controls['monto'].errors?.required && getFormGroup(i).controls['monto'].touched">*Requerido</span>
                                 </td>
@@ -83,4 +83,4 @@
 
 
 <app-spinner></app-spinner>
-<app-modal-conceptos></app-modal-conceptos>
+<app-modal-conceptos (successModal)="successModal($event)"></app-modal-conceptos>

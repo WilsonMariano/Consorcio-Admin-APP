@@ -22,13 +22,15 @@ export class DatosGastosExpensaComponent implements OnInit {
   amountRows:     cantidad de registros que tendra el arreglo de formularios 
   arrEntidad:     arreglo de entidades que se desplegaran en el combo del formulario
   arrManzanas:    idem arrEntidad pero con manzanas
-  idLiquidacion:  id de la liquidacion pasada por url  
+  idLiquidacion:  id de la liquidacion pasada por url 
+  indexForm:      se utiliza para guardar el índice de la forma en la cual se abrio el modal de visualizacion de conceptos-gastos 
   */
   public formBuilder: FormGroup;
   public amountRows = 0;
   public arrEntidades = [];
   public arrManzanas  = [];
   private idLiquidacion: Number = null;
+  private indexForm: Number;
 
 
 
@@ -159,7 +161,7 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
   // Se ejecuta cada vez que se escribe en el input de código
-  public pressCodigo( event, index ): void {
+  public blurCodigo( event, index ): void {
 
     let value: String = event['srcElement'].value;
 
@@ -176,11 +178,25 @@ export class DatosGastosExpensaComponent implements OnInit {
 
 
 
-  public press( event ): void {
+  // Cuando se presiona la tecla '+' se muestra un modal con el listado de conceptos disponibles
+  public pressCodigo( event, i ): void {
 
     if(event.keyCode == 43) {
+
+      this.indexForm = i;
       $("#modalConceptos").modal("show");
     }
+  }
+
+
+
+  // Se ejecuta cuando se cierra el modalConceptos, pasando por parámetro el concepto elegido y asignandolo a la forma
+  public successModal( event ): void {
+
+    this.getFormGroup(this.indexForm).controls['codigo'].setValue(event.codigo);
+    this.getFormGroup(this.indexForm).controls['concepto'].setValue(event.conceptoGasto);
+
+    $('#modalConceptos').modal('hide');
   }
 
 

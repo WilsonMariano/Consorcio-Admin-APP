@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonService } from '../../services/http/common.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { CommonService } from '../../services/http/common.service';
   styleUrls: ['./modal-conceptos.component.css']
 })
 export class ModalConceptosComponent implements OnInit {
+
+  @Output() successModal = new EventEmitter();
 
   public arrConceptos = [];
 
@@ -20,6 +22,12 @@ export class ModalConceptosComponent implements OnInit {
         console.log(data);
       }
     );
+  }
+
+  public selectItem( index: number ) : void {
+
+    // console.log(this.arrConceptos[index]);
+    this.successModal.emit(this.arrConceptos[index]);
   }
 
 

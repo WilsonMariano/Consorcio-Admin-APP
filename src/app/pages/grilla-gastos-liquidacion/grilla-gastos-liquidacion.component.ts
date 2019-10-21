@@ -34,7 +34,7 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
     'arrControls': this.arrControls,
     'filterParams': this.filterParams,
     'buttons': [
-      { 'url': 'gastos-expensa',    'icon': 'mdi mdi-lead-pencil' }
+      { 'icon': 'mdi mdi-delete' }
     ]
   }
 

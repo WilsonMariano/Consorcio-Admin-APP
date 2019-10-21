@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { ConceptosGastosService, DiccionarioService, FxGlobalsService, CommonService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { GastoLiquidacion, RelacionGasto } from 'src/app/class/class.index';
 
 declare var $ : any;
+declare var debug : any;
 
 
 
@@ -33,6 +34,7 @@ export class DatosGastosExpensaComponent implements OnInit {
 
   constructor( 
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private _fb: FormBuilder, 
     private _conceptoGastos: ConceptosGastosService, 
     private _diccionario: DiccionarioService, 
@@ -63,6 +65,7 @@ export class DatosGastosExpensaComponent implements OnInit {
 
     // Inserto el primer registro del formulario
     this.addRow();
+
   }
 
 
@@ -166,8 +169,17 @@ export class DatosGastosExpensaComponent implements OnInit {
       this._conceptoGastos.getOne( value ).subscribe(
 
         data =>  this.getFormGroup(index).controls['concepto'].setValue(data.conceptoGasto),
-        err =>   this.getFormGroup(index).controls['concepto'].setValue('')
+        () =>   this.getFormGroup(index).controls['concepto'].setValue('')
       );
+    }
+  }
+
+
+
+  public press( event ): void {
+
+    if(event.keyCode == 43) {
+      $("#modalConceptos").modal("show");
     }
   }
 
@@ -241,60 +253,91 @@ export class DatosGastosExpensaComponent implements OnInit {
 
   public onSubmit() {
 
-    let arrGastos = new Array<GastoLiquidacion>();
+    // Muestro mensaje de confirmación
+    this._fxGlobals.showQuestionAlert("Confirmación", "Está seguro de confirmar la operación?", "warning").then(
+  
+      // Afirmativo
+      () => {
+        
+        // Instancio arreglo de gastos
+        let arrGastos = new Array<GastoLiquidacion>();
+        
+        // Recorro el arreglo de formas
+        for(let i=0 ; i < this.lengthForms; i++) {
     
+          // Instancio un nuevo gasto
+          let gasto = new GastoLiquidacion();
+    
+          // Seteo los atributos del gasto con los datos ingresados en la forma
+          // IdLiquidacion lo recibo por parámetro en la url
+          gasto.setIdLiquidacionGlobal = this.idLiquidacion;
 
-    for(let i=0 ; i < this.lengthForms; i++) {
-
-      let gasto = new GastoLiquidacion();
-
-      gasto.setIdLiquidacionGlobal = this.idLiquidacion;
-      gasto.setCodConceptoGasto = this.getFormGroup(i).get('codigo').value.toString().toUpperCase();
-      gasto.setMonto = Number.parseFloat(this.getFormGroup(i).get('monto').value);
-      gasto.setDetalle = this.getFormGroup(i).get('descripcion').value;
-
-      let codEntidad: String = this.getFormGroup(i).get('entidad').value;
-      let relaciones = this.getFormGroup(i).get(codEntidad.toString()).value;
-
-      // Si la entidad es manzana
-      if(Array.isArray(relaciones)) {
-       
-        for(let i = 0 ; i < relaciones.length ; i++) {
-
-          if(relaciones[i]) {
+          gasto.setCodConceptoGasto = this.getFormGroup(i).get('codigo').value.toString().toUpperCase();
+          gasto.setMonto = Number.parseFloat(this.getFormGroup(i).get('monto').value);
+          gasto.setDetalle = this.getFormGroup(i).get('descripcion').value;
+    
+          // Guardo el código del gastos ingresado y recupero las relaciones
+          let codEntidad: String = this.getFormGroup(i).get('entidad').value;
+          let relaciones = this.getFormGroup(i).get(codEntidad.toString()).value;
+    
+          // Si las relaciones es arreglo es porque hay varias relaciones (manzanas)
+          // Si no es arreglo se elgió departamento o uf
+          if(Array.isArray(relaciones)) {
+           
+            // Itero las manzanas elegidas
+            for(let i = 0 ; i < relaciones.length ; i++) {
+    
+              // Si el check de manzana en posicion de i está tildado
+              if(relaciones[i]) {
+                
+                // Instancio una relacion
+                let relacion = new RelacionGasto();
+      
+                // Seteo los atributos de la relación con los de la forma
+                relacion.setEntidad = codEntidad;
+                relacion.setNumero = this.arrManzanas[i].id;
+      
+                // Inserto el objeto en el arreglo de relaciones
+                gasto.getRelacionesGastos.push(relacion);
+              }
+            }
+    
+          // Si la entidad es uf o edificio 
+          } else {
+    
+            // Instancio una relacion
             let relacion = new RelacionGasto();
-  
+
+            // Seteo los atributos con los datos de la forma
             relacion.setEntidad = codEntidad;
-            relacion.setNumero = this.arrManzanas[i].id;
-  
+            relacion.setNumero = relaciones;
+    
+            // Inserto el objeto en el arreglo de relaciones
             gasto.getRelacionesGastos.push(relacion);
           }
+    
+          // Inserto el gasto en el arreglo de gastos
+          arrGastos.push(gasto);          
         }
+    
+        // Acá ya tengo conformado el arreglo de gastos con sus respectivas relaciones, realizo el insert
 
-      // Si la entidad es unidad  
-      } else {
+        /*************************************** INSERT **********************************************/
+        this._common.insertEntity({ 'GastosLiquidaciones': arrGastos }, 'gastos-liq').subscribe(
+    
+          // Operación exitosa. Operación truncada la manejo en el interceptor.class
+          () => {
+            console.log("estoy aca")
 
-        let relacion = new RelacionGasto();
-        relacion.setEntidad = codEntidad;
-        relacion.setNumero = relaciones;
-
-        gasto.getRelacionesGastos.push(relacion);
-      }
-
-      arrGastos.push(gasto);
-
-      // console.log(relaciones);
-      
-    }
-
-    console.log(arrGastos);
-    this._common.insertEntity({ 'GastosLiquidaciones': arrGastos }, 'gastos-liq').subscribe(
-
-      data => console.log(data)
-    )
-
-
-
+            // Muestro alert de success y redirecciono a la grilla de gastos
+            this._fxGlobals.showAlert( 'Operación Exitosa!', 'Los gastos se han insertado con éxito', 'success' );
+            this.router.navigate( ['grilla-gastos-liquidacion', this.idLiquidacion]);
+          }
+        )
+      },
+      // Cancel
+      () => {}
+    );
   }
   
 }

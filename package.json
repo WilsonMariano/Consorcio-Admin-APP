@@ -25,7 +25,6 @@
         "ngx-spinner": "^8.0.3",
         "popper.js": "^1.15.0",
         "rxjs": "~6.4.0",
-        "sweetalert2": "^7.29.1",
         "tslib": "^1.10.0",
         "zone.js": "~0.9.1"
     },

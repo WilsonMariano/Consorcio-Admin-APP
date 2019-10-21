@@ -152,3 +152,16 @@ a.link:hover, a.link:focus {
 @media (min-width: 768px) {
   .mini-sidebar .sidebar-nav #sidebarnav > li:hover > a {
     background: #1c2128; } }
+
+
+
+/****************************************************************************/
+/****************************** CUSTOM **************************************/
+/****************************************************************************/
+
+.page-item.active .page-link {
+  z-index: 2;
+  color: #fff;
+  background-color: #06d79c;
+  border-color: #06d79c;
+}

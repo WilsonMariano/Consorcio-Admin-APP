@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="r-panel-body" >
+                    <label>Buscar uf</label>
+                    <div class="form-row align-items-center">
+                        <div class="col-md-11">
+                            <input type="number" class="form-control mb-2" id="inlineFormInput" onlyNumbers
+                                placeholder="Ingrese unidad funcional" name="ufBuscada" [(ngModel)]="ufBuscada">
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-themecolor mb-2" (click)="buscarUF(ufBuscada)"><i
+                                    class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="r-panel-body" *ngIf="uf != null">
+                    <label>Datos UF</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<app-spinner></app-spinner>

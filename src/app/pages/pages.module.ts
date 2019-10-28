@@ -37,6 +37,7 @@ import { DatosUFComponent } from './datos-uf/datos-uf.component';
 import { DatosGastosExpensaComponent } from './datos-gastos-expensa/datos-gastos-expensa.component';
 import { ModalConceptosComponent } from '../modals/modal-conceptos/modal-conceptos.component';
 import { DatosGastosExpensasCsvComponent } from './datos-gastos-expensas-csv/datos-gastos-expensas-csv.component';
+import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 
 
 
@@ -60,7 +61,8 @@ import { DatosGastosExpensasCsvComponent } from './datos-gastos-expensas-csv/dat
         AccountSettingsComponent,
         OnlyNumbersDirective,
         ModalConceptosComponent,
-        DatosGastosExpensasCsvComponent
+        DatosGastosExpensasCsvComponent,
+        NuevoPagoComponent
     ],
     exports: [
         DashboardComponent

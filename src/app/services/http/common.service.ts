@@ -144,4 +144,22 @@ export class CommonService {
     );
   }
 
+  
+
+  public deleteEntity( id: Number, entity: String ): Observable<any> { 
+
+    const httpOtions = {
+      'headers': this.headers,
+      'body': [id]
+    }
+        
+    this._fxGlobals.showSpinner();
+
+    return this._http.delete(`${environment.apiUri}/${entity}/del`, httpOtions
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
+    );
+  }
+
 }

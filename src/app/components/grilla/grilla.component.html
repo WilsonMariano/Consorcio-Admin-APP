@@ -24,6 +24,7 @@
             <ng-container *ngIf="options['buttons'] != undefined">
                 <td *ngFor="let c of options['buttons']" routerLink="/{{c.url}}/{{obj.id}}"><i [class]="c.icon"></i></td>
             </ng-container>
+            <td *ngIf="options['delete'] != undefined" (click)="delete(obj.id)"><i [class]="options['delete'].icon"></i></td>
         </tr>
         <tr *ngIf="arrObjects.length == 0">
             <td><i class="mdi mdi-alert"></i> No se encontraron resultados...</td>

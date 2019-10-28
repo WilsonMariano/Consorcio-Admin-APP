@@ -184,4 +184,24 @@ export class GrillaComponent implements OnInit {
   /***************************************************** FIN METODOS DE FILTRADO *****************************************************/
   /***********************************************************************************************************************************/
 
+
+
+  public delete( id: Number ): void {
+
+    this._fxGlobales.showQuestionAlert("Confirmación", "Está seguro de confirmar la operación?", "warning").then(
+      
+      // Operación exitosa
+      () => {
+        this._common.deleteEntity(id, 'gastos-liq').subscribe(
+
+          data => {
+            console.log(data),
+            this.getObjects();
+          }
+        )
+      },
+      () => {}
+    );
+      
+  }
 }

@@ -35,9 +35,10 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'filterParams': this.filterParams,
-    'buttons': [
-      { 'icon': 'mdi mdi-delete' }
-    ]
+    'delete': { 
+      'icon': 'mdi mdi-delete',
+      'entityUrl': 'gastos-liq'
+    }
   }
 
 

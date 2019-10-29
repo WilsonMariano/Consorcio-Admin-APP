@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/service.index';
 import { UnidadFuncional } from '../../class/class.index';
 import { FxGlobalsService } from '../../services/fxGlobals/fxGlobals.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var $;
 
@@ -15,7 +15,7 @@ export class NuevoPagoComponent implements OnInit {
 
   public uf: UnidadFuncional = null;
 
-  constructor(private _common: CommonService, private _fxGlobals: FxGlobalsService, private activateRoute: ActivatedRoute) {}
+  constructor(private _common: CommonService, private _fxGlobals: FxGlobalsService, private activateRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
 
@@ -23,13 +23,13 @@ export class NuevoPagoComponent implements OnInit {
       data => {
 
         if(data['id'] != 'nuevo') 
-          this.buscarUF(data['id']);
+          this.searchUF(data['id']);
     });
   }
   
 
 
-  public buscarUF( uf ): void{
+  public searchUF( uf ): void{
 
     this._common.getOne("uf", uf.toString()).subscribe(
 
@@ -46,6 +46,24 @@ export class NuevoPagoComponent implements OnInit {
       }
 
     )
+  }
+
+
+
+  public makePay(account: Number): void {
+
+    this._fxGlobals.showQuestionAlert("Confirmación", `Desea imputar el pago a la UF N° ${this.uf.getId()} por un importe de $${account}?`, "warning").then(
+      () => {
+        console.log(account);
+
+        // Acá se debe insertar el pago en la bd
+
+        this.router.navigate( ['cta-cte/' + this.uf.getId()] );
+
+      },
+      () => {}
+    )
+
   }
 
 }

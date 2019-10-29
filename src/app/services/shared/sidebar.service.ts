@@ -33,8 +33,8 @@ export class SidebarService {
       titulo: 'Pagos',
       icono: 'mdi mdi-cash',
       submenu: [
-        { titulo: 'Comprobantes', url: '/comprobantes' },
-        { titulo: 'Nuevo pago', url: '/nuevo-pago/nuevo' }
+        { titulo: 'Nuevo pago', url: '/nuevo-pago/nuevo' },
+        { titulo: 'Recibos', url: '/comprobantes' }
       ]
     },
     {

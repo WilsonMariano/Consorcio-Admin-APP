@@ -34,7 +34,7 @@ const pagesRoutes: Routes = [
             { path: 'grilla-expensas',              component: GrillaLiquidacionesGlobalesComponent,    data: { titulo: 'Grilla de liquidaciones' } },
             { path: 'grilla-conceptos-gastos',      component: GrillaConceptosGastosComponent,          data: { titulo: 'Grilla de conceptos' } },
             { path: 'grilla-ctas-ctes',             component: GrillaCtasCtesComponent,                 data: { titulo: 'Grilla de ctas. ctes.' } },
-            { path: 'notas-credito-debito/:id',     component: NotasCreditoDebitoComponent,             data: { titulo: 'Generar nota de credito / debito' } },
+            { path: 'notas-credito-debito/:id',     component: NotasCreditoDebitoComponent,             data: { titulo: 'Nota de crédito / débito' } },
             { path: 'grilla-gastos-liquidacion/:id',component: GrillaGastosLiquidacionComponent,        data: { titulo: 'Grilla de gastos liquidaciones' } },
             { path: 'cta-cte/:id',                  component: GrillaCtaCteComponent,                   data: { titulo: 'Cuenta corriente UF' } },
             { path: 'datos-adherente/:id',          component: DatosAdherenteComponent,                 data: { titulo: 'Datos del adherente' } },

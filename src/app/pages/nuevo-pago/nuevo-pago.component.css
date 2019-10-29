@@ -1,0 +1,12 @@
+#account {
+    font-size: 2rem;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #b7b7b7;
+    width: 30%;
+    text-align: center;
+}
+
+i.fa {
+    cursor: pointer;
+}

@@ -73,7 +73,7 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
         else{
 
           this.canEdit = false
-          this.options.buttons.pop();
+          delete this.options.delete;
         }
       }
     )

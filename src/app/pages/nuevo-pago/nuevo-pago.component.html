@@ -1,28 +1,77 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
+
         <div class="card">
             <div class="card-body">
-                <div class="r-panel-body" >
-                    <label>Buscar uf</label>
-                    <div class="form-row align-items-center">
-                        <div class="col-md-11">
-                            <input type="number" class="form-control mb-2" id="inlineFormInput" onlyNumbers
-                                placeholder="Ingrese unidad funcional" name="ufBuscada" [(ngModel)]="ufBuscada">
+                <div class="r-panel-body">
+
+                    <h4 class="card-title text-muted">Datos de la UF</h4>
+                    <hr>
+
+                    <div class="row" *ngIf="uf == null">
+
+                        <div class="col-md-10 col-sm-10">
+                            <input type="number" class="form-control mb-2" id="inlineFormInput" onlyNumbers placeholder="Ingrese unidad funcional" name="ufBuscada" [(ngModel)]="ufBuscada">
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-1 col-sm-2">
                             <button class="btn btn-themecolor mb-2" (click)="buscarUF(ufBuscada)"><i
-                                    class="fa fa-search"></i></button>
+                                                                            class="fa fa-search"></i> </button>
+                        </div>
+
+                    </div>
+
+                    <div class="row" *ngIf="uf != null">
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body" style="border: 1px dashed #dcdcdc">
+                                    <div class="col"><b>UF: </b> {{uf.getId()}}</div>
+                                    <div class="col"><b>N° Adherente: </b> {{uf.getIdAdherente()}}</div>
+                                    <div class="col"><b>Titular: </b> Mariano Wilson</div>
+                                    <div class="col text-right" *ngIf="uf != null" (click)="uf = null"><i class="fa fa-pencil"></i>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="r-panel-body" *ngIf="uf != null">
-                    <label>Datos UF</label>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+
+
+<div class="row" *ngIf="uf != null">
+    <div class="col-6">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="r-panel-body">
+
+                    <h4 class="card-title text-muted" *ngIf="!neWoperation">Pago</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <label><b>Fecha:</b></label> 28/10/2019
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <input type="number" onlyNumbers class="form-control mb-5" value="0.00" id="account">
+                            <button class="btn btn-themecolor btn-block mt-5">Pagar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 
 
 <app-spinner></app-spinner>

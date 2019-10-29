@@ -38,6 +38,7 @@ import { DatosGastosExpensaComponent } from './datos-gastos-expensa/datos-gastos
 import { ModalConceptosComponent } from '../modals/modal-conceptos/modal-conceptos.component';
 import { DatosGastosExpensasCsvComponent } from './datos-gastos-expensas-csv/datos-gastos-expensas-csv.component';
 import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
+import { NotasCreditoDebitoComponent } from './notas-credito-debito/notas-credito-debito.component';
 
 
 
@@ -62,7 +63,8 @@ import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
         OnlyNumbersDirective,
         ModalConceptosComponent,
         DatosGastosExpensasCsvComponent,
-        NuevoPagoComponent
+        NuevoPagoComponent,
+        NotasCreditoDebitoComponent
     ],
     exports: [
         DashboardComponent

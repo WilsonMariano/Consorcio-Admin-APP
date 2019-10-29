@@ -19,7 +19,14 @@ export class SidebarService {
       submenu: [
         { titulo: 'Adherentes', url: '/grilla-adherentes' },
         { titulo: 'Unidades Funcionales', url: '/grilla-uf' },
-        { titulo: 'Cuentas corrientes', url: '/grilla-ctas-ctes' }
+      ]
+    },
+    {
+      titulo: 'Ctas Ctes',
+      icono: 'mdi mdi-account-multiple',
+      submenu: [
+        { titulo: 'Cuentas corrientes', url: '/grilla-ctas-ctes' },
+        { titulo: 'NC/ND', url: '/notas-credito-debito/nueva' }
       ]
     },
     {
@@ -27,7 +34,7 @@ export class SidebarService {
       icono: 'mdi mdi-cash',
       submenu: [
         { titulo: 'Comprobantes', url: '/comprobantes' },
-        { titulo: 'Nuevo pago', url: '/nuevo-pago' }
+        { titulo: 'Nuevo pago', url: '/nuevo-pago/nuevo' }
       ]
     },
     {

@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 export class GrillaCtaCteComponent implements OnInit {
 
   // SEE grilla.component
+  private idCtaCte: Number;
 
   private arrControls = ['Fecha', 'Descrpicion', 'Monto', 'Saldo'];
 
@@ -43,8 +44,11 @@ export class GrillaCtaCteComponent implements OnInit {
     this.activateRoute.params.subscribe(
       data => {
 
-        if(data['id']) 
+        if(data['id']) {
+
+          this.idCtaCte = data['id'];
           this.filterParams.txt = data['id'];
+        }
           
     });
   }

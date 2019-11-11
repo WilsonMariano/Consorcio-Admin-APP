@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthModule } from './auth/auth.module';
 import { 
   SettingsService, 
   SidebarService, 
@@ -8,13 +9,15 @@ import {
   UsuarioService,
   ConceptosGastosService, 
   LiquidacionGlobalService,
-  FxGlobalsService } from './service.index';
+  FxGlobalsService,
+  AuthService } from './service.index';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    AuthModule
   ],
   providers: [
     SettingsService, 
@@ -24,7 +27,8 @@ import {
     ConceptosGastosService,
     UsuarioService,
     LiquidacionGlobalService,
-    FxGlobalsService
+    FxGlobalsService,
+    AuthService
   ]
 })
 export class ServiceModule { }

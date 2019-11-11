@@ -4,7 +4,7 @@ import { ActivatedRoute, Router  } from '@angular/router';
 
 import { LiquidacionGlobal } from 'src/app/class/class.index';
 
-import { ValidatorsService, FxGlobalsService, LiquidacionGlobalService } from '../../services/service.index';
+import { ValidatorsService, FxGlobalsService } from '../../services/service.index';
 
 import * as moment from 'moment';
 import { CommonService } from 'src/app/services/service.index';
@@ -34,7 +34,6 @@ export class DatosLiquidacionesGlobalesComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute, 
     private _validators: ValidatorsService, 
-    private _liquidacionesG: LiquidacionGlobalService, 
     private _common: CommonService,
     private _fxGlobals: FxGlobalsService,
     private router: Router) { }
@@ -113,7 +112,7 @@ export class DatosLiquidacionesGlobalesComponent implements OnInit {
     if( this.neWoperation ) {
 
       // Inserto la liquidación
-      this._liquidacionesG.insert( liquidacionGlobal ).subscribe(
+      this._common.insertEntity( liquidacionGlobal, 'liquidacion-gbl' ).subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha insertado con éxito', 'success' );

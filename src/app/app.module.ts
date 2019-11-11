@@ -34,7 +34,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     APP_ROUTES,
     PagesModule,
-    ComponentsModule
+    ComponentsModule,
+    ServiceModule
   ],
   providers: [
     ServiceModule,

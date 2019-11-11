@@ -24,37 +24,18 @@ export class LiquidacionGlobalService {
 
   
 
-  public insert( liquidacionG: LiquidacionGlobal ): Observable<any> {
+  // public insert( liquidacionG: LiquidacionGlobal ): Observable<any> {
 
 
-    /************* PROVISORIO  ************/
-    let obj  = {
-        "LiquidacionGlobal": liquidacionG,
-        "GastoLiquidacion": [
-          {
-            "id": 1,
-            "idLiquidacionGlobal": 4,
-            "codConceptoGasto": "FOT",
-            "monto": 1500
-          },
-          {
-            "id": 2,
-            "idLiquidacionGlobal": 4,
-            "codConceptoGasto": "EDE",
-            "monto": 6800
-          }
-        ]
-    }
+  //   this._fxGlobals.showSpinner();
 
-    this._fxGlobals.showSpinner();
-
-    return this._http.post(
-        `${environment.apiUri}/liquidaciongbl/addExpense`,
-        obj
-    )
-    .pipe(
-      finalize(() => this._fxGlobals.hideSpinner())
-    );
-  }
+  //   return this._http.post(
+  //       `${environment.apiUri}/liquidacion-gbl/insert`,
+  //       liquidacionG
+  //   )
+  //   .pipe(
+  //     finalize(() => this._fxGlobals.hideSpinner())
+  //   );
+  // }
 
 }

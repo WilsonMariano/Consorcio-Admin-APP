@@ -9,3 +9,4 @@ export { LiquidacionGlobalService } from './http/liquidacion-global.service';
 
 export { ValidatorsService } from './fxGlobals/validators.service';
 export { FxGlobalsService } from './fxGlobals/fxGlobals.service';
+export { AuthService } from './auth/auth.service';

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from '../class/class.index';
-import { ValidatorsService, UsuarioService } from '../services/service.index';
+import { ValidatorsService, UsuarioService, AuthService } from '../services/service.index';
+import { Router } from '@angular/router';
 
 declare var init_plugins: Function;
 
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   public forma: FormGroup;
 
-  constructor( private _validators: ValidatorsService, private _usuario: UsuarioService ) { }
+  constructor( private _validators: ValidatorsService, private _usuario: UsuarioService, private router: Router, private _auth: AuthService ) { }
 
   ngOnInit() {
 
@@ -25,6 +26,8 @@ export class LoginComponent implements OnInit {
       'email':    new FormControl( '', [ Validators.required, this._validators.emailValidator] ),
       'password': new FormControl( '', Validators.required )
     });
+
+    console.log(this._auth.isLogued());
   }
 
 
@@ -36,7 +39,12 @@ export class LoginComponent implements OnInit {
     usuario.setPassword(this.forma.get('password').value);
 
     this._usuario.login(usuario).subscribe(
-      data => console.log(data)
+
+      token => {
+        
+        localStorage.setItem("token", token);
+        this.router.navigate(['/dashboard']);
+      }
     )
   }
 

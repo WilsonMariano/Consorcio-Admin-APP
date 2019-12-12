@@ -24,28 +24,61 @@ export class LoginComponent implements OnInit {
 
     this.forma = new FormGroup({
       'email':    new FormControl( '', [ Validators.required, this._validators.emailValidator] ),
-      'password': new FormControl( '', Validators.required )
+      'password': new FormControl( '1234', Validators.required ),
+      'recordarme': new FormControl( false )
     });
 
-    console.log(this._auth.isLogued());
+    this.loadUserData();
+  }
+
+  public getField(field: string) {
+
+    return this.forma.get(field).value;
   }
 
 
 
-  public onSubmit() {
+  public onSubmit() :void {
+
+    if(this.getField('recordarme'))
+      this.saveUserData();
+
+    else
+      this.clearUserData();
 
     let usuario = new Usuario();
-    usuario.setEmail(this.forma.get('email').value);
-    usuario.setPassword(this.forma.get('password').value);
+    usuario.setEmail(this.getField('email'));
+    usuario.setPassword(this.getField('password'));
 
     this._usuario.login(usuario).subscribe(
 
       token => {
-        
+
         localStorage.setItem("token", token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home/dashboard']);
       }
     )
+  }
+
+  private loadUserData(): void {
+
+    let email = localStorage.getItem('email');
+
+    if(email != null) {
+
+      this.forma.get('email').setValue(email);
+      this.forma.get('recordarme').setValue(true);
+    }
+  }
+
+  private saveUserData(): void {
+
+    localStorage.setItem("email", this.getField('email'));
+  }
+
+  private clearUserData(): void  {
+
+    localStorage.removeItem('email');
   }
 
 }

@@ -44,7 +44,7 @@
                 <!-- ============================================================== -->
                 <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                     <form class="app-search">
-                        <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                        <input type="text" class="form-control" placeholder="Ingrese un término y presione enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
                 </li>
 
 
@@ -52,23 +52,23 @@
                 <!-- Profile -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/user.png" alt="user" class="profile-pic" /></a>
                     <div class="dropdown-menu dropdown-menu-right animated fadeIn">
                         <ul class="dropdown-user">
                             <li>
                                 <div class="dw-user-box">
-                                    <div class="u-img"><img src="assets/images/users/1.jpg" alt="user"></div>
+                                    <div class="u-img"><img src="assets/images/user.png" alt="user"></div>
                                     <div class="u-text">
-                                        <h4>Steave Jobs</h4>
-                                        <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">Ver Perfil</a></div>
+                                        <h4>{{_auth.getData().nombre + " " + _auth.getData().apellido}}</h4>
+                                        <p class="text-muted">{{_auth.getData().email}}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">Ver Perfil</a></div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-user"></i> Mi Perfil</a></li>
+                            <li><a><i class="ti-user"></i> Mi Perfil</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a routerLinkActive="active" routerLink="/account-settings"><i class="ti-settings"></i> Configurar cuenta</a></li>
+                            <li><a routerLinkActive="active" routerLink="/home/account-settings"><i class="ti-settings"></i> Configurar cuenta</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Salir</a></li>
+                            <li><a (click)="logOut()"><i class="fa fa-power-off"></i> Salir</a></li>
                         </ul>
                     </div>
                 </li>

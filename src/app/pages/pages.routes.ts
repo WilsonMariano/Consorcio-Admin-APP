@@ -1,5 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuardService as AuthGuard } from '../services/service.index';
+
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
@@ -25,27 +27,27 @@ import { NotasCreditoDebitoComponent } from './notas-credito-debito/notas-credit
 
 const pagesRoutes: Routes = [
     {
-        path: '',
+        path: 'home',
         component: PagesComponent,
         children: [
-            { path: 'dashboard',                    component: DashboardComponent,                      data: { titulo: 'Dashboard' }        },
-            { path: 'grilla-adherentes',            component: GrillaAdherentesComponent,               data: { titulo: 'Grilla de adherentes' } },
-            { path: 'grilla-uf',                    component: GrillaUFComponent,                       data: { titulo: 'Grilla de UF' } },
-            { path: 'grilla-expensas',              component: GrillaLiquidacionesGlobalesComponent,    data: { titulo: 'Grilla de liquidaciones' } },
-            { path: 'grilla-conceptos-gastos',      component: GrillaConceptosGastosComponent,          data: { titulo: 'Grilla de conceptos' } },
-            { path: 'grilla-ctas-ctes',             component: GrillaCtasCtesComponent,                 data: { titulo: 'Grilla de ctas. ctes.' } },
-            { path: 'notas-credito-debito/:id',     component: NotasCreditoDebitoComponent,             data: { titulo: 'Nota de crédito / débito' } },
-            { path: 'grilla-gastos-liquidacion/:id',component: GrillaGastosLiquidacionComponent,        data: { titulo: 'Grilla de gastos liquidaciones' } },
-            { path: 'cta-cte/:id',                  component: GrillaCtaCteComponent,                   data: { titulo: 'Cuenta corriente UF' } },
-            { path: 'datos-adherente/:id',          component: DatosAdherenteComponent,                 data: { titulo: 'Datos del adherente' } },
-            { path: 'datos-uf/:id',                 component: DatosUFComponent,                        data: { titulo: 'Datos de la UF' } },
-            { path: 'datos-conceptos-gastos/:id',   component: DatosConceptosGastosComponent,           data: { titulo: 'Conceptos de Gastos' } },
-            { path: 'datos-expensa/:id',            component: DatosLiquidacionesGlobalesComponent,     data: { titulo: 'Datos de la liquidación' } },
-            { path: 'gastos-expensa/:id',           component: DatosGastosExpensaComponent,             data: { titulo: 'Carga de gastos' } },
-            { path: 'gastos-expensa-csv/:id',       component: DatosGastosExpensasCsvComponent,         data: { titulo: 'Carga csv de gastos' } },
-            { path: 'nuevo-pago/:id',               component: NuevoPagoComponent,                      data: { titulo: 'Nuevo pago' } },
-            { path: 'account-settings',             component: AccountSettingsComponent,                data: { titulo: 'Ajustes del tema' } },
-            { path: '',                             redirectTo: '/dashboard',                           pathMatch: 'full' }
+            { path: 'dashboard',                    component: DashboardComponent,                      canActivate: [AuthGuard],   data: { titulo: 'Dashboard' }        },
+            { path: 'grilla-adherentes',            component: GrillaAdherentesComponent,               canActivate: [AuthGuard],   data: { titulo: 'Grilla de adherentes' } },
+            { path: 'grilla-uf',                    component: GrillaUFComponent,                       canActivate: [AuthGuard],   data: { titulo: 'Grilla de UF' } },
+            { path: 'grilla-expensas',              component: GrillaLiquidacionesGlobalesComponent,    canActivate: [AuthGuard],   data: { titulo: 'Grilla de liquidaciones' } },
+            { path: 'grilla-conceptos-gastos',      component: GrillaConceptosGastosComponent,          canActivate: [AuthGuard],   data: { titulo: 'Grilla de conceptos' } },
+            { path: 'grilla-ctas-ctes',             component: GrillaCtasCtesComponent,                 canActivate: [AuthGuard],   data: { titulo: 'Grilla de ctas. ctes.' } },
+            { path: 'notas-credito-debito/:id',     component: NotasCreditoDebitoComponent,             canActivate: [AuthGuard],   data: { titulo: 'Nota de crédito / débito' } },
+            { path: 'grilla-gastos-liquidacion/:id',component: GrillaGastosLiquidacionComponent,        canActivate: [AuthGuard],   data: { titulo: 'Grilla de gastos liquidaciones' } },
+            { path: 'cta-cte/:id',                  component: GrillaCtaCteComponent,                   canActivate: [AuthGuard],   data: { titulo: 'Cuenta corriente UF' } },
+            { path: 'datos-adherente/:id',          component: DatosAdherenteComponent,                 canActivate: [AuthGuard],   data: { titulo: 'Datos del adherente' } },
+            { path: 'datos-uf/:id',                 component: DatosUFComponent,                        canActivate: [AuthGuard],   data: { titulo: 'Datos de la UF' } },
+            { path: 'datos-conceptos-gastos/:id',   component: DatosConceptosGastosComponent,           canActivate: [AuthGuard],   data: { titulo: 'Conceptos de Gastos' } },
+            { path: 'datos-expensa/:id',            component: DatosLiquidacionesGlobalesComponent,     canActivate: [AuthGuard],   data: { titulo: 'Datos de la liquidación' } },
+            { path: 'gastos-expensa/:id',           component: DatosGastosExpensaComponent,             canActivate: [AuthGuard],   data: { titulo: 'Carga de gastos' } },
+            { path: 'gastos-expensa-csv/:id',       component: DatosGastosExpensasCsvComponent,         canActivate: [AuthGuard],   data: { titulo: 'Carga csv de gastos' } },
+            { path: 'nuevo-pago/:id',               component: NuevoPagoComponent,                      canActivate: [AuthGuard],   data: { titulo: 'Nuevo pago' } },
+            { path: 'account-settings',             component: AccountSettingsComponent,                canActivate: [AuthGuard],   data: { titulo: 'Ajustes del tema' } },
+            { path: '',                             redirectTo: '/dashboard',                           canActivate: [AuthGuard],   pathMatch: 'full' }
         ]
     }
 ];

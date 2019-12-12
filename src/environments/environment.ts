@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUri: "http://localhost:8080/consorcioAdminAPI/index.php"
-  apiUri: "https://consorcioadminapi.herokuapp.com/index.php"
+  apiUri: "http://localhost:8080/consorcioAdminAPI/index.php"
+  // apiUri: "https://consorcioadminapi.herokuapp.com/index.php"
 };
 
 /*

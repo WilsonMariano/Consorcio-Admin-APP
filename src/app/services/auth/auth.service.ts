@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JwtHelperService, expi } from "@auth0/angular-jwt";
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -37,15 +37,20 @@ import { Router } from '@angular/router';
 
     public isLogued() {
 
-        try {
-    
-         return this.helper.isTokenExpired();
+      try {
+  
+        return !this.helper.isTokenExpired();
 
-        } catch (error) {
+      } catch (error) {
 
-          return false;
-        }
+        return false;
       }
+    }
+
+    public getData() {
+
+      return this.getToken().data;
+    }
 
 
 

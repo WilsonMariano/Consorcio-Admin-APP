@@ -4,7 +4,7 @@
 <section id="wrapper" class="login-register login-sidebar" style="background-image:url(../assets/images/background/login-register.jpg);">
     <div class="login-box card">
         <div class="card-body">
-            <form [formGroup]="forma" class="form-horizontal form-material" id="loginform"  (ngSubmit)="onSubmit()">
+            <form [formGroup]="forma" class="form-horizontal form-material" id="loginform" (ngSubmit)="onSubmit()">
                 <a href="javascript:void(0)" class="text-center db"><img src="../assets/images/logo-icon.png" alt="Home" /><br/><img src="../assets/images/logo-text.png" alt="Home" /></a>
                 <div class="form-group m-t-40">
                     <div class="col-xs-12">
@@ -22,7 +22,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="checkbox checkbox-primary pull-left p-t-0">
-                            <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue">
+                            <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue" formControlName="recordarme">
                             <label for="checkbox-signup"> Recuérdame </label>
                         </div>
                         <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Olvide la contraseña</a> </div>
@@ -32,13 +32,13 @@
                         <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit" [disabled]="forma.invalid">Ingresar</button>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                         <div class="social">
                             <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </form>
             <form class="form-horizontal" id="recoverform" action="index.html">
                 <div class="form-group ">

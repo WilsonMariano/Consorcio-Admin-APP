@@ -22,7 +22,7 @@ export class FxGlobalsService {
 
   public hideSpinner(){
 
-    setTimeout(() => this._spinner.hide(), 500);
+    setTimeout(() => this._spinner.hide(), 1000);
   }
 
 

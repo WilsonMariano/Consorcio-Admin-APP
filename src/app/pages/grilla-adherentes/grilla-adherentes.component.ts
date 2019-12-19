@@ -28,7 +28,7 @@ export class GrillaAdherentesComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'buttons': [
-      { 'url': 'datos-adherente', 'icon': 'mdi mdi-lead-pencil' }
+      { 'url': 'home/datos-adherente', 'icon': 'mdi mdi-lead-pencil' }
     ]
   }
 

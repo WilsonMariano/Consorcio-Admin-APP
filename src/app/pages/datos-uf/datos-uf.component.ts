@@ -94,7 +94,6 @@ export class DatosUFComponent implements OnInit {
     uf.setCoeficiente( this.forma.get( 'coeficiente' ).value );
     uf.setCodAlquila( this.forma.get( 'codAlquila' ).value );
 
-    console.log(uf);
     if( this.neWoperation ) {
 
       // Inserto la UF
@@ -132,7 +131,6 @@ export class DatosUFComponent implements OnInit {
         this.forma.get( 'idAdherente' ).setValue( data.idAdherente );
         this.forma.get( 'nroEdificio' ).setValue( data.nroEdificio );
         this.forma.get( 'idManzana' ).setValue( data.idManzana );
-        console.log(data);
         this.forma.get( 'departamento' ).setValue( data.departamento );
         this.forma.get( 'codSitLegal' ).setValue( data.codSitLegal );
         this.forma.get( 'coeficiente' ).setValue( data.coeficiente );
@@ -158,7 +156,7 @@ export class DatosUFComponent implements OnInit {
       data => this.arrDepartamentos = data);
 
     this._common.getAll('manzanas').subscribe(
-      data => {this.arrManzanas = data; console.log(this.arrManzanas)});
+      data => this.arrManzanas = data);
   }
 
 

@@ -25,7 +25,7 @@ export class GrillaCtasCtesComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'buttons': [
-      { 'url': 'cta-cte', 'icon': 'mdi mdi-arrow-right' }
+      { 'url': 'home/cta-cte', 'icon': 'mdi mdi-arrow-right' }
     ]
   }
   

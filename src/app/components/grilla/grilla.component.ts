@@ -70,6 +70,9 @@ export class GrillaComponent implements OnInit {
     
     this._common.getWithPaged(this.options['entity'], this.rowsWithPage, this.numPage-1, this.filterParams).subscribe(
       data => {
+
+        console.log(data);
+
         this.arrObjects = data.data;
         this.totalResults = data.total_rows;
         this.genControlsPaginate( data.total_pages );
@@ -192,7 +195,7 @@ export class GrillaComponent implements OnInit {
       
       // Operación exitosa
       () => {
-        this._common.deleteEntity(id, 'gastos-liq').subscribe(
+        this._common.deleteEntity(id, this.options['entity']).subscribe(
 
           data => {
             console.log(data),

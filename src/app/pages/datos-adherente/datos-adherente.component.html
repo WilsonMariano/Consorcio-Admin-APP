@@ -11,12 +11,12 @@
                         <div class="row">
                             <div class="form-group col-md-3 col-sm-12">
                                 <label for="exampleInputEmail1">N° Adh</label>
-                                <input type="number" onlyNumbers class="form-control" placeholder="355" formControlName="id">
+                                <input type="number" onlyNumbers class="form-control" placeholder="355" formControlName="nroAdherente">
                                 <div *ngIf="forma.status == 'PENDING'">
                                     <i class="fa fa-spinner fa-spin"></i><small class="text-muted text-success"> Comprobando</small>
                                 </div>
-                                <span class="form-invalid" *ngIf="forma.controls['id'].errors?.required && forma.get('id').touched">*El campo es requerido</span>
-                                <span class="form-invalid" *ngIf="forma.controls['id'].errors?.existe">*Nº no disponible</span>
+                                <span class="form-invalid" *ngIf="forma.controls['nroAdherente'].errors?.required && forma.get('nroAdherente').touched">*El campo es requerido</span>
+                                <span class="form-invalid" *ngIf="forma.controls['nroAdherente'].errors?.existe">*Nº no disponible</span>
                             </div>
                             <div class="form-group col-md-9 col-sm-12">
                                 <label for="exampleInputPassword1">N° Documento</label>

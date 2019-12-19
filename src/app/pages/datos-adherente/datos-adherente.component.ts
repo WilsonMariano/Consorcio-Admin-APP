@@ -37,7 +37,7 @@ export class DatosAdherenteComponent implements OnInit {
   ngOnInit() {
 
     this.forma = new FormGroup({
-      'id': new FormControl( '', Validators.required, this._validators.asyncExistsEntity('adherentes').bind(this) ),
+      'nroAdherente': new FormControl( '', Validators.required, this._validators.asyncExistsEntity('adherentes').bind(this) ),
       'nroDocumento': new FormControl( '', Validators.required ),
       'apellido': new FormControl( '', Validators.required ),
       'nombre': new FormControl( '', Validators.required ),
@@ -69,7 +69,7 @@ export class DatosAdherenteComponent implements OnInit {
 
     let adherente = new Adherente();
     
-    adherente.setId( this.forma.get( 'id' ).value );
+    adherente.setNroAdherente( this.forma.get( 'nroAdherente' ).value );
     adherente.setNroDocumento( this.forma.get( 'nroDocumento' ).value );
     adherente.setApellido( this.forma.get( 'apellido' ).value );
     adherente.setNombre( this.forma.get( 'nombre' ).value );  
@@ -110,7 +110,7 @@ export class DatosAdherenteComponent implements OnInit {
       data => {
         
         // Seteo el form con el adhrente recibido
-        this.forma.get( 'id' ).setValue( data.id );
+        this.forma.get( 'nroAdherente' ).setValue( data.id );
         this.forma.get( 'nroDocumento' ).setValue( data.nroDocumento );
         this.forma.get( 'apellido' ).setValue( data.apellido );
         this.forma.get( 'nombre' ).setValue( data.nombre );

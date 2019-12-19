@@ -1,55 +1,65 @@
-<div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
-    <div class="card-body">
-        <h4 class="card-title text-muted">Generar nueva</h4>
-        <hr>
-        <div class="r-panel-body">
-            <table class="table">
-                <thead>
-                    <tr class="d-flex">
-                        <th class="col-1">Documento</th>
-                        <th class="col-2">Monto</th>
-                        <th class="col-1">Entidad</th>
-                        <th class="col-3">Número</th>
-                        <th class="col-3">Descripción</th>
-                        <th class="col-2">Vencimiento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="d-flex">
-                        <td class="col-1">
-                            <select class="form-control">
-                                <option value="ND">ND</option>
-                                <option value="NC">NC</option>
-                            </select>
-                        </td>
-                        <td class="col-2 form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon form-control-sm">$</span>
-                                <input type="number" class="form-control form-control-danger" onlyNumbers placeholder="15200.00">
-                            </div>
-                        </td>
-                        <td class="col-1">
-                            <select class="form-control">
-                                <option value="Uf">UF</option>
-                                <option value="Man">Manzana</option>
-                                <option value="Ed">Edificio</option>
-                            </select>
-                        </td>
-                        <td class="col-3">
-                            <input type="text" class="form-control">
-                        </td>
-                        <td class="col-3">
-                            <input type="text" class="form-control" placeholder="Anula diferencia EX 08-2019">
-                        </td>
-                        <td class="col-2">
-                            <input type="date" class="form-control" id="">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-themecolor">Imputar</button>
+<form [formGroup]="forma" (ngSubmit)="onSubmit()">
+    <div class="card" style="border: 1px solid #c5cfd4; border-radius: 2px">
+        <div class="card-body">
+            <h4 class="card-title text-muted">Generar nueva</h4>
+            <hr>
+            <div class="r-panel-body">
+
+                <table class="table">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-1">Documento</th>
+                            <th class="col-2">Monto</th>
+                            <th class="col-2">Entidad</th>
+                            <th class="col-1">Número</th>
+                            <th class="col-1" *ngIf="forma.get('entidad').value != 'TIPO_ENTIDAD_1'">Manzana</th>
+                            <th class="col-3">Descripción</th>
+                            <th class="col-2" *ngIf="forma.get('tipoDocumento').value == 'ND'">Vencimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex">
+                            <td class="col-1">
+                                <select class="form-control" formControlName="tipoDocumento">
+                                    <option value="">Seleccione...</option>
+                                    <option value="ND">ND</option>
+                                    <option value="NC">NC</option>
+                                </select>
+                            </td>
+                            <td class="col-2 form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon form-control-sm">$</span>
+                                    <input type="number" class="form-control form-control-danger" onlyNumbers placeholder="15200.00" formControlName="monto">
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <select class="form-control" formControlName="entidad">
+                                    <option value="">Seleccione...</option>
+                                    <option *ngFor="let e of arrEntidades" [value]="e.codigo">{{e.valor}}</option>
+                                </select>
+                            </td>
+                            <td class="col-1">
+                                <input type="number" onlyNumbers class="form-control" formControlName="numero" placeholder="Ej.: 17">
+                            </td>
+                            <td class="col-1">
+                                <select class="form-control" formControlName="nroManzana" *ngIf="forma.get('entidad').value != 'TIPO_ENTIDAD_1'">
+                                    <option value="">Seleccione...</option>
+                                    <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.nroManzana}}</option>
+                                </select>
+                            </td>
+                            <td class="col-3">
+                                <input type="text" class="form-control" placeholder="Anula diferencia EX 08-2019" formControlName="descripcion">
+                            </td>
+                            <td class="col-2" *ngIf="forma.get('tipoDocumento').value == 'ND'">
+                                <input type="date" class="form-control" formControlName="vencimiento">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-themecolor">Imputar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

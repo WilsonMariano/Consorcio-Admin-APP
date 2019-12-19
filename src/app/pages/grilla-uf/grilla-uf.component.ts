@@ -13,14 +13,14 @@ export class GrillaUFComponent implements OnInit {
 
 
   private arrAttr = [
-    { 'attr': 'id',           'type': 'Number' },
-    { 'attr': 'idManzana',    'type': 'Number' },
-    { 'attr': 'idAdherente',  'type': 'Number' },
-    { 'attr': 'nroEdificio',  'type': 'Number' },
-    { 'attr': 'departamento', 'type': 'String' },
-    { 'attr': 'codSitLegal',  'type': 'String' },
-    { 'attr': 'coeficiente',  'type': 'Number' },
-    { 'attr': 'codAlquila',   'type': 'String' }
+    { 'attr': 'id',               'type': 'Number' },
+    { 'attr': 'nroManzana',       'type': 'Number' },
+    { 'attr': 'nroAdherente',     'type': 'Number' },
+    { 'attr': 'nroEdificio',      'type': 'Number' },
+    { 'attr': 'codDepartamento',  'type': 'String' },
+    { 'attr': 'codSitLegal',      'type': 'String' },
+    { 'attr': 'coeficiente',      'type': 'Number' },
+    { 'attr': 'codAlquila',       'type': 'String' }
   ];
 
 
@@ -29,7 +29,7 @@ export class GrillaUFComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'buttons': [
-      { 'url': 'datos-uf', 'icon': 'mdi mdi-lead-pencil' }
+      { 'url': 'home/datos-uf', 'icon': 'mdi mdi-lead-pencil' }
     ]
   }
 

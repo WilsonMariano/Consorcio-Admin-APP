@@ -45,7 +45,7 @@
                                     <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
                                         <div class="form-check form-check-inline" *ngFor="let control of getFormGroup(i).controls['TIPO_ENTIDAD_1'].controls ; let j = index">
                                             <input class="form-check-input" type="checkbox" [formControl]="control" id="{{i}}inlineCheckbox{{j}}">
-                                            <label class="form-check-label" for="{{i}}inlineCheckbox{{j}}">{{arrManzanas[j].id}}</label>
+                                            <label class="form-check-label" for="{{i}}inlineCheckbox{{j}}">{{arrManzanas[j].nroManzana}}</label>
                                         </div>
                                         <span class="form-invalid" *ngIf="getFormGroup(i).controls['TIPO_ENTIDAD_1'].errors">*Requerido</span>
                                     </ng-container>

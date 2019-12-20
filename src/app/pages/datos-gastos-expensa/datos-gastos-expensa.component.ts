@@ -339,6 +339,9 @@ export class DatosGastosExpensaComponent implements OnInit {
         // Acá ya tengo conformado el arreglo de gastos con sus respectivas relaciones, realizo el insert
 
         /*************************************** INSERT **********************************************/
+
+        console.log(arrGastos);
+
         this._common.insertEntity(arrGastos, 'gastos-liq').subscribe(
     
           // Operación exitosa. Operación truncada la manejo en el interceptor.class

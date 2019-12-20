@@ -13,3 +13,4 @@ export { Recibo } from './entities/recibo.class';
 export { RelacionGasto } from './entities/relacion-gasto.class';    
 export { Diccionario } from './entities/diccionario.class';    
 export { ConceptoGasto } from './entities/concepto-gasto.class';    
+export { Nota } from './entities/nota.class';    

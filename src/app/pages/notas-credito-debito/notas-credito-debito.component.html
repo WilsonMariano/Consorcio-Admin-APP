@@ -12,52 +12,59 @@
                             <th class="col-2">Monto</th>
                             <th class="col-2">Entidad</th>
                             <th class="col-1">Número</th>
-                            <th class="col-1" *ngIf="forma.get('entidad').value != 'TIPO_ENTIDAD_1'">Manzana</th>
+                            <th class="col-1">Manzana</th>
                             <th class="col-3">Descripción</th>
-                            <th class="col-2" *ngIf="forma.get('tipoDocumento').value == 'ND'">Vencimiento</th>
+                            <th class="col-2">Vencimiento</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="d-flex">
                             <td class="col-1">
-                                <select class="form-control" formControlName="tipoDocumento">
+                                <select class="form-control" formControlName="tipoDocumento" (change)="onChangeDocumento()">
                                     <option value="">Seleccione...</option>
                                     <option value="ND">ND</option>
                                     <option value="NC">NC</option>
                                 </select>
+                                <span class="form-invalid" *ngIf="forma.controls['tipoDocumento'].errors?.required && forma.controls['tipoDocumento'].touched">*Requerido</span>
                             </td>
                             <td class="col-2 form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon form-control-sm">$</span>
                                     <input type="number" class="form-control form-control-danger" onlyNumbers placeholder="15200.00" formControlName="monto">
                                 </div>
+                                <span class="form-invalid" *ngIf="forma.controls['monto'].errors?.required && forma.controls['monto'].touched">*Requerido</span>
                             </td>
                             <td class="col-2">
-                                <select class="form-control" formControlName="entidad">
+                                <select class="form-control" formControlName="entidad" (change)="onChangeEntidad()">
                                     <option value="">Seleccione...</option>
                                     <option *ngFor="let e of arrEntidades" [value]="e.codigo">{{e.valor}}</option>
                                 </select>
+                                <span class="form-invalid" *ngIf="forma.controls['entidad'].errors?.required && forma.controls['entidad'].touched">*Requerido</span>
                             </td>
                             <td class="col-1">
                                 <input type="number" onlyNumbers class="form-control" formControlName="numero" placeholder="Ej.: 17">
+                                <span class="form-invalid" *ngIf="forma.controls['numero'].errors?.required && forma.controls['numero'].touched">*Requerido</span>
                             </td>
                             <td class="col-1">
-                                <select class="form-control" formControlName="nroManzana" *ngIf="forma.get('entidad').value != 'TIPO_ENTIDAD_1'">
+                                <select class="form-control" formControlName="idManzana">
                                     <option value="">Seleccione...</option>
                                     <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.nroManzana}}</option>
                                 </select>
+                                <span class="form-invalid" *ngIf="forma.controls['idManzana'].errors?.required && forma.controls['idManzana'].touched">*Requerido</span>
                             </td>
                             <td class="col-3">
                                 <input type="text" class="form-control" placeholder="Anula diferencia EX 08-2019" formControlName="descripcion">
+                                <span class="form-invalid" *ngIf="forma.controls['descripcion'].errors?.required && forma.controls['descripcion'].touched">*Requerido</span>
                             </td>
-                            <td class="col-2" *ngIf="forma.get('tipoDocumento').value == 'ND'">
+                            <td class="col-2">
                                 <input type="date" class="form-control" formControlName="vencimiento">
+                                <span class="form-invalid" *ngIf="forma.controls['vencimiento'].errors?.required && forma.controls['vencimiento'].touched">*Requerido</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-themecolor">Imputar</button>
+                    <button type="submit" class="btn btn-themecolor" [disabled]="forma.invalid">Imputar</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 export class Manzana {
     
     private id: Number;
+    private nroManzana: Number;
     private mtsCuadrados: Number;
     private tipoVivienda: String;
     private nombreConsorcio: String;
@@ -10,9 +11,10 @@ export class Manzana {
 
     // CONSTRUCTOR
 
-    public Manzana(id?: Number, mtsCuadrados?: Number, tipoVivienda?: String, nombreConsorcio?: String) {
+    public Manzana(id?: Number, nroManzana?: Number, mtsCuadrados?: Number, tipoVivienda?: String, nombreConsorcio?: String) {
 
         this.id = id;
+        this.nroManzana = nroManzana;
         this.mtsCuadrados = mtsCuadrados;
         this.tipoVivienda = tipoVivienda;
         this.nombreConsorcio = nombreConsorcio;
@@ -24,6 +26,11 @@ export class Manzana {
     public getId() : Number {
         
         return this.id;
+    }
+
+    public getNroManzana() : Number {
+        
+        return this.nroManzana;
     }
 
     public getMtsCuadrados() : Number {
@@ -48,6 +55,11 @@ export class Manzana {
     public setId( id: Number ) {
         
         this.id = id;
+    }
+
+    public setNroManzana( nroManzana: Number ) {
+        
+        this.nroManzana = nroManzana;
     }
 
     public setMtsCuadrados( mtsCuadrados: Number ) {

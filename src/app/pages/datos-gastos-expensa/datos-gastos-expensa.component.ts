@@ -136,9 +136,9 @@ export class DatosGastosExpensaComponent implements OnInit {
   public onChangeEntidad( index ) : void {
 
     // Elimino el control en caso de que existiera
-    this.getFormGroup(index).removeControl('manzanas');
-    this.getFormGroup(index).removeControl('edificio');
-    this.getFormGroup(index).removeControl('uf');
+    this.arrEntidades.forEach(element => {
+      this.getFormGroup(index).removeControl(element.codigo);
+    })
 
 
     // Agrego los controles correspondientes en base a la entidad elegida
@@ -364,5 +364,9 @@ export class DatosGastosExpensaComponent implements OnInit {
       () => {}
     );
   }
-  
+ 
+  test() {
+
+    console.log(this.formBuilder);
+  }
 }

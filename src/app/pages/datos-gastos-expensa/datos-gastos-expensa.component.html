@@ -12,7 +12,8 @@
                             <th class="col-2">Concepto</th>
                             <th class="col-2">Monto</th>
                             <th class="col-1">Entidad</th>
-                            <th class="col-3">Número</th>
+                            <th class="col-2">Número</th>
+                            <th class="col-1">Manzana</th>
                             <th class="col-2">Descripción</th>
                             <th class="col-1"></th>
                         </tr>
@@ -41,7 +42,7 @@
                                         </select>
                                     <span class="form-invalid" *ngIf="getFormGroup(i).controls['entidad'].errors?.required && getFormGroup(i).controls['entidad'].touched">*Requerido</span>
                                 </td>
-                                <td class="col-3 form-group" [ngSwitch]="forma.get('entidad').value">
+                                <td class="col-2 form-group" [ngSwitch]="forma.get('entidad').value">
                                     <ng-container *ngSwitchCase="'TIPO_ENTIDAD_1'">
                                         <div class="form-check form-check-inline" *ngFor="let control of getFormGroup(i).controls['TIPO_ENTIDAD_1'].controls ; let j = index">
                                             <input class="form-check-input" type="checkbox" [formControl]="control" id="{{i}}inlineCheckbox{{j}}">
@@ -61,10 +62,17 @@
                                         <input type="text" class="form-control form-control-sm disabled" placeholder="(vacío)" disabled>
                                     </ng-container>
                                 </td>
+                                <td classs="col-1">
+                                    <select class="form-control form-control-sm" formControlName="manzana">
+                                        <option value="">Seleccionar...</option>
+                                        <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.nroManzana}}</option>
+                                    </select>
+                                    <span class="form-invalid" *ngIf="getFormGroup(i).controls['manzana'].errors?.required && getFormGroup(i).controls['manzana'].touched">*Requerido</span>
+                                </td>
                                 <td class="col-2 form-group">
                                     <textarea class="form-control form-control-sm" id="descripcion" placeholder="Ingrese una descripción..." id="descripcion" formControlName='descripcion'></textarea>
                                 </td>
-                                <td class="col-1">
+                                <td class="col-1 text-center">
                                     <button type="button" class="btn btn-themecolor btn-sm" [disabled]="!getForma.valid" (click)="addRow()" *ngIf="i == lengthForms-1" id="add"><i class="fa fa-plus"></i></button>
                                     <span class="close" (click)="deleteRow(i)" *ngIf="lengthForms != 1">&times;</span>
                                 </td>

@@ -4,15 +4,17 @@ export class RelacionGasto {
     private idGastosLiquidaciones: Number;
     private entidad: String;    
     private numero: Number;
+    private idManzana: Number;
     
     // CONSTRUCTOR
 
-    public RelacionGasto(id?: Number, idGastosLiquidaciones?: Number, entidad?: String, numero?: Number) {
+    public RelacionGasto(id?: Number, idGastosLiquidaciones?: Number, entidad?: String, numero?: Number, idManzana?: Number) {
 
         this.id = id;
         this.idGastosLiquidaciones = idGastosLiquidaciones;
         this.entidad = entidad;
         this.numero = numero;
+        this.idManzana = idManzana;
 
     }
 
@@ -39,6 +41,10 @@ export class RelacionGasto {
         return this.numero;
     }
 
+    public getIdManzana() : Number {
+        
+        return this.idManzana;
+    }
 
     // SETTERS
 
@@ -52,7 +58,7 @@ export class RelacionGasto {
         this.idGastosLiquidaciones = idGastosLiquidaciones;
     }
 
-    set setEntidad ( entidad: String ) {
+    public setEntidad ( entidad: String ) {
         
         this.entidad = entidad;
     }
@@ -61,6 +67,11 @@ export class RelacionGasto {
     public setNumero( numero: Number ) {
         
         this.numero = numero;
+    }
+
+    public setIdManzana( idManzana: Number ) {
+        
+        this.idManzana = idManzana;
     }
 
     

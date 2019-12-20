@@ -108,7 +108,6 @@ export class DatosAdherenteComponent implements OnInit {
    
     this._common.getOne( 'adherentes', id ).subscribe(
       data => {
-        
         // Seteo el form con el adhrente recibido
         this.forma.get( 'nroAdherente' ).setValue( data.id );
         this.forma.get( 'nroDocumento' ).setValue( data.nroDocumento );

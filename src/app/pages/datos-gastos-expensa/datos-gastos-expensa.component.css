@@ -1,4 +1,4 @@
-[class*=col]{
+[class*=col] {
     padding-left: 10px !important;
     padding-right: 10px !important;
 }
@@ -57,7 +57,10 @@ button#add {
     font-size: 0.8rem;
 }
 
-
 tbody tr {
     border-top: 1px solid #e0e0e0;
+}
+
+input[type=number] {
+    padding-right: 8px;
 }

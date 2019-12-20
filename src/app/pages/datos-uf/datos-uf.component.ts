@@ -96,6 +96,8 @@ export class DatosUFComponent implements OnInit {
 
     if( this.neWoperation ) {
 
+      console.log(uf);
+
       // Inserto la UF
       this._common.insertEntity( uf, 'uf' ).subscribe(
         data => {

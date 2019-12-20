@@ -149,11 +149,14 @@ export class DatosGastosExpensaComponent implements OnInit {
     switch(codEntidad) {
 
       case 'TIPO_ENTIDAD_1':
-          this.getFormGroup(index).addControl(codEntidad, this.addManzanasControls());        
+          this.getFormGroup(index).addControl(codEntidad, this.addManzanasControls());     
+          this.getFormGroup(index).get('manzana').disable();   
+
         break;
 
       default:
         this.getFormGroup(index).addControl(codEntidad, new FormControl('', Validators.required));
+        this.getFormGroup(index).get('manzana').enable();   
         break;
     }
   }
@@ -218,7 +221,8 @@ export class DatosGastosExpensaComponent implements OnInit {
         concepto: ['', Validators.required],
         monto: ['', Validators.required],
         descripcion: [''],
-        entidad: ['', Validators.required]
+        entidad: ['', Validators.required],
+        manzana: ['', Validators.required]
     }));   
   }
 
@@ -310,8 +314,8 @@ export class DatosGastosExpensaComponent implements OnInit {
                 let relacion = new RelacionGasto();
       
                 // Seteo los atributos de la relación con los de la forma
-                relacion.setEntidad = codEntidad;
-                relacion.setNumero = this.arrManzanas[i].id;
+                relacion.setEntidad(codEntidad);
+                relacion.setNumero(this.arrManzanas[i].id);
       
                 // Inserto el objeto en el arreglo de relaciones
                 gasto.getRelacionesGastos.push(relacion);
@@ -325,8 +329,11 @@ export class DatosGastosExpensaComponent implements OnInit {
             let relacion = new RelacionGasto();
 
             // Seteo los atributos con los datos de la forma
-            relacion.setEntidad = codEntidad;
-            relacion.setNumero = relaciones;
+            relacion.setEntidad(codEntidad);
+            relacion.setNumero(relaciones);
+
+            // Si el tipo de entidad no es manzana, agrego el id de la manzana
+            relacion.setIdManzana(this.getFormGroup(i).get('manzana').value);
     
             // Inserto el objeto en el arreglo de relaciones
             gasto.getRelacionesGastos.push(relacion);
@@ -346,7 +353,6 @@ export class DatosGastosExpensaComponent implements OnInit {
     
           // Operación exitosa. Operación truncada la manejo en el interceptor.class
           () => {
-            console.log("estoy aca")
 
             // Muestro alert de success y redirecciono a la grilla de gastos
             this._fxGlobals.showAlert( 'Operación Exitosa!', 'Los gastos se han insertado con éxito', 'success' );

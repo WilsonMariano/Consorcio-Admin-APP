@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-6">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="r-panel-body">
+
+                    <h4 class="card-title text-muted">Busqueda</h4>
+                    <hr>
+                    <form>
+
+                        <div class="row jumbotron">
+
+                            <div class="col-md-7 col-sm-12 form-group">
+                                <span>N° UF</span>
+                                <input type="number" class="form-control mb-2" id="inlineFormInput" onlyNumbers placeholder="Ingrese unidad funcional" name="ufBuscada" [(ngModel)]="ufBuscada">
+                            </div>
+                            <div class="col-md-3 col-sm-12 form-group">
+                                <span>N° Manzana</span>
+                                <select class="form-control">
+                                            <option value="">Seleccione...</option>
+                                            <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.nroManzana}}</option>
+                                        </select>
+                            </div>
+                            <div class="col-md-1 col-sm-12 form-group">
+                                <span>&nbsp;</span>
+                                <button type="submit" class="btn btn-themecolor mb-2" (click)="searchUF(ufBuscada)"><i
+                                                                                            class="fa fa-search"></i> </button>
+                            </div>
+
+                        </div>
+
+                    </form>
+                    <div class="row" *ngIf="ufBuscada == null">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning alert-dismissible fade show">
+                                <i class="fa fa-exclamation-triangle"></i><small> No se encontraron resultados...</small>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="card-title text-muted mt-5">Resultados</h4>
+                    <hr>
+                    <div class="row" *ngIf="ufBuscada != null">
+                        <div class="col-sm-12">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Apellido</th>
+                                        <th>Nombre</th>
+                                        <th>Nro UF</th>
+                                        <th>Manzana</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Wilson</td>
+                                        <td>Mariano</td>
+                                        <td>10</td>
+                                        <td>140</td>
+                                        <td><i class="mdi mdi-arrow-right"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<app-spinner></app-spinner>

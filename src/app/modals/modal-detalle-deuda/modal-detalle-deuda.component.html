@@ -1,0 +1,38 @@
+<div class="modal" tabindex="-1" role="dialog" id="modalDetalleDeuda">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle de deuda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body text-center" *ngIf="deuda != null">
+
+                <h4>{{deuda.detalle}}</h4>
+                <hr>
+
+                <div class="row mt-3" id="control-pagos">
+                    <div class="col-8">Deuda original</div>
+                    <div class="col-4">{{deuda.montoOriginal}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-8">Intereses</div>
+                    <div class="col-4">{{deuda.montoIntereses}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-8">Pagado</div>
+                    <div class="col-4">{{deuda.montoPagado}}</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-8"><b>Debe</b></div>
+                    <div class="col-4"><b>{{deuda.montoPagar}}</b></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

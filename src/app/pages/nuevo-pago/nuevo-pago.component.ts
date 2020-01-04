@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/service.index';
 import { UnidadFuncional } from '../../class/class.index';
 import { Manzana } from '../../class/class.index';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 declare var $;
 
@@ -37,22 +37,79 @@ export class NuevoPagoComponent implements OnInit {
 
 
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
 
-    this.forma = new FormGroup({
+    this.forma = this.formBuilder.group({
       'checkPago': new FormControl('parcial'),
-      'txtOtroImporte': new FormControl(''),
-      'txtTotalDeuda': new FormControl('')
+      'importePagar': new FormControl(0.00),
+      'deudas': new FormArray([])
     });
 
+    this.buildArrDeudas();
+    console.log(this.forma);
 
   }
 
-  public onChangeCheck(): void {
+  /**
+   * TODO: buscar forma mas eficiente
+   */
+  private buildArrDeudas(): void {
 
-    console.log(this.forma.get('checkPago').value);
+    this.arrDeudas.forEach(e => {
+
+      (<FormArray>this.forma.get('deudas')).push(this.formBuilder.group({
+        'detalle': e.detalle,
+        'vencimiento': e.vencimiento,
+        'montoPagar': e.montoPagar,
+        'montoOriginal': e.montoOriginal,
+        'montoIntereses': e.montoIntereses,
+        'montoPagado': e.montoPagado,
+        'montoImputado': 0,
+        'checked': false
+      }))
+    });
+  }
+
+  public checkTotalDeuda() {
+
+    let res = 0;
+
+    (<Array<FormControl>>this.forma.get('deudas')['controls']).forEach(control => {
+
+      res += Number.parseInt(control.get('montoPagar').value);
+      control.get('checked').setValue(true);
+    });
+
+    this.forma.get('importePagar').setValue(res);
+  }
+
+  public checkOtroImporte() {
+
+    this.forma.get('checkPago').setValue('parcial');
+
+    (<Array<FormControl>>this.forma.get('deudas')['controls']).forEach(control => {
+
+      control.get('checked').setValue(false);
+    });
+
+    this.forma.get('importePagar').setValue(0.00);
+  }
+
+  public checkDeuda(index) {
+
+    this.forma.get('checkPago').setValue('parcial');
+
+    let res = 0;
+
+    (<Array<FormControl>>this.forma.get('deudas')['controls']).forEach(control => {
+
+      if(control.get('checked').value)
+        res += Number.parseInt(control.get('montoPagar').value);
+    });
+
+    this.forma.get('importePagar').setValue(res);
   }
 
 

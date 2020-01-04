@@ -125,7 +125,7 @@ export class DatosUFComponent implements OnInit {
   // Obtengo una UF por ID
   public getUF( id: String ) { 
     
-    this._common.getOne( 'uf', id ).subscribe(
+    this._common.getOne( 'vwUf', id ).subscribe(
       data => {
         
         // Seteo el form con el adhrente recibido

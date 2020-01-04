@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-8">
+    <div class="col-10">
 
         <div class="card">
             <div class="card-body">
@@ -9,23 +9,32 @@
                     <hr>
 
                     <form [formGroup]="forma">
+                        <div class="row">
+                            <div class="col-md-4 offset-md-4 text-center">
+                                <input class="form-control form-control-sm amount" formControlName="importePagar">
+                            </div>
+                        </div>
                         <div class="jumbotron" id="control-pagos">
                             <div class="row">
-
-                                <div class="col-2">
-                                    <input name="checkPago" type="radio" value="parcial" id="parcial" class="with-gap radio-col-red" formControlName="checkPago" (change)="onChangeCheck()" />
-                                    <label for="parcial">Otro importe</label>
-                                </div>
-                                <div class="col-2">
-                                    <input class="form-control form-control-sm amount" formControlName="txtOtroImporte">
-                                </div>
-                                <div class="col-2">
-                                    <input name="checkPago" type="radio" value="total" id="total" class="with-gap radio-col-red" formControlName="checkPago" (change)="onChangeCheck()" />
+                                <div class="col-3">
+                                    <input name="checkPago" type="radio" value="total" id="total"
+                                        class="with-gap radio-col-red" formControlName="checkPago"
+                                        (change)="checkTotalDeuda()" />
                                     <label for="total">Total deuda</label>
                                 </div>
-                                <div class="col-2">
+                                <!-- <div class="col-2">
                                     <input class="form-control form-control-sm amount" formControlName="txtTotalDeuda">
+                                </div> -->
+
+                                <div class="col-3">
+                                    <input name="checkPago" type="radio" value="parcial" id="parcial"
+                                        class="with-gap radio-col-red" formControlName="checkPago"
+                                        (change)="checkOtroImporte()" />
+                                    <label for="parcial">Otro importe</label>
                                 </div>
+                                <!-- <div class="col-2">
+                                    <input class="form-control form-control-sm amount" formControlName="importePagar" (focus)="checkOtroImporte()">
+                                </div> -->
                                 <div class="col-2">
                                     <button class="btn btn-default btn-sm btn-block">Cancelar</button>
                                 </div>
@@ -35,25 +44,32 @@
                             </div>
 
                         </div>
+
+
+                        <table class="table">
+                            <tbody>
+                                <tr *ngFor="let ctrl of forma.controls.deudas.controls; let i = index">
+                                    <ng-container [formGroup]="ctrl">
+                                        <td>
+                                            <input type="checkbox" [id]="'check' + i" class="filled-in chk-col-red"
+                                                formControlName="checked" (change)="checkDeuda(i)"/>
+                                            <label [for]="'check' + i"></label>
+                                        </td>
+                                        <td>
+                                            <span>{{ctrl.get('detalle').value}}</span>
+                                            <span><small>Vencimiento: {{ctrl.get('vencimiento').value}}</small></span>
+                                            <span><small><a href="#" data-toggle="modal"
+                                                        data-target="#modalDetalleDeuda"
+                                                        (click)="detalleDeuda = arrDeudas[i]">Ver
+                                                        detalle</a></small></span>
+
+                                        </td>
+                                        <td>$ {{ctrl.get('montoPagar').value}}</td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
                     </form>
-
-                    <table class="table">
-                        <tbody>
-                            <tr *ngFor="let d of arrDeudas; let i = index">
-                                <td>
-                                    <input type="checkbox" [id]="'check' + i" class="filled-in chk-col-red" />
-                                    <label [for]="'check' + i"></label>
-                                </td>
-                                <td>
-                                    <span>{{d.detalle}}</span>
-                                    <span><small>Vencimiento: {{d.vencimiento}}</small></span>
-                                    <span><small><a href="#" data-toggle="modal" data-target="#modalDetalleDeuda" (click)="detalleDeuda = d">Ver detalle</a></small></span>
-
-                                </td>
-                                <td>$ {{d.montoPagar}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

@@ -58,7 +58,7 @@ export class NotasCreditoDebitoComponent implements OnInit {
         nota.setDescripcion(this.forma.get('descripcion').value);
       
 
-        if(nota.getDescripcion() === EnumTipoDocumento.ND.toString())
+        if(nota.getTipoDocumento() === EnumTipoDocumento.ND.toString())
           nota.setVencimiento(this.forma.get('vencimiento').value);
 
         if(nota.getCodEntidad() !== "TIPO_ENTIDAD_1")

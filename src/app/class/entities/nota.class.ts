@@ -38,6 +38,6 @@ export class Nota {
 
 export enum EnumTipoDocumento {
 
-    'ND',
-    'NC'
+    'ND' = 'ND',
+    'NC' = 'NC'
 }

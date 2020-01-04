@@ -22,6 +22,7 @@ import { DatosGastosExpensaComponent } from './datos-gastos-expensa/datos-gastos
 import { DatosGastosExpensasCsvComponent } from './datos-gastos-expensas-csv/datos-gastos-expensas-csv.component';
 import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 import { NotasCreditoDebitoComponent } from './notas-credito-debito/notas-credito-debito.component';
+import { BuscarUfPagoComponent } from './buscar-uf-pago/buscar-uf-pago.component';
 
 
 
@@ -45,6 +46,7 @@ const pagesRoutes: Routes = [
             { path: 'datos-expensa/:id',            component: DatosLiquidacionesGlobalesComponent,     canActivate: [AuthGuard],   data: { titulo: 'Datos de la liquidación' } },
             { path: 'gastos-expensa/:id',           component: DatosGastosExpensaComponent,             canActivate: [AuthGuard],   data: { titulo: 'Carga de gastos' } },
             { path: 'gastos-expensa-csv/:id',       component: DatosGastosExpensasCsvComponent,         canActivate: [AuthGuard],   data: { titulo: 'Carga csv de gastos' } },
+            { path: 'nuevo-pago/buscarUf',          component: BuscarUfPagoComponent,                 canActivate: [AuthGuard],   data: { titulo: 'Buscar UF' } },
             { path: 'nuevo-pago/:id',               component: NuevoPagoComponent,                      canActivate: [AuthGuard],   data: { titulo: 'Nuevo pago' } },
             { path: 'account-settings',             component: AccountSettingsComponent,                canActivate: [AuthGuard],   data: { titulo: 'Ajustes del tema' } },
             { path: '',                             redirectTo: '/dashboard',                           canActivate: [AuthGuard],   pathMatch: 'full' }

@@ -35,10 +35,13 @@ import { DatosAdherenteComponent } from './datos-adherente/datos-adherente.compo
 import { DatosConceptosGastosComponent } from './datos-conceptos-gastos/datos-conceptos-gastos.component';
 import { DatosUFComponent } from './datos-uf/datos-uf.component';
 import { DatosGastosExpensaComponent } from './datos-gastos-expensa/datos-gastos-expensa.component';
-import { ModalConceptosComponent } from '../modals/modal-conceptos/modal-conceptos.component';
 import { DatosGastosExpensasCsvComponent } from './datos-gastos-expensas-csv/datos-gastos-expensas-csv.component';
 import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 import { NotasCreditoDebitoComponent } from './notas-credito-debito/notas-credito-debito.component';
+import { BuscarUfPagoComponent } from './buscar-uf-pago/buscar-uf-pago.component';
+
+import { ModalConceptosComponent } from '../modals/modal-conceptos/modal-conceptos.component';
+import { ModalDetalleDeudaComponent } from '../modals/modal-detalle-deuda/modal-detalle-deuda.component';
 
 
 
@@ -62,9 +65,11 @@ import { NotasCreditoDebitoComponent } from './notas-credito-debito/notas-credit
         AccountSettingsComponent,
         OnlyNumbersDirective,
         ModalConceptosComponent,
+        ModalDetalleDeudaComponent,
         DatosGastosExpensasCsvComponent,
         NuevoPagoComponent,
-        NotasCreditoDebitoComponent
+        NotasCreditoDebitoComponent,
+        BuscarUfPagoComponent
     ],
     exports: [
         DashboardComponent

@@ -1,12 +1,21 @@
-#account {
-    font-size: 2rem;
+span {
+    display: block;
+}
+
+.amount {
+    font-size: 1rem;
     border-radius: 0;
     border: none;
     border-bottom: 1px solid #b7b7b7;
-    width: 30%;
+    background: none;
     text-align: center;
 }
 
-i.fa {
-    cursor: pointer;
+#control-pagos .col {
+    padding: 0 !important;
+}
+
+.jumbotron {
+    padding: 2rem !important;
+    background: #f4f6f9;
 }

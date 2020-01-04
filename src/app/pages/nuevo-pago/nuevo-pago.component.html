@@ -1,81 +1,63 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-8">
 
         <div class="card">
             <div class="card-body">
                 <div class="r-panel-body">
 
-                    <h4 class="card-title text-muted">Datos de la UF</h4>
+                    <h4 class="card-title text-muted">Deudas</h4>
                     <hr>
-                    <form>
-                        <div class="row" *ngIf="uf == null">
 
-                            <div class="col-md-10 col-sm-10">
-                                <input type="number" class="form-control mb-2" id="inlineFormInput" onlyNumbers placeholder="Ingrese unidad funcional" name="ufBuscada" [(ngModel)]="ufBuscada">
-                            </div>
-                            <div class="col-md-1 col-sm-2">
-                                <button type="submit" class="btn btn-themecolor mb-2" (click)="searchUF(ufBuscada)"><i
-                                                                                    class="fa fa-search"></i> </button>
-                            </div>
+                    <form [formGroup]="forma">
+                        <div class="jumbotron" id="control-pagos">
+                            <div class="row">
 
-
-                        </div>
-                    </form>
-                    <div class="row" *ngIf="uf != null">
-
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body" style="border: 1px dashed #dcdcdc">
-                                    <div class="col"><b>UF: </b> {{uf.getId()}}</div>
-                                    <div class="col"><b>N° Adherente: </b> {{uf.getIdAdherente()}}</div>
-                                    <div class="col"><b>Titular: </b> Mariano Wilson</div>
-                                    <div class="col text-right" *ngIf="uf != null" (click)="uf = null"><i class="fa fa-pencil"></i>
-
-                                    </div>
+                                <div class="col-2">
+                                    <input name="checkPago" type="radio" value="parcial" id="parcial" class="with-gap radio-col-red" formControlName="checkPago" (change)="onChangeCheck()" />
+                                    <label for="parcial">Otro importe</label>
+                                </div>
+                                <div class="col-2">
+                                    <input class="form-control form-control-sm amount" formControlName="txtOtroImporte">
+                                </div>
+                                <div class="col-2">
+                                    <input name="checkPago" type="radio" value="total" id="total" class="with-gap radio-col-red" formControlName="checkPago" (change)="onChangeCheck()" />
+                                    <label for="total">Total deuda</label>
+                                </div>
+                                <div class="col-2">
+                                    <input class="form-control form-control-sm amount" formControlName="txtTotalDeuda">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-default btn-sm btn-block">Cancelar</button>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-themecolor btn-sm btn-block">Pagar</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row" *ngIf="uf != null">
-    <div class="col-6">
-
-        <div class="card">
-            <div class="card-body">
-                <div class="r-panel-body">
-
-                    <h4 class="card-title text-muted" *ngIf="!neWoperation">Pago</h4>
-                    <hr>
-                    <form>
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <label><b>Fecha:</b></label> 28/10/2019
-                            </div>
-
-                            <div class="col-md-12 text-center">
-                                <span style="font-size: 1.5rem"><b>$</b></span><input type="number" onlyNumbers class="form-control mb-5" value="0.00" id="account" name="account" [(ngModel)]="account">
-                                <button type="submit" class="btn btn-themecolor btn-block mt-5" (click)="makePay(account)">Pagar</button>
-                            </div>
 
                         </div>
                     </form>
+
+                    <table class="table">
+                        <tbody>
+                            <tr *ngFor="let d of arrDeudas; let i = index">
+                                <td>
+                                    <input type="checkbox" [id]="'check' + i" class="filled-in chk-col-red" />
+                                    <label [for]="'check' + i"></label>
+                                </td>
+                                <td>
+                                    <span>{{d.detalle}}</span>
+                                    <span><small>Vencimiento: {{d.vencimiento}}</small></span>
+                                    <span><small><a href="#" data-toggle="modal" data-target="#modalDetalleDeuda" (click)="detalleDeuda = d">Ver detalle</a></small></span>
+
+                                </td>
+                                <td>$ {{d.montoPagar}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-
-<app-spinner></app-spinner>
+<app-modal-detalle-deuda [deuda]="detalleDeuda"></app-modal-detalle-deuda>

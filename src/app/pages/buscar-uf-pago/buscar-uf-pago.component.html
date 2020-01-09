@@ -7,31 +7,32 @@
 
                     <h4 class="card-title text-muted">Busqueda</h4>
                     <hr>
-                    <form>
+                    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
 
                         <div class="row jumbotron">
 
                             <div class="col-md-7 col-sm-12 form-group">
                                 <span>N° UF</span>
-                                <input type="number" class="form-control mb-2" id="inlineFormInput" onlyNumbers placeholder="Ingrese unidad funcional" name="ufBuscada" [(ngModel)]="ufBuscada">
+                                <input type="number" class="form-control mb-2" onlyNumbers placeholder="Ingrese unidad funcional" formControlName="nroUF">
+                                <span class="form-invalid" *ngIf="forma.controls['nroUF'].errors?.required && forma.get('nroUF').touched">*Requerido</span>
                             </div>
                             <div class="col-md-3 col-sm-12 form-group">
                                 <span>N° Manzana</span>
-                                <select class="form-control">
-                                            <option value="">Seleccione...</option>
-                                            <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.nroManzana}}</option>
-                                        </select>
+                                <select class="form-control" formControlName="idManzana">
+                                    <option value="">Seleccione...</option>
+                                    <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.nroManzana}}</option>
+                                </select>
+                                <span class="form-invalid" *ngIf="forma.controls['idManzana'].errors?.required && forma.get('idManzana').touched">*Requerido</span>
                             </div>
-                            <div class="col-md-1 col-sm-12 form-group">
-                                <span>&nbsp;</span>
-                                <button type="submit" class="btn btn-themecolor mb-2" (click)="searchUF(ufBuscada)"><i
-                                                                                            class="fa fa-search"></i> </button>
+                            <div class="col-md-2 col-sm-12 form-group">
+                                <!-- <span>Buscar</span> -->
+                                <button type="submit" class="btn btn-themecolor mb-2" id="submit" [disabled]="forma.invalid"><i class="fa fa-search"></i> </button>
                             </div>
 
                         </div>
 
                     </form>
-                    <div class="row" *ngIf="ufBuscada == null">
+                    <div class="row" *ngIf="ufBuscada == ''">
                         <div class="col-md-12">
                             <div class="alert alert-warning alert-dismissible fade show">
                                 <i class="fa fa-exclamation-triangle"></i><small> No se encontraron resultados...</small>
@@ -41,30 +42,33 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="card-title text-muted mt-5">Resultados</h4>
-                    <hr>
-                    <div class="row" *ngIf="ufBuscada != null">
-                        <div class="col-sm-12">
-                            <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Apellido</th>
-                                        <th>Nombre</th>
-                                        <th>Nro UF</th>
-                                        <th>Manzana</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Wilson</td>
-                                        <td>Mariano</td>
-                                        <td>10</td>
-                                        <td>140</td>
-                                        <td><i class="mdi mdi-arrow-right"></i></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                    <div *ngIf="ufBuscada != null && ufBuscada != ''">
+                        <h4 class="card-title text-muted mt-5">Resultados</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Apellido</th>
+                                            <th>Nombre</th>
+                                            <th>Nro UF</th>
+                                            <th>Manzana</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ufBuscada.nombre}}</td>
+                                            <td>{{ufBuscada.apellido}}</td>
+                                            <td>{{ufBuscada.nroUF}}</td>
+                                            <td>{{ufBuscada.nroManzana}}</td>
+                                            <td><a><i class="mdi mdi-arrow-right" routerLink="../{{ufBuscada.id}}"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

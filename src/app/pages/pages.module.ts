@@ -42,6 +42,7 @@ import { BuscarUfPagoComponent } from './buscar-uf-pago/buscar-uf-pago.component
 
 import { ModalConceptosComponent } from '../modals/modal-conceptos/modal-conceptos.component';
 import { ModalDetalleDeudaComponent } from '../modals/modal-detalle-deuda/modal-detalle-deuda.component';
+import { ModalDetallePagoComponent } from '../modals/modal-detalle-pago/modal-detalle-pago.component';
 
 
 
@@ -66,6 +67,7 @@ import { ModalDetalleDeudaComponent } from '../modals/modal-detalle-deuda/modal-
         OnlyNumbersDirective,
         ModalConceptosComponent,
         ModalDetalleDeudaComponent,
+        ModalDetallePagoComponent,
         DatosGastosExpensasCsvComponent,
         NuevoPagoComponent,
         NotasCreditoDebitoComponent,

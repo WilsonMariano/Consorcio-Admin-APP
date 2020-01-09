@@ -1,0 +1,44 @@
+<div class="modal" tabindex="-1" role="dialog" id="modalDetallePago">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resumen de pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="row">
+
+               </div> -->
+                <table class="table" *ngIf="inputArrPagos.length != 0">
+                    <thead>
+                        <tr>
+                            <th>Detalle</th>
+                            <th>Deuda</th>
+                            <th>Cobrado</th>
+                            <th>Restan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of inputArrPagos.arrDeudas">
+                            <td>{{p.detalle}}</td>
+                            <td>{{p.montoPagar}}</td>
+                            <td>{{p.montoAsignado}}</td>
+                            <td [ngClass]="{'text-danger': (p.montoPagar - p.montoAsignado) > 0 }">{{p.montoPagar - p.montoAsignado}}</td>
+                            <!-- <td ngClass="{'text-danger': true}">{{p.montoPagar - p.montoAsignado}}</td> -->
+                        </tr>
+                        <tr>
+                            <th colspan="2" [style.color]="'green'">Total pago</th>
+                            <td colspan="2" [style.color]="'green'">{{inputArrPagos.totalPagar}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Pagar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

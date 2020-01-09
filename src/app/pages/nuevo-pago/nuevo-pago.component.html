@@ -8,18 +8,17 @@
                     <h4 class="card-title text-muted">Deudas</h4>
                     <hr>
 
-                    <form [formGroup]="forma">
-                        <div class="row">
-                            <div class="col-md-4 offset-md-4 text-center">
-                                <input class="form-control form-control-sm amount" formControlName="importePagar">
+                    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+                        <div class="row mb-5 mt-3">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-3 text-center">
+                                <input class="form-control form-control-sm amount" formControlName="importePagar" (focus)="checkOtroImporte()">
                             </div>
                         </div>
                         <div class="jumbotron" id="control-pagos">
                             <div class="row">
                                 <div class="col-3">
-                                    <input name="checkPago" type="radio" value="total" id="total"
-                                        class="with-gap radio-col-red" formControlName="checkPago"
-                                        (change)="checkTotalDeuda()" />
+                                    <input name="checkPago" type="radio" value="total" id="total" class="with-gap radio-col-red" formControlName="checkPago" (change)="checkTotalDeuda()" />
                                     <label for="total">Total deuda</label>
                                 </div>
                                 <!-- <div class="col-2">
@@ -27,19 +26,17 @@
                                 </div> -->
 
                                 <div class="col-3">
-                                    <input name="checkPago" type="radio" value="parcial" id="parcial"
-                                        class="with-gap radio-col-red" formControlName="checkPago"
-                                        (change)="checkOtroImporte()" />
+                                    <input name="checkPago" type="radio" value="parcial" id="parcial" class="with-gap radio-col-red" formControlName="checkPago" (change)="checkOtroImporte()" />
                                     <label for="parcial">Otro importe</label>
                                 </div>
                                 <!-- <div class="col-2">
                                     <input class="form-control form-control-sm amount" formControlName="importePagar" (focus)="checkOtroImporte()">
                                 </div> -->
                                 <div class="col-2">
-                                    <button class="btn btn-default btn-sm btn-block">Cancelar</button>
+                                    <button type="button" class="btn btn-default btn-sm btn-block" (click)="checkOtroImporte()">Cancelar</button>
                                 </div>
                                 <div class="col-2">
-                                    <button type="submit" class="btn btn-themecolor btn-sm btn-block">Pagar</button>
+                                    <button type="submit" class="btn btn-themecolor btn-sm btn-block" [disabled]="forma.get('importePagar').value <= 0">Pagar</button>
                                 </div>
                             </div>
 
@@ -48,11 +45,10 @@
 
                         <table class="table">
                             <tbody>
-                                <tr *ngFor="let ctrl of forma.controls.deudas.controls; let i = index">
+                                <tr *ngFor="let ctrl of getDeudasCtrls(); let i = index">
                                     <ng-container [formGroup]="ctrl">
                                         <td>
-                                            <input type="checkbox" [id]="'check' + i" class="filled-in chk-col-red"
-                                                formControlName="checked" (change)="checkDeuda(i)"/>
+                                            <input type="checkbox" [id]="'check' + i" class="filled-in chk-col-red" formControlName="checked" (change)="checkDeuda()" />
                                             <label [for]="'check' + i"></label>
                                         </td>
                                         <td>
@@ -77,3 +73,4 @@
 </div>
 
 <app-modal-detalle-deuda [deuda]="detalleDeuda"></app-modal-detalle-deuda>
+<app-modal-detalle-pago [inputArrPagos]="inputArrPagos"></app-modal-detalle-pago>

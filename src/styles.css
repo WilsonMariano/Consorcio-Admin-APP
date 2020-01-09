@@ -17,6 +17,10 @@ a {
     font-size: smaller;
 }
 
+.text-danger {
+    color: red;
+}
+
 
 /* Hover de los botones */
 

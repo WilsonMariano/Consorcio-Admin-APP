@@ -29,7 +29,8 @@ export class GrillaUFComponent implements OnInit {
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
     'buttons': [
-      { 'url': 'home/datos-uf', 'icon': 'mdi mdi-lead-pencil' }
+      { 'url': 'home/datos-uf',   'icon': 'mdi mdi-lead-pencil' },
+      { 'url': 'home/nuevo-pago', 'icon': 'mdi mdi-currency-usd' },
     ]
   }
 

@@ -27,7 +27,7 @@ export class NuevoPagoComponent implements OnInit {
       'vencimiento': '30/09/2019',
       'montoPagar': 1000,
       'montoOriginal': 3000,
-      'montoInteres': 500,
+      'montoIntereses': 500,
       'montoPagado': 2500
     },
     {
@@ -36,7 +36,7 @@ export class NuevoPagoComponent implements OnInit {
       'vencimiento': '31/10/2019',
       'montoPagar': 2700,
       'montoOriginal': 2000,
-      'montoInteres': 700,
+      'montoIntereses': 700,
       'montoPagado': 0
     },
     {
@@ -45,7 +45,7 @@ export class NuevoPagoComponent implements OnInit {
       'vencimiento': '30/11/2019',
       'montoPagar': 1000,
       'montoOriginal': 3000,
-      'montoInteres': 500,
+      'montoIntereses': 500,
       'montoPagado': 2500
     },
     {
@@ -54,14 +54,14 @@ export class NuevoPagoComponent implements OnInit {
       'vencimiento': '31/12/2019',
       'montoPagar': 2700,
       'montoOriginal': 2000,
-      'montoInteres': 700,
+      'montoIntereses': 700,
       'montoPagado': 0
     }
   ];
 
 
 
-  constructor(private formBuilder: FormBuilder, private _fx: FxGlobalsService, private _ctasctes: CtasctesService, private activatedRoute: ActivatedRoute) {}
+  constructor(private formBuilder: FormBuilder, public _fx: FxGlobalsService, private _ctasctes: CtasctesService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
 

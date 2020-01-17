@@ -60,6 +60,7 @@ export class DatosLiquidacionesGlobalesComponent implements OnInit {
 
 
       // Genero arreglo de años
+      this.arrAnios.push( moment().year() -1 )
       this.arrAnios.push( moment().year() );
       this.arrAnios.push( moment().year() + 1 );
 
@@ -116,7 +117,7 @@ export class DatosLiquidacionesGlobalesComponent implements OnInit {
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha insertado con éxito', 'success' );
-          this.router.navigate( ['grilla-expensas'] );
+          this.router.navigate( ['home/grilla-expensas'] );
         }
       );
     }
@@ -124,11 +125,11 @@ export class DatosLiquidacionesGlobalesComponent implements OnInit {
 
       // Actualizo la liquidación
       liquidacionGlobal.setId(this.forma.get('id').value);
-      this._common.UpdateOne( 'liquidacionesGlobales', liquidacionGlobal ).subscribe(
+      this._common.updateOne( 'liquidacionesGlobales', liquidacionGlobal ).subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'La expensa se ha actualizado con éxito', 'success' );
-          this.router.navigate( ['grilla-expensas'] );
+          this.router.navigate( ['home/grilla-expensas'] );
         }
       );
     }
@@ -155,14 +156,14 @@ export class DatosLiquidacionesGlobalesComponent implements OnInit {
           }
           else {
   
-            this.router.navigate( ['grilla-expensas'] );
+            this.router.navigate( ['home/grilla-expensas'] );
             this._fxGlobals.showAlert("Atención!", "No se puede editar una liquidación cerrada", "warning"); 
           }
           
          
   
         },
-        err => this.router.navigate( ['grilla-expensas'] )
+        err => this.router.navigate( ['home/grilla-expensas'] )
       );  
     }
   

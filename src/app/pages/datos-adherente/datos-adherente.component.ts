@@ -19,9 +19,11 @@ export class DatosAdherenteComponent implements OnInit {
   /************************************************************************************************
   @newOperation: indica si la operación es alta o edición (true-false)
   @forma: reactive form con los campos de la vista
+  @idAdherenteBuscado: en caso de edición, se guardará el id recibido por parámetro
   ***********************************************************************************************/
   public neWoperation: Boolean = true;
   public forma: FormGroup;
+  public idAdherenteBuscado: Number;
 
   
 
@@ -58,7 +60,7 @@ export class DatosAdherenteComponent implements OnInit {
           this.neWoperation = false;
           
           // Deshabilito el campo id
-          this.forma.get( 'id' ).disable();
+          this.forma.get( 'nroAdherente' ).disable();
         }
       });
   }
@@ -85,17 +87,20 @@ export class DatosAdherenteComponent implements OnInit {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El adherente se ha insertado con éxito', 'success' );
           this.forma.reset();
+          this.router.navigate( ['home/grilla-adherentes'] );
         }
       );
     }
     else {
 
+      adherente.setId(this.idAdherenteBuscado);
+
       // Actualizo el adherente
-      this._common.UpdateOne( 'adherentes', adherente ).subscribe(
+      this._common.updateOne( 'adherentes', adherente ).subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El adherente se ha actualizado con éxito', 'success' );
-          this.router.navigate( ['grilla-adherentes'] );
+          this.router.navigate( ['home/grilla-adherentes'] );
         }
       );
     }
@@ -116,14 +121,12 @@ export class DatosAdherenteComponent implements OnInit {
         this.forma.get( 'telefono' ).setValue( data.telefono );
         this.forma.get( 'email' ).setValue( data.email );
 
+        // Guardo el id del adh recibido
+        this.idAdherenteBuscado = data.id;
+
       },
-      err => this.router.navigate( ['grilla-adherentes'] )
+      err => this.router.navigate( ['home/grilla-adherentes'] )
     );  
   }
-
-
-
-  
-
 
 }

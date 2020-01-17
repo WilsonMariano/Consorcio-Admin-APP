@@ -1,23 +1,25 @@
 export class UnidadFuncional {
     
-	private id : Number ;
+    private id : Number ;
+    private nroUF: Number;
 	private idManzana : Number ;
 	private idAdherente : Number;
 	private nroEdificio : Number;
-	private departamento : String;
+	private codDepartamento : String;
 	private codSitLegal : String;
 	private coeficiente : Number;
 	private codAlquila : String;
 
     // CONSTRUCTOR
 
-    public UnidadFuncional(id?: Number, idManzana?: Number, idAdherente?: Number, nroEdificio?: Number, departamento?: String, codSitLegal?: String, coeficiente?: Number,codAlquila? : String) {
+    public UnidadFuncional(id?: Number, nroUF?: Number, idManzana?: Number, idAdherente?: Number, nroEdificio?: Number, codDepartamento?: String, codSitLegal?: String, coeficiente?: Number,codAlquila? : String) {
 
         this.id = id;
+        this.nroUF = nroUF;
         this.idManzana = idManzana;
         this.idAdherente = idAdherente;
         this.nroEdificio = nroEdificio;
-        this.departamento = departamento;
+        this.codDepartamento = codDepartamento;
         this.codSitLegal = codSitLegal;
         this.coeficiente = coeficiente;
         this.codAlquila = codAlquila;
@@ -28,6 +30,11 @@ export class UnidadFuncional {
     public getId() : Number {
         
         return this.id;
+    }
+
+    public getNroUF() : Number {
+        
+        return this.nroUF;
     }
 
     public getIdManzana() : Number {
@@ -45,9 +52,9 @@ export class UnidadFuncional {
         return this.nroEdificio;
     }
 
-    public getDepartamento () : String {
+    public getCodDepartamento () : String {
         
-        return this.departamento;
+        return this.codDepartamento;
     }
     
     public getCodSitLegal () : String {
@@ -72,6 +79,11 @@ export class UnidadFuncional {
         this.id = id;
     }
 
+    public setNroUF( nroUF: Number ) {
+        
+        this.nroUF = nroUF;
+    }
+
     public setIdManzana( idManzana: Number ) {
         
         this.idManzana = idManzana;
@@ -87,9 +99,9 @@ export class UnidadFuncional {
         this.nroEdificio = nroEdificio;
     }
 
-    public setDepartamento ( departamento: String ) {
+    public setCodDepartamento ( codDepartamento: String ) {
         
-        this.departamento = departamento;
+        this.codDepartamento = codDepartamento;
     }
     
     public setCodSitLegal ( codSitLegal: String ) {

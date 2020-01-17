@@ -53,7 +53,7 @@
                                         </td>
                                         <td>
                                             <span>{{ctrl.get('detalle').value}}</span>
-                                            <span><small>Vencimiento: {{ctrl.get('vencimiento').value}}</small></span>
+                                            <span><small>Vencimiento: {{_fx.dateFormat(ctrl.get('vencimiento').value)}}</small></span>
                                             <span><small><a href="#" data-toggle="modal"
                                                         data-target="#modalDetalleDeuda"
                                                         (click)="detalleDeuda = arrDeudas[i]">Ver

@@ -1,5 +1,6 @@
 export class Adherente {
     
+    private id: Number;
     private nroAdherente: Number;
     private nombre: String;
     private apellido: String;
@@ -10,8 +11,9 @@ export class Adherente {
 
     // CONSTRUCTOR
 
-    public Adherente(nroAdherente?: Number, nombre?: String, apellido?: String, nroDocumento?: Number, telefono?: Number, email?: String) {
+    public Adherente(id?: Number, nroAdherente?: Number, nombre?: String, apellido?: String, nroDocumento?: Number, telefono?: Number, email?: String) {
 
+        this.id = id;
         this.nroAdherente = nroAdherente;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -22,6 +24,10 @@ export class Adherente {
 
     
     // GETTERS
+    public getId() : Number {
+        
+        return this.id;
+    }
 
     public getNroAdherente() : Number {
         
@@ -55,6 +61,11 @@ export class Adherente {
 
 
     // SETTERS
+
+    public setId( id: Number ) {
+        
+        this.id = id;
+    }
 
     public setNroAdherente( id: Number ) {
         

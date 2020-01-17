@@ -37,7 +37,7 @@ export class GrillaGastosLiquidacionComponent implements OnInit {
     'filterParams': this.filterParams,
     'delete': { 
       'icon': 'mdi mdi-delete',
-      'entityUrl': 'gastosLiquidaciones'
+      'entityUrl': 'gastos-liq'
     }
   }
 

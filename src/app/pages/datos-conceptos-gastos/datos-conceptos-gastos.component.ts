@@ -87,7 +87,7 @@ export class DatosConceptosGastosComponent implements OnInit {
 
       // Actualizo el concepto
       conceptoGasto.setId(Number.parseInt(this.idEdit.toString()));
-      this._common.UpdateOne( 'conceptosgastos', conceptoGasto ).subscribe(
+      this._common.updateOne( 'conceptosgastos', conceptoGasto ).subscribe(
         data => {
 
           this._fxGlobals.showAlert( 'Operación Exitosa!', 'El concepto se ha actualizado con éxito', 'success' );

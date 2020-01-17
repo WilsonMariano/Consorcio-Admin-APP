@@ -9,13 +9,14 @@ export class GrillaCtasCtesComponent implements OnInit {
 
   // SEE grilla.component
 
-  private arrControls = ['UF', 'Apellido y Nombre', 'Nº Adherente', 'Saldo'];
+  private arrControls = ['UF', 'Manzana', 'Nro. adherente', 'Apellido y Nombre', 'Saldo'];
   
   
   private arrAttr = [
-    { 'attr': 'id',           'type': 'Number'  },
-    { 'attr': 'adherente',    'type': 'String'  },
+    { 'attr': 'nroUF',        'type': 'Number'  },
+    { 'attr': 'nroManzana',   'type': 'Number'  },
     { 'attr': 'nroAdherente', 'type': 'Number'  },
+    { 'attr': 'adherente',    'type': 'String'  },
     { 'attr': 'saldo',        'type': 'Number'  },
   ];
   

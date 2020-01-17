@@ -97,7 +97,7 @@ export class CommonService {
 
 
 
-  public UpdateOne( entity: String, object: Object ): Observable<any> {
+  public updateOne( entity: String, object: Object ): Observable<any> {
 
     this._fxGlobals.showSpinner();
 

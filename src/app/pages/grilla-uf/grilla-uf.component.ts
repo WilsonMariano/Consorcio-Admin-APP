@@ -9,18 +9,19 @@ export class GrillaUFComponent implements OnInit {
   
   // SEE grilla.component
 
-  private arrControls = ['UF', 'Manzana', 'Adherente', 'Edificio', 'Departamento', 'Sit Legal', 'Coeficiente', 'Cod Alquila'];
+  private arrControls = ['UF', 'Manzana', 'Edificio', 'Departamento', 'Apellido', 'Nombre', 'Sit Legal', 'Coeficiente', 'Cod Alquila'];
 
 
   private arrAttr = [
-    { 'attr': 'id',               'type': 'Number' },
+    { 'attr': 'nroUF',            'type': 'Number' },
     { 'attr': 'nroManzana',       'type': 'Number' },
-    { 'attr': 'nroAdherente',     'type': 'Number' },
     { 'attr': 'nroEdificio',      'type': 'Number' },
-    { 'attr': 'codDepartamento',  'type': 'String' },
-    { 'attr': 'codSitLegal',      'type': 'String' },
+    { 'attr': 'departamento',     'type': 'String' },
+    { 'attr': 'apellido',         'type': 'String' },
+    { 'attr': 'nombre',           'type': 'String' },
+    { 'attr': 'sitLegal',         'type': 'String' },
     { 'attr': 'coeficiente',      'type': 'Number' },
-    { 'attr': 'codAlquila',       'type': 'String' }
+    { 'attr': 'alquila',          'type': 'String' }
   ];
 
 

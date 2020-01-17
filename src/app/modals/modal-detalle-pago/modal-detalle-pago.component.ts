@@ -14,4 +14,9 @@ export class ModalDetallePagoComponent implements OnInit {
   ngOnInit() {
   }
 
+  public pay(): void {
+
+    console.log(this.inputArrPagos);
+  }
+
 }

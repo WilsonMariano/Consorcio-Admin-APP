@@ -195,7 +195,7 @@ export class GrillaComponent implements OnInit {
       
       // Operación exitosa
       () => {
-        this._common.deleteEntity(id, this.options['entity']).subscribe(
+        this._common.deleteEntity(id, this.options['delete'].entityUrl).subscribe(
 
           data => {
             console.log(data),

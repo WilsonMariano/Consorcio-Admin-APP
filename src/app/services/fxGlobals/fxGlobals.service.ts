@@ -39,22 +39,6 @@ export class FxGlobalsService {
       text,
       icon,
       buttons: true,
-      // buttons: {
-      //   cancel: {
-      //     text: "Cancelar",
-      //     value: null,
-      //     visible: false,
-      //     className: "",
-      //     closeModal: true,
-      //   },
-      //   confirm: {
-      //     text: "Aceptar",
-      //     value: true,
-      //     visible: true,
-      //     className: "",
-      //     closeModal: true
-      //   }
-      // },
       dangerMode: true
     };
 
@@ -72,5 +56,13 @@ export class FxGlobalsService {
 
       });
     });    
+  }
+
+  public dateFormat(date): String {
+
+    let arrDate = date.split('-');
+
+    return arrDate[2] +'-'+ arrDate[1] +'-'+ arrDate[0];
+
   }
 }

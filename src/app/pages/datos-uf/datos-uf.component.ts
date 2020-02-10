@@ -171,5 +171,17 @@ export class DatosUFComponent implements OnInit {
       data => this.arrManzanas = data);
   }
 
+  public changeManzana(): void {
+
+    let arr = this.arrManzanas.filter(m => m.id == this.forma.get('idManzana').value);
+
+    if(arr.length == 0) return;
+
+    if(arr[0].tipoVivienda == 'CHALET')
+      this.forma.get('departamento').disable();
+    else
+      this.forma.get('departamento').enable();
+  }
+
 
 }

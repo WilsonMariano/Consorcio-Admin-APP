@@ -60,13 +60,13 @@
                                     <div class="u-img"><img src="assets/images/user.png" alt="user"></div>
                                     <div class="u-text">
                                         <h4>{{_auth.getData().nombre + " " + _auth.getData().apellido}}</h4>
-                                        <p class="text-muted">{{_auth.getData().email}}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">Ver Perfil</a></div>
+                                        <p class="text-muted">{{_auth.getData().email}}</p><a routerLink="/home/mi-perfil" class="btn btn-rounded btn-danger btn-sm">Mi Perfil</a></div>
                                 </div>
                             </li>
+                            <!-- <li role="separator" class="divider"></li>
+                            <li><a routerLink="/home/mi-perfil"><i class="ti-user"></i> Mi Perfil</a></li> -->
                             <li role="separator" class="divider"></li>
-                            <li><a><i class="ti-user"></i> Mi Perfil</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a routerLinkActive="active" routerLink="/home/account-settings"><i class="ti-settings"></i> Configurar cuenta</a></li>
+                            <li><a routerLinkActive="active" routerLink="/home/account-settings"><i class="ti-settings"></i> Cambiar apariencia</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a (click)="logOut()"><i class="fa fa-power-off"></i> Salir</a></li>
                         </ul>

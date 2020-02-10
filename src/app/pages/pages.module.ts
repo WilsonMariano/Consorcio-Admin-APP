@@ -40,9 +40,11 @@ import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 import { NotasCreditoDebitoComponent } from './notas-credito-debito/notas-credito-debito.component';
 import { BuscarUfPagoComponent } from './buscar-uf-pago/buscar-uf-pago.component';
 
+// Generar módulo para modals
 import { ModalConceptosComponent } from '../modals/modal-conceptos/modal-conceptos.component';
 import { ModalDetalleDeudaComponent } from '../modals/modal-detalle-deuda/modal-detalle-deuda.component';
 import { ModalDetallePagoComponent } from '../modals/modal-detalle-pago/modal-detalle-pago.component';
+import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
 
 
 
@@ -71,7 +73,8 @@ import { ModalDetallePagoComponent } from '../modals/modal-detalle-pago/modal-de
         DatosGastosExpensasCsvComponent,
         NuevoPagoComponent,
         NotasCreditoDebitoComponent,
-        BuscarUfPagoComponent
+        BuscarUfPagoComponent,
+        MiPerfilComponent
     ],
     exports: [
         DashboardComponent

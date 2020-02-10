@@ -27,6 +27,7 @@ export class GrillaComponent implements OnInit {
   @rowsWithPage:      atributo que establece la cantidad de filas que mostrara la tabla
   @numPage:           pagina actual que muestra la tabla (paginado)
   @totalResults:      cantidad de registros totales existentes de la db
+  @objectViewDetails: contendra un objeto a visualizar en el modal de detalle grilla
    */
 
   @Input() options = [];
@@ -41,6 +42,8 @@ export class GrillaComponent implements OnInit {
   public rowsWithPage = 20;
   public numPage = 1;
   public totalResults = 0;
+
+  public arrViewDetails = [];
 
 
 
@@ -206,5 +209,12 @@ export class GrillaComponent implements OnInit {
       () => {}
     );
       
+  }
+
+  public openModalDetalle( obj ): void {
+
+    this.arrViewDetails['obj'] = obj;
+    this.arrViewDetails['attr'] = this.options['btnDetails']['attr'];
+    $("#modalDetalleGrilla").modal("show");
   }
 }

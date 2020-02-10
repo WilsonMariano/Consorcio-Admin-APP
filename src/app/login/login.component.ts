@@ -55,7 +55,8 @@ export class LoginComponent implements OnInit {
       token => {
 
         localStorage.setItem("token", token);
-        this.router.navigate(['/home/dashboard']);
+        // this.router.navigate(['/home/dashboard']);
+        this.router.navigate(['/home/grilla-adherentes']);
       }
     )
   }

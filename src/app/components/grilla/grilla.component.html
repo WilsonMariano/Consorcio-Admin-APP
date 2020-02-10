@@ -21,6 +21,7 @@
                 <td *ngIf="item.type == 'Date'">{{obj[item.attr] | date:'dd-MM-yyyy'}}</td>
                 <td *ngIf="item.type != 'Date'">{{obj[item.attr]}}</td>
             </ng-container>
+            <td *ngIf="options['btnDetails']" (click)="openModalDetalle(obj)"><i class="mdi mdi-eye"></i></td>
             <ng-container *ngIf="options['buttons'] != undefined">
                 <td *ngFor="let c of options['buttons']" routerLink="/{{c.url}}/{{obj.id}}"><i [class]="c.icon"></i></td>
             </ng-container>
@@ -43,4 +44,5 @@
 
 
 
+<app-modal-detalle-grilla [input]="arrViewDetails"></app-modal-detalle-grilla>
 <app-spinner></app-spinner>

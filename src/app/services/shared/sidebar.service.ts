@@ -6,13 +6,13 @@ import { Injectable } from '@angular/core';
 export class SidebarService {
 
   menu: any = [
-    {
-      titulo: 'Principal',
-      icono: 'mdi mdi-gauge',
-      submenu: [
-        { titulo: 'Dashboard', url: '/home/dashboard' },
-      ]
-    },
+    // {
+    //   titulo: 'Principal',
+    //   icono: 'mdi mdi-gauge',
+    //   submenu: [
+    //     { titulo: 'Dashboard', url: '/home/dashboard' },
+    //   ]
+    // },
     {
       titulo: 'Unidades',
       icono: 'mdi mdi-account-multiple',
@@ -49,7 +49,7 @@ export class SidebarService {
       titulo: 'Gastos',
       icono: 'mdi mdi-receipt',
       submenu: [
-        { titulo: 'Cargar xml', url: '/home/cargar-gasto-xml' },
+        // { titulo: 'Cargar xml', url: '/home/cargar-gasto-xml' },
         { titulo: 'Cargar nuevo gasto', url: '/home/nuevo-gasto' },
         { titulo: 'Grilla de conceptos', url: '/home/grilla-conceptos-gastos' }
       ]

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { SpinnerComponent } from './spinner/spinner.component';
 import { GrillaComponent } from './grilla/grilla.component';
+import { ModalDetalleGrillaComponent } from '../modals/modal-detalle-grilla/modal-detalle-grilla.component';
 
 
 
@@ -14,11 +15,12 @@ import { GrillaComponent } from './grilla/grilla.component';
     imports: [
         CommonModule,
         RouterModule,
-        NgxSpinnerModule,
+        NgxSpinnerModule
     ],
     declarations: [
         SpinnerComponent,
-        GrillaComponent
+        GrillaComponent,
+        ModalDetalleGrillaComponent
     ],
     exports: [
         SpinnerComponent,

@@ -37,10 +37,12 @@ export class BuscarUfPagoComponent implements OnInit {
 
   public onSubmit(): void {
 
+    console.log(this.forma);
+
     this._uf.getOneByNro(this.forma.get('idManzana').value, this.forma.get('nroUF').value).subscribe(
       data => {
         this._common.getOne('vwUF', data.id).subscribe(
-          uf => this.ufBuscada = uf
+          uf => {this.ufBuscada = uf; console.log(uf)}
         );
       },
       err => this.ufBuscada = ""

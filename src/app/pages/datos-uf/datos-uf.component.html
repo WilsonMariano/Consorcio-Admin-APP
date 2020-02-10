@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group col-md-4 col-sm-12">
                                 <label>N° Manzana</label>
-                                <select class="form-control" formControlName="idManzana">
+                                <select class="form-control" formControlName="idManzana" (click)="changeManzana()">
                                     <option value="">Seleccionar...</option>
                                     <option *ngFor="let m of arrManzanas" [value]="m.id">{{m.nroManzana}}</option>
                                 </select>

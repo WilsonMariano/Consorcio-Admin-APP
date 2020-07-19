@@ -24,6 +24,8 @@ import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 import { NotasCreditoDebitoComponent } from './notas-credito-debito/notas-credito-debito.component';
 import { BuscarUfPagoComponent } from './buscar-uf-pago/buscar-uf-pago.component';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
+import { GrillaFeriadosComponent } from './grilla-feriados/grilla-feriados.component';
+import { DatosFeriadoComponent } from './datos-feriado/datos-feriado.component';
 
 
 
@@ -38,6 +40,7 @@ const pagesRoutes: Routes = [
             { path: 'grilla-expensas',              component: GrillaLiquidacionesGlobalesComponent,    canActivate: [AuthGuard],   data: { titulo: 'Grilla de liquidaciones' } },
             { path: 'grilla-conceptos-gastos',      component: GrillaConceptosGastosComponent,          canActivate: [AuthGuard],   data: { titulo: 'Grilla de conceptos' } },
             { path: 'grilla-ctas-ctes',             component: GrillaCtasCtesComponent,                 canActivate: [AuthGuard],   data: { titulo: 'Grilla de ctas. ctes.' } },
+            { path: 'grilla-feriados',              component: GrillaFeriadosComponent,                 canActivate: [AuthGuard],   data: { titulo: 'Grilla de feriados' } },
             { path: 'notas-credito-debito/:id',     component: NotasCreditoDebitoComponent,             canActivate: [AuthGuard],   data: { titulo: 'Nota de crédito / débito' } },
             { path: 'grilla-gastos-liquidacion/:id',component: GrillaGastosLiquidacionComponent,        canActivate: [AuthGuard],   data: { titulo: 'Grilla de gastos liquidaciones' } },
             { path: 'cta-cte/:id',                  component: GrillaCtaCteComponent,                   canActivate: [AuthGuard],   data: { titulo: 'Cuenta corriente UF' } },
@@ -45,6 +48,7 @@ const pagesRoutes: Routes = [
             { path: 'datos-uf/:id',                 component: DatosUFComponent,                        canActivate: [AuthGuard],   data: { titulo: 'Datos de la UF' } },
             { path: 'datos-conceptos-gastos/:id',   component: DatosConceptosGastosComponent,           canActivate: [AuthGuard],   data: { titulo: 'Conceptos de Gastos' } },
             { path: 'datos-expensa/:id',            component: DatosLiquidacionesGlobalesComponent,     canActivate: [AuthGuard],   data: { titulo: 'Datos de la liquidación' } },
+            { path: 'datos-feriado/:id',            component: DatosFeriadoComponent,                   canActivate: [AuthGuard],   data: { titulo: 'Datos del feriado' } },
             { path: 'gastos-expensa/:id',           component: DatosGastosExpensaComponent,             canActivate: [AuthGuard],   data: { titulo: 'Carga de gastos' } },
             { path: 'gastos-expensa-csv/:id',       component: DatosGastosExpensasCsvComponent,         canActivate: [AuthGuard],   data: { titulo: 'Carga csv de gastos' } },
             { path: 'nuevo-pago/buscarUf',          component: BuscarUfPagoComponent,                   canActivate: [AuthGuard],   data: { titulo: 'Buscar UF' } },

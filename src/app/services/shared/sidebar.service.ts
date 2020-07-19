@@ -68,7 +68,8 @@ export class SidebarService {
       titulo: 'Administración',
       icono: 'mdi mdi-key-variant',
       submenu: [
-        { titulo: 'Configurar intereses', url: '/home/configurar-intereses' }
+        { titulo: 'Configurar intereses', url: '/home/configurar-intereses' },
+        { titulo: 'Administrar feriados', url: '/home/grilla-feriados' }
       ]
     }
   ];

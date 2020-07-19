@@ -45,6 +45,8 @@ import { ModalConceptosComponent } from '../modals/modal-conceptos/modal-concept
 import { ModalDetalleDeudaComponent } from '../modals/modal-detalle-deuda/modal-detalle-deuda.component';
 import { ModalDetallePagoComponent } from '../modals/modal-detalle-pago/modal-detalle-pago.component';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
+import { GrillaFeriadosComponent } from './grilla-feriados/grilla-feriados.component';
+import { DatosFeriadoComponent } from './datos-feriado/datos-feriado.component';
 
 
 
@@ -74,7 +76,9 @@ import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
         NuevoPagoComponent,
         NotasCreditoDebitoComponent,
         BuscarUfPagoComponent,
-        MiPerfilComponent
+        MiPerfilComponent,
+        GrillaFeriadosComponent,
+        DatosFeriadoComponent
     ],
     exports: [
         DashboardComponent
